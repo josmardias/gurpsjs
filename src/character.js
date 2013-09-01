@@ -1,9 +1,3 @@
-/*
- * Requires Javascript version >= 1.8
- */
-
-var GURPS = GURPS || {};
-
 GURPS.Character = (function () {
 	'use strict';
 
@@ -38,7 +32,7 @@ GURPS.Character = (function () {
 	};
 
 	//get partial attribute value, considering only dependencies
-	Character.prototype._getDependenciesValue = function (attrName) {
+	Character.prototype._computeDependencie = function (attrName) {
 		var depAttr = this.dependencies[attrName],
 			value = 0;
 
@@ -59,7 +53,7 @@ GURPS.Character = (function () {
 	Character.prototype.getAttr = function (attrName) {
 		var attrValue = this[attrName];
 		if(this.dependencies[attrName] !== undefined)
-			attrValue += this._getDependenciesValue(attrName);
+			attrValue += this._computeDependencie(attrName);
 		return  attrValue;
 	};
 
@@ -72,7 +66,7 @@ GURPS.Character = (function () {
 
 			newVal = attributes[i];
 			if (this.dependencies[i] !== undefined)
-				newVal = attributes[i] - this._getDependenciesValue(i);
+				newVal = attributes[i] - this._computeDependencie(i);
 
 			this[i] = newVal;
 		}
