@@ -2,8 +2,10 @@ GURPS.Character = (function () {
 	'use strict';
 
 	var Character = function (attributes) {
+		if (attributes === null)
+			return;
 		this.reset();
-		this.setAttr(attributes);
+		this.setAttribute(attributes);
 		//this.calculatePoints();
 	};
 
@@ -18,7 +20,7 @@ GURPS.Character = (function () {
 		basicMove: function () {
 			return Math.round(this.getAttr('basicSpeed'));
 		},
-		perception: 'will',
+		perception: 'iq',
 		vision: 'perception',
 		hearing: 'perception',
 		tasteSmell: 'perception',
@@ -32,43 +34,43 @@ GURPS.Character = (function () {
 	};
 
 	//get partial attribute value, considering only dependencies
-	Character.prototype._computeDependencie = function (attrName) {
-		var depAttr = this.dependencies[attrName],
-			value = 0;
+	Character.prototype._resolveDependency = function (attrName) {
+		var dep = this.dependencies[attrName];
 
-		if (typeof depAttr === "string") {
-			value = this[depAttr] || 0;
-		} else if (typeof depAttr === 'object') {
-			value = depAttr.reduce(function (attr1, attr2) {
-				return (this[attr1] || 0) + (this[attr2] || 0);
-			}) / depAttr.length;
-		} else if (typeof depAttr === 'function') {
-			value = depAttr.call(this);
-		}
+		if (!dep)
+			return 0;
 
-		return value;
+		//hp: 'st',
+		if (typeof dep === 'string')
+			return this.getAttribute(dep);
+
+		//basicSpeed: ['dx', 'dx', 'ht', 'ht'],
+		if (typeof dep === 'object') {
+			var self = this;
+			return dep.reduce(function (acumulator, attr) {
+				return acumulator + this.getAttribute(attr);
+			}, 0) / dep.length;
+		};
+
+		//basicMove: function () {...}
+		if (typeof dep === 'function')
+			return dep.call(this);
 	};
 
 	//returns final attribute value
-	Character.prototype.getAttr = function (attrName) {
-		var attrValue = this[attrName];
-		if(this.dependencies[attrName] !== undefined)
-			attrValue += this._computeDependencie(attrName);
-		return  attrValue;
+	Character.prototype.getAttribute = function (attrName) {
+		var value = this[attrName] || 0;
+		return value + this._resolveDependency(attrName);
 	};
 
-	Character.prototype.setAttr = function (attributes) {
-		var i, newVal;
+	Character.prototype.setAttribute = function (attributes) {
+		var attrName, newVal;
 
-		for (i in attributes) {
-			if (!attributes.hasOwnProperty(i))
+		for (attrName in attributes) {
+			if (!attributes.hasOwnProperty(attrName))
 				continue;
 
-			newVal = attributes[i];
-			if (this.dependencies[i] !== undefined)
-				newVal = attributes[i] - this._computeDependencie(i);
-
-			this[i] = newVal;
+			this[attrName] = (this[attrName] || 0) + (attributes[attrName] - this.getAttribute(attrName));
 		}
 	};
 

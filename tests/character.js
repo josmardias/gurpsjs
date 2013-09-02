@@ -2,45 +2,59 @@ module("Character", {
 	setup: function () {
 		window.Character = GURPS.Character;
 	},
-	teardown: function () {
-
-	}
+	teardown: function () {}
 });
 
-test("instantiate without attributes", function () {
-	var testDefaults = function (obj) {
-		equal(obj.st, 10);
-		equal(obj.dx, 10);
-		equal(obj.iq, 10);
-		equal(obj.ht, 10);
-	}
+test("creating without attributes", function () {
+	var c = new Character();
 
-	testDefaults(new Character());
-	testDefaults(new Character(null));
-	testDefaults(new Character({}));
+	equal(c.st, 10);
+	equal(c.dx, 10);
+	equal(c.iq, 10);
+	equal(c.ht, 10);
 });
 
-test("instantiate with attributes", function () {
+test("creating with attributes null will not initialize", function () {
+	var CharacterMock = function () {},
+		spy = sinon.spy(),
+		c;
+
+	CharacterMock.prototype = Character;
+	CharacterMock.reset = spy;
+	c = new CharacterMock(null);
+
+	ok(!spy.called);
+});
+
+
+test("creating with attributes empty object", function () {
+	var c = new Character({});
+
+	equal(c.st, 10);
+	equal(c.dx, 10);
+	equal(c.iq, 10);
+	equal(c.ht, 10);
+});
+
+test("creating with attributes", function () {
 	var c = new Character({
 		st: 11,
-		dx: 12,
-		iq: 13,
-		ht: 14
+		dx: 12
 	});
 
+	equal(c.getAttribute('st'), 11, 'get st');
+	equal(c.getAttribute('dx'), 12, 'get dx');
 	equal(c.st, 11, 'st');
 	equal(c.dx, 12, 'dx');
-	equal(c.iq, 13, 'iq');
-	equal(c.ht, 14, 'ht');
 });
 
-test("reseted character must", function () {
-	var c = new Character({
-		st: 11,
-		dx: 12,
-		iq: 13,
-		ht: 14
-	});
+test("reseting character", function () {
+	var c = new Character(null);
+
+	c.st = 11;
+	c.dx = 12;
+	c.iq = 13;
+	c.ht = 14;
 
 	c.reset();
 
@@ -50,14 +64,96 @@ test("reseted character must", function () {
 	equal(c.ht, 10);
 });
 
-test("secondarie attributes", function () {
-	var c = new Character({
-		st: 11,
-		hp: 13
+test("getAttribute on primary attribute", function () {
+	var c = new Character(null);
+
+	c.st = 12;
+	equal(c.getAttribute('st'), 12, 'get st');
+});
+
+test("getAttribute on secondary higher than primary", function () {
+	var c = new Character(null);
+
+	c.st = 11;
+	c.hp = 2;
+
+	equal(c.getAttribute('hp'), 13, 'get hp');
+});
+
+test("getAttribute on secondary lower than base", function () {
+	var c = new Character(null);
+
+	c.st = 11;
+	c.hp = -2;
+
+	equal(c.getAttribute('hp'), 9, 'get hp');
+});
+
+test("getAttribute on secondary depending on other secondary", function () {
+	var c = new Character(null);
+
+	c.iq = 12;
+	c.perception = 3;
+	c.vision = -4;
+
+	equal(c.getAttribute('vision'), 11, 'get vision');
+});
+
+test("getAttribute on secondary changes when primary change", function () {
+	var c = new Character(null),
+		iqBase = 10,
+		change = 3;
+
+	c.iq = iqBase;
+	c.perception = 2;
+	equal(c.getAttribute('perception'), 12, 'get perception');
+
+	c.iq = iqBase + change;
+	equal(c.getAttribute('perception'), 12 + change, 'get raised perception');
+
+	c.iq = iqBase - change;
+	equal(c.getAttribute('perception'), 12 - change, 'get lowered perception');
+});
+
+test("setAttribute on primary of empty character", function () {
+	var c = new Character(null);
+
+	c.setAttribute({
+		iq: 13
 	});
 
-	equal(c.getAttr('st'), 11, 'get st');
-	equal(c.getAttr('hp'), 13, 'get hp');
-	equal(c.st, 11, 'st');
-	equal(c.hp, 2, 'hp');
+	equal(c.iq, 13, 'iq');
+});
+
+test("setAttribute on secondary of empty character", function () {
+	var c = new Character(null);
+
+	c.setAttribute({
+		perception: 13
+	});
+
+	equal(c.perception, 13, 'bonus perception');
+});
+
+test("setAttribute on primary atribute", function () {
+	var c = new Character(null);
+
+	c.iq = 10;
+	c.setAttribute({
+		iq: 13
+	});
+
+	equal(c.iq, 13, 'iq');
+});
+
+test("setAttribute on secondary atribute", function () {
+	var c = new Character(null);
+
+	c.iq = 10;
+	c.perception = 2;
+	c.setAttribute({
+		perception: 13
+	});
+
+	equal(c.perception, 3, 'bonus perception');
 });
