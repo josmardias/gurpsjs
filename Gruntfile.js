@@ -13,5 +13,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-watch');
     // register one or more task lists (you should ALWAYS have a "default" task list)
-    grunt.registerTask('default', ['qunit', 'watch']);
+    grunt.registerTask('default', ['qunit']);
+    grunt.registerTask('test', ['qunit']);
 };
