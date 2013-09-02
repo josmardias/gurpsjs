@@ -1,11 +1,15 @@
+branches:
+  only:
+    - master
+
 language: node_js
 node_js:
-    - "0.11.x"
-    - "0.10.x"
-    - "0.9.x"
-    - "0.8.x"
+  - "0.11.x"
+  - "0.10.x"
+  - "0.9.x"
+  - "0.8.x"
 
 before_script:
-    - npm install -g grunt-cli
+  - npm install -g grunt-cli
 
 script: grunt test --verbose --force
