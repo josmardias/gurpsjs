@@ -12,15 +12,26 @@ GURPS.Character = (function () {
     };
 
     /*
-     * Map of secondaries attributes, an it's dependencies
-     * value can be attribute name, or an array of attributes to calculate the average
+     * formula can be:
+     *  - attribute name
+     *  - number
+     *  - array of formula (they will be summed, same as {sum: [array]})
+     *  - object: {operator: formula}
+     *      - operator: avg, sum, round, floor
      */
     Character.prototype.dependencies = {
         will: 'iq',
-        frightCheck: ['st', 'iq'],
-        basicSpeed: ['dx', 'dx', 'ht', 'ht'],
-        basicMove: function () {
-            return Math.round(this.getAttr('basicSpeed'));
+        frightCheck: {
+            avg: ['st', 'iq']
+        },
+        basicSpeed: {
+            avg: ['dx', 'ht', 0, 0]
+        },
+        basicMove: {
+            floor: 'basicSpeed'
+        },
+        dodge: {
+            sum: ['basicMove', 3]
         },
         perception: 'iq',
         vision: 'perception',
@@ -35,37 +46,66 @@ GURPS.Character = (function () {
         this.st = this.dx = this.iq = this.ht = 10;
     };
 
-    //get partial attribute value, considering only dependencies
-    Character.prototype._resolveDependency = function (attrName) {
-        var dep = this.dependencies[attrName],
-            self = this;
+    Character.prototype._resolveFormula = function (formula) {
+        var i, acumulator;
 
-        if (!dep) {
+        //hp: 'st',
+        if (typeof formula === 'string') {
+            return this.getAttribute(formula);
+        }
+
+        //basicSpeed: {avg: ['dx', 'ht', 0, 0]},
+        if (typeof formula === 'object') {
+            acumulator = 0;
+            for (i in formula) {
+                if (!formula.hasOwnProperty(i)) {
+                    throw typeof i + ' ' + JSON.stringify(i) + ' is not a valid entry';
+                }
+                switch (i) {
+                case 'avg':
+                    acumulator += (this._resolveFormula(formula[i])) / (formula[i].length || 1);
+                    break;
+                case 'round':
+                    acumulator += Math.round(this._resolveFormula(formula[i]));
+                    break;
+                case 'floor':
+                    acumulator += Math.floor(this._resolveFormula(formula[i]));
+                    break;
+                case 'sum':
+                    /*falls through*/
+                default:
+                    acumulator += this._resolveFormula(formula[i]);
+                }
+            }
+            return acumulator;
+        }
+
+        //sum: ['basicMove', 3]
+        if (typeof formula === 'number') {
+            return formula;
+        }
+
+        if (formula === undefined) {
             return 0;
         }
 
-        //hp: 'st',
-        if (typeof dep === 'string') {
-            return this.getAttribute(dep);
+        throw 'unknown formula: ' + JSON.stringify(formula);
+    };
+
+    //get partial attribute value, considering only dependencies
+    Character.prototype._resolveDependency = function (attrName) {
+        var dep = this.dependencies[attrName];
+
+        if (dep === undefined) {
+            return 0;
         }
 
-        //basicSpeed: ['dx', 'dx', 'ht', 'ht'],
-        if (typeof dep === 'object') {
-            return dep.reduce(function (acumulator, attr) {
-                return acumulator + self.getAttribute(attr);
-            }, 0) / dep.length;
-        }
-
-        //basicMove: function () {...}
-        if (typeof dep === 'function') {
-            return dep.call(this);
-        }
+        return this._resolveFormula(dep);
     };
 
     //returns final attribute value
     Character.prototype.getAttribute = function (attrName) {
-        var value = this[attrName] || 0;
-        return value + this._resolveDependency(attrName);
+        return (this[attrName] || 0) + this._resolveDependency(attrName);
     };
 
     Character.prototype.setAttribute = function (attributes) {

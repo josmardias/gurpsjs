@@ -64,6 +64,57 @@ test("reseting character", function () {
 	equal(c.ht, 10);
 });
 
+test("_resolveFormula", function () {
+	var c = new Character(null),
+		formula = null;
+	c.at1 = 3;
+
+	equal(c._resolveFormula(0), 0, '0');
+	equal(c._resolveFormula(null), 0, 'null');
+	equal(c._resolveFormula(), 0, 'undefined');
+	equal(c._resolveFormula(1), 1, 'number');
+	equal(c._resolveFormula('at1'), 3, 'attribute');
+	equal(c._resolveFormula({
+		avg: 3
+	}), 3, 'avg of one number');
+	equal(c._resolveFormula({
+		avg: [1, 2]
+	}), 1.5, 'avg of numbers');
+	equal(c._resolveFormula({
+		avg: [-1, 1, 2, 3]
+	}), 1.25, 'avg of many numbers');
+	equal(c._resolveFormula({
+		sum: 3
+	}), 3, 'sum of one number');
+	equal(c._resolveFormula({
+		sum: [3, 5]
+	}), 8, 'sum of numbers');
+	equal(c._resolveFormula({
+		round: 3.2
+	}), 3, 'round of a number');
+	equal(c._resolveFormula({
+		round: [1.1, 2.4]
+	}), 4, 'round of numbers');
+	equal(c._resolveFormula([1, 2, 3]), 6, 'array of numbers must sum');
+	equal(c._resolveFormula({
+		round: {
+			avg: [-4, -2, -1]
+		}
+	}), -2, 'round of avg of negative numbers');
+});
+
+test("_resolveDependency", function () {
+	var c = new Character(null);
+
+	c.dependencies = {
+		at2: 'at1'
+	};
+	c.at1 = 3;
+	
+	equal(c._resolveDependency('at1'), 0, 'without dependency');
+	equal(c._resolveDependency('at2'), 3, 'depends on other');
+})
+
 test("getAttribute on primary attribute", function () {
 	var c = new Character(null);
 
@@ -156,4 +207,18 @@ test("setAttribute on secondary atribute", function () {
 	});
 
 	equal(c.perception, 3, 'bonus perception');
+});
+
+test("get basic speed, basic move and dodge", function () {
+	var c = new Character(null);
+
+	c.dx = 12;
+	c.ht = 15;
+	c.basicSpeed = 5;
+	c.basicMove = -15;
+	c.dodge = 5;
+
+	equal(c.getAttribute('basicSpeed'), 11.75, 'get basicSpeed');
+	equal(c.getAttribute('basicMove'), -4, 'get basicMove');
+	equal(c.getAttribute('dodge'), 4, 'get dodge');
 });
