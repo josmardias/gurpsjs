@@ -8,31 +8,26 @@ module.exports = function (grunt) {
             files: ['tests/*.js', 'tests/*.html', 'src/*.js'],
             tasks: ['qunit']
         },
-        jslint: {
-            source: {
-                src: ['src/*.js'],
-                directives: {
-                    todo: true,
-                    continue: true,
-                    forin: true,
-                    nomen: true,
-                    predef: [
-                        'GURPS'
-                    ]
+        jshint: {
+            files: ['src/*.js'],
+            options: {
+                globals: {
+                    GURPS: true
                 },
-                options: {
-                    errorsOnly: true,
-                    failOnError: false
-                }
+                //forin: true,
+                indent: 4,
+                //jslint legacy
+                nomen: false,
+                onevar: true
             }
         }
     });
     // load up your plugins
-    grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     // register one or more task lists (you should ALWAYS have a "default" task list)
-    grunt.registerTask('default', ['jslint', 'qunit']);
+    grunt.registerTask('default', ['jshint', 'qunit']);
     grunt.registerTask('test', ['qunit']);
-    grunt.registerTask('lint', ['jslint']);
+    grunt.registerTask('hint', ['jshint']);
 };
