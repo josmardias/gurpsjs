@@ -1,24 +1,25 @@
 {
-    "name": "gurps",
-    "version": "0.0.1",
-    "author": "Josmar Dias <josmarnet@gmail.com>",
-    "description": "a generic gurps library",
-    "main": "./src/main.js",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/josmardias/gurps.git"
-    },
-    "keywords": [
-        "gurps"
-    ],
-    "scripts": {
-        "test": "grunt test --verbose --force"
-    },
-    "license": "MIT",
-    "devDependencies": {
-        "grunt": "~0.4.1",
-        "grunt-contrib-qunit": ">=0.2.2",
-        "grunt-contrib-watch": ">=0.5.3",
-        "grunt-contrib-jshint": ">=0.6.4"
-    }
+  "name": "gurps",
+  "version": "0.0.1",
+  "author": "Josmar Dias <josmarnet@gmail.com>",
+  "description": "a generic gurps library",
+  "main": "./src/main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/josmardias/gurps.git"
+  },
+  "keywords": [
+    "gurps"
+  ],
+  "scripts": {
+    "test": "grunt test --verbose --force"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^0.4.1",
+    "grunt-contrib-jshint": "^0.6.5",
+    "grunt-contrib-qunit": "^0.2.2",
+    "grunt-contrib-watch": "^0.5.3",
+    "grunt-jsbeautifier": "^0.2.6"
+  }
 }

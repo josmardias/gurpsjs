@@ -1,4 +1,14 @@
+/* global module: true */
 module.exports = function (grunt) {
+    var jsbeautifierList = [
+        '.jshintrc',
+        '.jsbeautifyrc',
+        'Gruntfile.js',
+        'src/**/*.js',
+        'tests/**/*.js',
+        '!tests/lib/*'
+    ];
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         qunit: {
@@ -9,16 +19,22 @@ module.exports = function (grunt) {
             tasks: ['qunit']
         },
         jshint: {
-            files: ['src/*.js'],
-            options: {
-                globals: {
-                    GURPS: true
-                },
-                //forin: true,
-                indent: 4,
-                //jslint legacy
-                nomen: false,
-                onevar: true
+            files: ['Gruntfile.js', 'src/*.js' /*, 'tests/*.js'*/ ],
+            options: grunt.file.readJSON(".jshintrc")
+        },
+        jsbeautifier: {
+            "default": {
+                src: jsbeautifierList,
+                options: {
+                    config: ".jsbeautifyrc"
+                }
+            },
+            "verify": {
+                src: jsbeautifierList,
+                options: {
+                    config: ".jsbeautifyrc",
+                    mode: "VERIFY_ONLY"
+                }
             }
         }
     });
@@ -26,8 +42,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-jsbeautifier');
+
     // register one or more task lists (you should ALWAYS have a "default" task list)
-    grunt.registerTask('default', ['jshint', 'qunit']);
+    grunt.registerTask('format', ['jsbeautifier:default']);
     grunt.registerTask('test', ['qunit']);
     grunt.registerTask('hint', ['jshint']);
+    grunt.registerTask('verify', ['jshint', 'jsbeautifier:verify']);
+    grunt.registerTask('default', ['verify', 'test']);
 };
