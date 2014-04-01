@@ -1,8 +1,8 @@
 /* global module: true */
 module.exports = function (grunt) {
+    "use strict";
+
     var jsbeautifierList = [
-        '.jshintrc',
-        '.jsbeautifyrc',
         'Gruntfile.js',
         'src/**/*.js',
         'tests/**/*.js',
@@ -19,8 +19,10 @@ module.exports = function (grunt) {
             tasks: ['qunit']
         },
         jshint: {
-            files: ['Gruntfile.js', 'src/*.js' /*, 'tests/*.js'*/ ],
-            options: grunt.file.readJSON(".jshintrc")
+            files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+            options: {
+                jshintrc: true
+            }
         },
         jsbeautifier: {
             "default": {

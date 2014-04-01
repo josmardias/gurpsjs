@@ -1,3 +1,9 @@
+/* globals Character:true,GURPS */
+/* jshint globalstrict: true */
+"use strict";
+
+Character = null;
+
 module("Character", {
     setup: function () {
         window.Character = GURPS.Character;
@@ -64,8 +70,7 @@ test("reseting character", function () {
 });
 
 test("_resolveFormula", function () {
-    var c = new Character(null),
-        formula = null;
+    var c = new Character(null);
     c.at1 = 3;
 
     equal(c._resolveFormula(0), 0, '0');
@@ -112,7 +117,7 @@ test("_resolveDependency", function () {
 
     equal(c._resolveDependency('at1'), 0, 'without dependency');
     equal(c._resolveDependency('at2'), 3, 'depends on other');
-})
+});
 
 test("getAttribute on primary attribute", function () {
     var c = new Character(null);
