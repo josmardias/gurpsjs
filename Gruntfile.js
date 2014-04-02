@@ -5,17 +5,17 @@ module.exports = function (grunt) {
     var jsbeautifierList = [
         'Gruntfile.js',
         'src/**/*.js',
-        'tests/**/*.js',
-        '!tests/lib/*'
+        'test/**/*.js',
+        '!test/lib/*'
     ];
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         qunit: {
-            files: ['tests/*.html']
+            files: ['test/*.html']
         },
         watch: {
-            files: ['tests/*.js', 'tests/*.html', 'src/*.js'],
+            files: ['test/*.js', 'test/*.html', 'src/*.js'],
             tasks: ['qunit']
         },
         jshint: {
@@ -50,6 +50,7 @@ module.exports = function (grunt) {
     grunt.registerTask('format', ['jsbeautifier:default']);
     grunt.registerTask('test', ['qunit']);
     grunt.registerTask('hint', ['jshint']);
+    grunt.registerTask('prepare', ['format', 'jshint', 'test']);
     grunt.registerTask('verify', ['jshint', 'jsbeautifier:verify']);
     grunt.registerTask('default', ['verify', 'test']);
 };

@@ -2,7 +2,7 @@
 /* jshint globalstrict: true */
 "use strict";
 
-Character = null;
+var Character = null;
 
 module("Character", {
     setup: function () {
