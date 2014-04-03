@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/josmardias/gurpsjs.svg?branch=master)](https://travis-ci.org/josmardias/gurpsjs)
+[![Gittip](http://img.shields.io/gittip/josmardias.png)](https://www.gittip.com/josmardias/)
 
 GurpsJS
 =====
