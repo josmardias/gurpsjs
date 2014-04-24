@@ -1,4 +1,5 @@
 {
+  "js": {
     "indent_size": 4,
     "indent_char": " ",
     "indent_level": 0,
@@ -14,4 +15,5 @@
     "eval_code": false,
     "unescape_strings": false,
     "wrap_line_length": 0
+  }
 }

@@ -25,7 +25,7 @@ module.exports = function (grunt) {
             }
         },
         jsbeautifier: {
-            "default": {
+            "write": {
                 src: jsbeautifierList,
                 options: {
                     config: ".jsbeautifyrc"
@@ -45,12 +45,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-jsbeautifier');
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
 
     // register one or more task lists (you should ALWAYS have a "default" task list)
-    grunt.registerTask('format', ['jsbeautifier:default']);
     grunt.registerTask('test', ['qunit']);
     grunt.registerTask('hint', ['jshint']);
-    grunt.registerTask('prepare', ['format', 'jshint', 'test']);
-    grunt.registerTask('verify', ['jshint', 'jsbeautifier:verify']);
+    grunt.registerTask('format', ['jsbeautifier:write', 'jshint']);
+    grunt.registerTask('verify', ['jsbeautifier:verify', 'jshint']);
     grunt.registerTask('default', ['verify', 'test']);
 };
