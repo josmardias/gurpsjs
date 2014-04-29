@@ -1,6 +1,6 @@
 /* global GURPS */
 GURPS.Character = (function () {
-  "use strict";
+  'use strict';
 
   var Character = function (attributes) {
     if (attributes === null) {
