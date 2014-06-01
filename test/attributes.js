@@ -9,7 +9,7 @@ describe('Attributes module creation', function () {
     expect(module).toEqual(jasmine.any(Object));
   });
 
-  it("with empty object", function () {
+  it('with empty object', function () {
     var module = new Attributes({});
     expect(module).toEqual(jasmine.any(Object));
   });
@@ -18,7 +18,7 @@ describe('Attributes module creation', function () {
 
 describe('Attributes module get', function () {
 
-  it("undefined attribute should be zero", function () {
+  it('undefined attribute should be zero', function () {
     var module, value;
     module = new Attributes({});
     value = module.get('attr');
@@ -27,7 +27,7 @@ describe('Attributes module get', function () {
     expect(value).toEqual(0);
   });
 
-  it("simple attribute should be it's value", function () {
+  it('simple attribute should be it\'s value', function () {
     var module, value;
     module = new Attributes({
       attr: 11
@@ -38,7 +38,7 @@ describe('Attributes module get', function () {
     expect(value).toEqual(11);
   });
 
-  it("string attribute should be the zero if referenced attribute's is undefined", function () {
+  it('string attribute should be the zero if referenced attribute\'s is undefined', function () {
     var module, value;
     module = new Attributes({
       attr: 'referenced'
@@ -49,7 +49,7 @@ describe('Attributes module get', function () {
     expect(value).toEqual(0);
   });
 
-  it("string attribute should be the referenced attribute's value", function () {
+  it('string attribute should be the referenced attribute\'s value', function () {
     var module, value;
     module = new Attributes({
       referenced: 11,
@@ -61,7 +61,7 @@ describe('Attributes module get', function () {
     expect(value).toEqual(11);
   });
 
-  it("array of keys should be the sum of it's values", function () {
+  it('array of keys should be the sum of it\'s values', function () {
     var module, value;
     module = new Attributes({
       key1: 11,
@@ -76,7 +76,7 @@ describe('Attributes module get', function () {
   });
 
   //TODO
-  /*it("array of formulas should be the sum of it's values", function () {
+  /*it('array of formulas should be the sum of it\'s values', function () {
     var module, value;
     module = new Attributes({
         key1: 11,
@@ -95,7 +95,7 @@ describe('Attributes module get', function () {
 
 describe('Attributes module get object with single key as', function () {
 
-  it("sum should be the total sum the given array of numbers", function () {
+  it('sum should be the total sum the given array of numbers', function () {
     var module, value;
     module = new Attributes({
       attr: {
@@ -108,7 +108,7 @@ describe('Attributes module get object with single key as', function () {
     expect(value).toEqual(11 + 22 + 33);
   });
 
-  it("avg should be the avg of the given array of numbers", function () {
+  it('avg should be the avg of the given array of numbers', function () {
     var module, value;
     module = new Attributes({
       attr: {
@@ -121,7 +121,7 @@ describe('Attributes module get object with single key as', function () {
     expect(value).toEqual((11 + 22 + 33) / 3);
   });
 
-  it("floor should be the floor of the given number", function () {
+  it('floor should be the floor of the given number', function () {
     var module, value1, value2;
     module = new Attributes({
       attr1: {
@@ -140,7 +140,7 @@ describe('Attributes module get object with single key as', function () {
     expect(value2).toEqual(11);
   });
 
-  it("round should be the round of the given number", function () {
+  it('round should be the round of the given number', function () {
     var module, value1, value2, value3;
     module = new Attributes({
       attr1: {
