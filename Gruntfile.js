@@ -43,6 +43,7 @@ module.exports = function (grunt) {
       default: {
         src: ["src/polyfill.js", "src/gurps.js", "src/**/*.js"],
         options: {
+          keepRunner: true,
           specs: "test/**/*.js"
         }
       }
