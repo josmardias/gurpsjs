@@ -26,29 +26,33 @@ GURPS.Attributes = (function () {
   };
 
   Attributes.prototype.get = function (key) {
-    var val = _map[key];
+    var value = _map[key];
 
-    if (val === undefined) {
+    if (typeof key === 'number') {
+      return key;
+    }
+
+    if (value === undefined) {
       return 0;
     }
 
-    if (typeof val === 'number') {
-      return val;
+    if (typeof value === 'number') {
+      return value;
     }
 
-    if (typeof val === 'string') {
-      return this.get(val);
+    if (typeof value === 'string') {
+      return this.get(value);
     }
 
-    if (val.constructor === Array) {
-      return this.sum(val);
+    if (value.constructor === Array) {
+      return this.sum(value);
     }
 
-    if (val.constructor === Object) {
-      return this.resolve(val);
+    if (value.constructor === Object) {
+      return this.resolve(value);
     }
 
-    throw 'unexpected value: ' + JSON.stringify(val);
+    throw 'unexpected value: ' + JSON.stringify(value);
   };
 
   Attributes.prototype.resolve = function (obj) {
