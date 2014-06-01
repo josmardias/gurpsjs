@@ -1,5 +1,6 @@
 {
   "js": {
+    "fileTypes": [".js", ".jshintrc", ".jsbeautifyrc"],
     "indent_size": 2,
     "indent_char": " ",
     "indent_level": 0,

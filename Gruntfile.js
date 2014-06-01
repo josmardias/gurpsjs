@@ -4,9 +4,12 @@ module.exports = function (grunt) {
 
   var hintFiles = [
     "Gruntfile.js",
+    "package.json",
+    ".jshintrc",
+    ".jsbeautifyrc",
     "src/**/*.js",
     "test/**/*.js",
-    "package.json"
+    "test/.jshintrc",
   ];
 
   grunt.initConfig({
@@ -37,8 +40,8 @@ module.exports = function (grunt) {
       }
     },
     jasmine: {
-      pivotal: {
-        src: ["src/gurps.js", "src/**/*.js"],
+      default: {
+        src: ["src/polyfill.js", "src/gurps.js", "src/**/*.js"],
         options: {
           specs: "test/**/*.js"
         }

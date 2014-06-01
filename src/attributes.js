@@ -7,7 +7,7 @@ GURPS.Attributes = (function () {
 
   /* key => value
    * value can be:
-   *  - another key
+   *  - string (another key)
    *  - number
    *  - array of keys (they will be summed, same as {sum: [array]})
    *  - object: {operator: argument}
