@@ -8,11 +8,13 @@
   "indent": 2,
   "noarg": true,
   "nomen": false,
+  "nonbsp": true,
   "onevar": false,
   "strict": true,
   "smarttabs": true,
   "trailing": true,
   "undef": true,
   "unused": true,
+  "newcap": true,
   "quotmark": true
 }

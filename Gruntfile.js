@@ -21,6 +21,7 @@ module.exports = function (grunt) {
     jshint: {
       files: hintFiles,
       options: {
+        extensions: ".js, .jshintrc, .jsbeautifyrc",
         jshintrc: true
       }
     },
