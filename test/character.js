@@ -1,7 +1,7 @@
 "use strict";
 
 describe("GURPS object", function () {
-  it("GURPS must have Character attribute", function () {
+  it("must have Character attribute", function () {
     expect(GURPS).toEqual(jasmine.any(Object));
   });
 });
