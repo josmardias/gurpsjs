@@ -1,5 +1,3 @@
-/* globals Character:true,GURPS */
-/* jshint globalstrict: true */
 "use strict";
 
 describe("GURPS object", function () {

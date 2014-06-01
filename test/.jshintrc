@@ -5,6 +5,8 @@
     "xdescribe": false,
     "it": false,
     "xit": false,
-    "expect": false
-  }
+    "expect": false,
+    "GURPS": false
+  },
+  "globalstrict": true
 }
