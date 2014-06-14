@@ -4,6 +4,6 @@ branches:
 
 language: node_js
 
-before_script:
+install:
   - npm install -g grunt-cli
 

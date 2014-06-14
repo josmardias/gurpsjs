@@ -17,16 +17,16 @@ Requires Javascript version >= 1.8
 
 ### Enviroment
 
-Install Node.js and npm
+Install Node.js and npm  
 https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
 
-Install grunt-cli
-grunt install -g grunt-cli
+Install grunt-cli  
+$ grunt install -g grunt-cli
 
-Inside the project directory, install dependencies
-npm install
+Inside the project directory, install dependencies  
+$ npm install
 
 ### Testing
 
-Inside the projet directory
-grunt
+Inside the projet directory  
+$ grunt
