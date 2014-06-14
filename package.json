@@ -1,7 +1,7 @@
 {
-  "name": "gurps",
-  "version": "0.0.5",
-  "description": "a gurps library",
+  "name": "gurpsjs",
+  "version": "0.0.1",
+  "description": "A gurps Javascript library",
   "keywords": [
     "gurps"
   ],
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/josmardias/gurps.git"
+    "url": "https://github.com/josmardias/gurpsjs.git"
   },
   "scripts": {
     "test": "grunt test --verbose --force"

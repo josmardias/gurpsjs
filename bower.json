@@ -1,0 +1,21 @@
+{
+  "name": "gurpsjs",
+  "version": "0.0.1",
+  "homepage": "https://github.com/josmardias/gurpsjs",
+  "authors": [
+    "Josmar Dias <josmarnet@gmail.com>"
+  ],
+  "description": "A gurps Javascript library",
+  "main": "?",
+  "keywords": [
+    "gurps"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
