@@ -1,13 +1,13 @@
 [![Build Status](https://travis-ci.org/josmardias/gurpsjs.svg?branch=master)](https://travis-ci.org/josmardias/gurpsjs)
 [![Gittip](http://img.shields.io/gittip/josmardias.png)](https://www.gittip.com/josmardias/)
 
-GurpsJS
+gurps.js
 =====
 
-GURPS Javascript library
+A GURPS JavaScript library
 
 This lib is under heavy development.
-There isn't stable version yet.
+There is no stable version yet.
 
 ## Details
 
