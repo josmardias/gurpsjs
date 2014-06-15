@@ -1,9 +1,12 @@
 {
   "name": "gurpsjs",
   "version": "0.0.1",
-  "description": "A gurps Javascript library",
+  "description": "A GURPS JavaScript library",
   "keywords": [
-    "gurps"
+    "rpg",
+    "gurps",
+    "javascript",
+    "library"
   ],
   "homepage": "https://github.com/josmardias/gurpsjs",
   "bugs": "https://github.com/josmardias/gurpsjs/issues",
@@ -23,7 +26,6 @@
   "license": "MIT",
   "devDependencies": {
     "grunt": "^0.4.5",
-    "karma": "~0.10",
     "grunt-contrib-jasmine": "^0.6.5",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1",

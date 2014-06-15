@@ -5,17 +5,21 @@
   "authors": [
     "Josmar Dias <josmarnet@gmail.com>"
   ],
-  "description": "A gurps Javascript library",
+  "description": "A GURPS JavaScript library",
   "main": "?",
   "keywords": [
-    "gurps"
+    "rpg",
+    "gurps",
+    "javascript",
+    "library"
   ],
   "license": "MIT",
   "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
     "test",
-    "tests"
+    "node_modules",
+    "package.json",
+    "Gruntfile.js",
+    "*.md",
+    "**/.*"
   ]
 }
