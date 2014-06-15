@@ -5,4 +5,4 @@ branches:
 
 language: node_js
 
-script: node -e "process.argv[2]='test'; require('grunt').cli({verbose: true, force: true})"
+script: "node -e \"process.argv[2]='test'; require('grunt').cli({verbose: true, force: true})\""
