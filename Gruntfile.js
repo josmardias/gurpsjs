@@ -55,7 +55,7 @@ module.exports = function (grunt) {
           wrapType: "exports"
         },
         files: {
-          "lib/main.js": "src/*.js",
+          "lib/main.js": ["src/gurps.js", "src/*.js"],
         },
       }
     },
