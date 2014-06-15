@@ -5,4 +5,8 @@ branches:
 
 language: node_js
 
+cache:
+  directories:
+    - node_modules
+
 script: "node -e \"process.argv[2]='test'; require('grunt').cli({verbose: true, force: true})\""
