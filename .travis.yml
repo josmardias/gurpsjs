@@ -4,6 +4,4 @@ branches:
 
 language: node_js
 
-install:
-  - npm install -g grunt-cli
-
+script: node -e \"require('grunt').cli()\" test --verbose --force
