@@ -5,6 +5,4 @@ branches:
 
 language: node_js
 
-before_script:
-  - npm install -g grunt-cli
-
+script: node -e "process.argv[2]='test'; require('grunt').cli({verbose: true, force: true})"

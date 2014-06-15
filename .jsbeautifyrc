@@ -1,5 +1,7 @@
 {
-    "indent_size": 4,
+  "js": {
+    "fileTypes": [".js", ".jshintrc", ".jsbeautifyrc"],
+    "indent_size": 2,
     "indent_char": " ",
     "indent_level": 0,
     "indent_with_tabs": false,
@@ -14,4 +16,5 @@
     "eval_code": false,
     "unescape_strings": false,
     "wrap_line_length": 0
+  }
 }

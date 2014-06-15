@@ -1,56 +1,82 @@
 /* global module: true */
 module.exports = function (grunt) {
-    "use strict";
+  "use strict";
 
-    var jsbeautifierList = [
-        'Gruntfile.js',
-        'src/**/*.js',
-        'test/**/*.js',
-        '!test/lib/*'
-    ];
+  var hintFiles = [
+    "Gruntfile.js",
+    "package.json",
+    ".jshintrc",
+    ".jsbeautifyrc",
+    "src/**/*.js",
+    "test/**/*.js",
+    "test/.jshintrc",
+  ];
 
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        qunit: {
-            files: ['test/*.html']
-        },
-        watch: {
-            files: ['test/*.js', 'test/*.html', 'src/*.js'],
-            tasks: ['qunit']
-        },
-        jshint: {
-            files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
-            options: {
-                jshintrc: true
-            }
-        },
-        jsbeautifier: {
-            "default": {
-                src: jsbeautifierList,
-                options: {
-                    config: ".jsbeautifyrc"
-                }
-            },
-            "verify": {
-                src: jsbeautifierList,
-                options: {
-                    config: ".jsbeautifyrc",
-                    mode: "VERIFY_ONLY"
-                }
-            }
+  grunt.initConfig({
+    pkg: grunt.file.readJSON("package.json"),
+    watch: {
+      files: hintFiles,
+      tasks: ["test"]
+    },
+    jshint: {
+      files: hintFiles,
+      options: {
+        extensions: ".js, .jshintrc, .jsbeautifyrc",
+        jshintrc: true
+      }
+    },
+    jsbeautifier: {
+      "write": {
+        src: hintFiles,
+        options: {
+          config: ".jsbeautifyrc"
         }
-    });
-    // load up your plugins
-    grunt.loadNpmTasks('grunt-contrib-qunit');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-jsbeautifier');
+      },
+      "verify": {
+        src: hintFiles,
+        options: {
+          config: ".jsbeautifyrc",
+          mode: "VERIFY_ONLY"
+        }
+      }
+    },
+    jasmine: {
+      default: {
+        src: ["src/polyfill.js", "src/gurps.js", "src/**/*.js"],
+        options: {
+          keepRunner: true,
+          specs: "test/**/*.js"
+        }
+      }
+    },
+    autowrap: {
+      nodefy: {
+        options: {
+          wrapType: "exports"
+        },
+        files: {
+          "lib/main.js": ["src/gurps.js", "src/*.js"],
+        },
+      }
+    },
+    clean: {
+      build: ["lib"]
+    }
+  });
+  // load up your plugins
+  grunt.loadNpmTasks("grunt-contrib-watch");
+  grunt.loadNpmTasks("grunt-contrib-jshint");
+  grunt.loadNpmTasks("grunt-contrib-jasmine");
+  grunt.loadNpmTasks("grunt-contrib-clean");
+  grunt.loadNpmTasks("grunt-jsbeautifier");
+  grunt.loadNpmTasks("grunt-autowrap");
 
-    // register one or more task lists (you should ALWAYS have a "default" task list)
-    grunt.registerTask('format', ['jsbeautifier:default']);
-    grunt.registerTask('test', ['qunit']);
-    grunt.registerTask('hint', ['jshint']);
-    grunt.registerTask('prepare', ['format', 'jshint', 'test']);
-    grunt.registerTask('verify', ['jshint', 'jsbeautifier:verify']);
-    grunt.registerTask('default', ['verify', 'test']);
+  // register one or more task lists (you should ALWAYS have a "default" task list)
+  grunt.registerTask("test", ["jasmine"]);
+  grunt.registerTask("hint", ["jshint"]);
+  grunt.registerTask("format", ["jsbeautifier:write", "jshint"]);
+  grunt.registerTask("verify", ["jsbeautifier:verify", "jshint"]);
+  grunt.registerTask("build", ["autowrap:nodefy"]);
+  grunt.registerTask("dev", ["default", "watch"]);
+  grunt.registerTask("default", ["verify", "test"]);
 };

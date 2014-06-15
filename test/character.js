@@ -1,7 +1,12 @@
-/* globals Character:true,GURPS */
-/* jshint globalstrict: true */
 "use strict";
 
+describe("GURPS object", function () {
+  it("must have Character attribute", function () {
+    expect(GURPS).toEqual(jasmine.any(Object));
+  });
+});
+
+/*
 var Character = null;
 
 module("Character", {
@@ -226,3 +231,4 @@ test("get basic speed, basic move and dodge", function () {
     equal(c.getAttribute('basicMove'), -4, 'get basicMove');
     equal(c.getAttribute('dodge'), 4, 'get dodge');
 });
+*/
