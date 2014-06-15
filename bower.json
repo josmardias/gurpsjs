@@ -1,19 +1,19 @@
 {
   "name": "gurpsjs",
   "version": "0.0.1",
-  "homepage": "https://github.com/josmardias/gurpsjs",
-  "authors": [
-    "Josmar Dias <josmarnet@gmail.com>"
-  ],
   "description": "A GURPS JavaScript library",
-  "main": "?",
   "keywords": [
     "rpg",
     "gurps",
     "javascript",
     "library"
   ],
+  "homepage": "https://github.com/josmardias/gurpsjs",
   "license": "MIT",
+  "authors": [
+    "Josmar Dias <josmarnet@gmail.com>"
+  ],
+  "main": "src/gurps.js",
   "ignore": [
     "test",
     "node_modules",
