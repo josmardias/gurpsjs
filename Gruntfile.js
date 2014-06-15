@@ -48,19 +48,35 @@ module.exports = function (grunt) {
           specs: "test/**/*.js"
         }
       }
+    },
+    autowrap: {
+      nodefy: {
+        options: {
+          wrapType: "exports"
+        },
+        files: {
+          "lib/main.js": "src/*.js",
+        },
+      }
+    },
+    clean: {
+      build: ["lib"]
     }
   });
   // load up your plugins
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-contrib-jshint");
-  grunt.loadNpmTasks("grunt-jsbeautifier");
   grunt.loadNpmTasks("grunt-contrib-jasmine");
+  grunt.loadNpmTasks("grunt-contrib-clean");
+  grunt.loadNpmTasks("grunt-jsbeautifier");
+  grunt.loadNpmTasks("grunt-autowrap");
 
   // register one or more task lists (you should ALWAYS have a "default" task list)
   grunt.registerTask("test", ["jasmine"]);
   grunt.registerTask("hint", ["jshint"]);
   grunt.registerTask("format", ["jsbeautifier:write", "jshint"]);
   grunt.registerTask("verify", ["jsbeautifier:verify", "jshint"]);
+  grunt.registerTask("build", ["autowrap:nodefy"]);
   grunt.registerTask("dev", ["default", "watch"]);
   grunt.registerTask("default", ["verify", "test"]);
 };
