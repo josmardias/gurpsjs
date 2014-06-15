@@ -21,7 +21,8 @@
     "url": "https://github.com/josmardias/gurpsjs.git"
   },
   "scripts": {
-    "test": "grunt test --verbose --force"
+    "test": "grunt test --verbose --force",
+    "prepublish": "exit 1"
   },
   "license": "MIT",
   "devDependencies": {
@@ -30,5 +31,8 @@
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-jsbeautifier": "^0.2.7"
+  },
+  "engines": {
+    "node": ">=0.8"
   }
 }
