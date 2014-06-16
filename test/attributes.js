@@ -77,14 +77,14 @@ describe('Attributes module get', function () {
 
   //TODO
   /*it('array of formulas should be the sum of it\'s values', function () {
-    var module, value;
-    module = new Attributes({
+    var mod, value;
+    mod = new Attributes({
         key1: 11,
         key2: 22,
         key3: 33,
         attr: [{floor: 11,2}, {}, 'key3']
     });
-    value = module.get('attr');
+    value = mod.get('attr');
 
     expect(value).toEqual(jasmine.any(Number));
     expect(value).toEqual(11 + 22 + 33);
