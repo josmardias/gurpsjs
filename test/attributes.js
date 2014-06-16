@@ -5,13 +5,13 @@ var Attributes = GURPS.Attributes;
 describe('Attributes module creation', function () {
 
   it('without arguments', function () {
-    var module = new Attributes();
-    expect(module).toEqual(jasmine.any(Object));
+    var mod = new Attributes();
+    expect(mod).toEqual(jasmine.any(Object));
   });
 
   it('with empty object', function () {
-    var module = new Attributes({});
-    expect(module).toEqual(jasmine.any(Object));
+    var mod = new Attributes({});
+    expect(mod).toEqual(jasmine.any(Object));
   });
 
 });
@@ -19,111 +19,117 @@ describe('Attributes module creation', function () {
 describe('Attributes module get', function () {
 
   it('undefined attribute should be zero', function () {
-    var module, value;
-    module = new Attributes({});
-    value = module.get('attr');
+    var mod, value;
+    mod = new Attributes({});
+    value = mod.get('attr');
 
     expect(value).toEqual(jasmine.any(Number));
     expect(value).toEqual(0);
   });
 
   it('simple attribute should be it\'s value', function () {
-    var module, value;
-    module = new Attributes({
+    var mod, value;
+    mod = new Attributes({
       attr: 11
     });
-    value = module.get('attr');
+    value = mod.get('attr');
 
     expect(value).toEqual(jasmine.any(Number));
     expect(value).toEqual(11);
   });
 
   it('string attribute should be the zero if referenced attribute\'s is undefined', function () {
-    var module, value;
-    module = new Attributes({
+    var mod, value;
+    mod = new Attributes({
       attr: 'referenced'
     });
-    value = module.get('attr');
+    value = mod.get('attr');
 
     expect(value).toEqual(jasmine.any(Number));
     expect(value).toEqual(0);
   });
 
   it('string attribute should be the referenced attribute\'s value', function () {
-    var module, value;
-    module = new Attributes({
+    var mod, value;
+    mod = new Attributes({
       referenced: 11,
       attr: 'referenced'
     });
-    value = module.get('attr');
+    value = mod.get('attr');
 
     expect(value).toEqual(jasmine.any(Number));
     expect(value).toEqual(11);
   });
 
   it('array of keys should be the sum of it\'s values', function () {
-    var module, value;
-    module = new Attributes({
+    var mod, value;
+    mod = new Attributes({
       key1: 11,
       key2: 22,
       key3: 33,
       attr: ['key1', 'key2', 'key3']
-    });
-    value = module.get('attr');
-
-    expect(value).toEqual(jasmine.any(Number));
-    expect(value).toEqual(11 + 22 + 33);
-  });
-
-  //TODO
-  /*it('array of formulas should be the sum of it\'s values', function () {
-    var mod, value;
-    mod = new Attributes({
-        key1: 11,
-        key2: 22,
-        key3: 33,
-        attr: [{floor: 11,2}, {}, 'key3']
     });
     value = mod.get('attr');
 
     expect(value).toEqual(jasmine.any(Number));
     expect(value).toEqual(11 + 22 + 33);
   });
-    */
+
+  it('array of formulas should be the sum of it\'s values', function () {
+    var mod, value;
+    mod = new Attributes({
+      key1: 1.6,
+      key2: 2.7,
+      key3: 3.8,
+      attr: [{
+        avg: ['key1', 'key2', 'key3']
+      }, {
+        sum: ['key1', 'key2', 'key3']
+      }, {
+        floor: 'key1'
+      }, {
+        round: 'key2'
+      }, {}, 'key3']
+    });
+    value = mod.get('attr');
+
+    expect(value).toEqual(jasmine.any(Number));
+    expect(value).toEqual(2.7 + (1.6 + 2.7 + 3.8) + 1 + 3 + 0 + 3.8);
+  });
 
 });
 
 describe('Attributes module get object with single key as', function () {
 
   it('sum should be the total sum the given array of numbers', function () {
-    var module, value;
-    module = new Attributes({
+    var mod, value;
+    mod = new Attributes({
       attr: {
         sum: [11, 22, 33]
       }
     });
-    value = module.get('attr');
+    value = mod.get('attr');
 
     expect(value).toEqual(jasmine.any(Number));
     expect(value).toEqual(11 + 22 + 33);
   });
 
   it('avg should be the avg of the given array of numbers', function () {
-    var module, value;
-    module = new Attributes({
+    var mod, value;
+    mod = new Attributes({
       attr: {
         avg: [11, 22, 33]
       }
     });
-    value = module.get('attr');
+    value = mod.get('attr');
 
     expect(value).toEqual(jasmine.any(Number));
     expect(value).toEqual((11 + 22 + 33) / 3);
   });
 
   it('floor should be the floor of the given number', function () {
-    var module, value1, value2;
-    module = new Attributes({
+    var mod, value1, value2;
+    mod = new Attributes({
       attr1: {
         floor: 11.2
       },
@@ -131,8 +137,8 @@ describe('Attributes module get object with single key as', function () {
         floor: 11.9
       }
     });
-    value1 = module.get('attr1');
-    value2 = module.get('attr2');
+    value1 = mod.get('attr1');
+    value2 = mod.get('attr2');
 
     expect(value1).toEqual(jasmine.any(Number));
     expect(value2).toEqual(jasmine.any(Number));
@@ -141,8 +147,8 @@ describe('Attributes module get object with single key as', function () {
   });
 
   it('round should be the round of the given number', function () {
-    var module, value1, value2, value3;
-    module = new Attributes({
+    var mod, value1, value2, value3;
+    mod = new Attributes({
       attr1: {
         round: 11.49
       },
@@ -153,9 +159,9 @@ describe('Attributes module get object with single key as', function () {
         round: 11.9
       }
     });
-    value1 = module.get('attr1');
-    value2 = module.get('attr2');
-    value3 = module.get('attr3');
+    value1 = mod.get('attr1');
+    value2 = mod.get('attr2');
+    value3 = mod.get('attr3');
 
     expect(value1).toEqual(jasmine.any(Number));
     expect(value2).toEqual(jasmine.any(Number));

@@ -27,11 +27,10 @@ GURPS.Attributes = (function () {
 
   Attributes.prototype.get = function (key) {
     var value = _map[key];
+    return this.resolve(value);
+  };
 
-    if (typeof key === 'number') {
-      return key;
-    }
-
+  Attributes.prototype.resolve = function (value) {
     if (value === undefined) {
       return 0;
     }
@@ -49,13 +48,13 @@ GURPS.Attributes = (function () {
     }
 
     if (value.constructor === Object) {
-      return this.resolve(value);
+      return this.resolveObj(value);
     }
 
     throw 'unexpected value: ' + JSON.stringify(value);
   };
 
-  Attributes.prototype.resolve = function (obj) {
+  Attributes.prototype.resolveObj = function (obj) {
     var keys = Object.keys(obj);
     var length = keys.length;
 
@@ -94,16 +93,16 @@ GURPS.Attributes = (function () {
     var self = this;
 
     return arr.reduce(function (total, value) {
-      return total + self.get(value);
+      return total + self.resolve(value);
     }, 0);
   };
 
   Attributes.prototype.floor = function (value) {
-    return Math.floor(this.get(value));
+    return Math.floor(this.resolve(value));
   };
 
   Attributes.prototype.round = function (value) {
-    return Math.round(this.get(value));
+    return Math.round(this.resolve(value));
   };
 
   return Attributes;
