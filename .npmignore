@@ -1,4 +1,6 @@
-"test"
-"Gruntfile.js"
-"**/.*"
-"bower.json"
+bower.json
+Gruntfile.js
+_SpecRunner.html
+src
+test
+**/.*
