@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/josmardias/gurpsjs.svg?branch=master)](https://travis-ci.org/josmardias/gurpsjs)
+[![Code Climate](https://codeclimate.com/github/josmardias/gurpsjs/coverage.png)](https://codeclimate.com/github/josmardias/gurpsjs)
+[![Code Coverage](https://codeclimate.com/github/josmardias/gurpsjs.png)](https://codeclimate.com/github/josmardias/gurpsjs)
 [![Gittip](https://img.shields.io/gittip/josmardias.png)](https://www.gittip.com/josmardias/)
 
 gurps.js
