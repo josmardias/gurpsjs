@@ -13,12 +13,11 @@ gurps.js
 
 A GURPS JavaScript library
 
-This lib is under heavy development.
-There is no stable version yet.
 
 ## Details
 
-Requires Javascript version >= 1.8
+This lib is under heavy development.  
+There is no stable version yet.  
 
 ## Build and Test
 
