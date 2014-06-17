@@ -3,8 +3,9 @@
 [![Code Coverage](https://codeclimate.com/github/josmardias/gurpsjs.png)](https://codeclimate.com/github/josmardias/gurpsjs)
 
 [![GitHub version](https://badge.fury.io/gh/josmardias%2Fgurpsjs.svg)](http://badge.fury.io/gh/josmardias%2Fgurpsjs)
-[![NPM version](https://badge.fury.io/js/gurpsjs.svg)](http://badge.fury.io/js/gurpsjs)
 [![Bower version](https://badge.fury.io/bo/gurpsjs.svg)](http://badge.fury.io/bo/gurpsjs)
+[![NPM version](https://badge.fury.io/js/gurpsjs.svg)](http://badge.fury.io/js/gurpsjs)
+[![devDependency Status](https://david-dm.org/josmardias/gurpsjs/dev-status.svg)](https://david-dm.org/josmardias/gurpsjs#info=devDependencies)
 
 [![Gittip](https://img.shields.io/gittip/josmardias.png)](https://www.gittip.com/josmardias/)
 
