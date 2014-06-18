@@ -22,9 +22,9 @@
     "url": "https://github.com/josmardias/gurpsjs.git"
   },
   "scripts": {
-    "test": "node -e \"process.argv[2]='test'; require('grunt').cli()\"",
-    "prepublish": "node -e \"process.argv[2]='build'; require('grunt').cli()\"",
-    "postpublish": "node -e \"process.argv[2]='clean'; require('grunt').cli()\""
+    "test": "grunt test --verbose --force",
+    "prepublish": "grunt build",
+    "postpublish": "grunt clean"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
