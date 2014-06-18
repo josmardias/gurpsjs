@@ -74,9 +74,9 @@ module.exports = function (grunt) {
   // register one or more task lists (you should ALWAYS have a "default" task list)
   grunt.registerTask("test", ["jasmine"]);
   grunt.registerTask("lint", ["jshint"]);
-  grunt.registerTask("format", ["jsbeautifier:write", "jshint"]);
-  grunt.registerTask("verify", ["jsbeautifier:verify", "jshint"]);
+  grunt.registerTask("format", ["jshint", "jsbeautifier:write"]);
+  grunt.registerTask("verify", ["jshint", "jsbeautifier:verify"]);
   grunt.registerTask("build", ["autowrap:nodefy"]);
   grunt.registerTask("dev", ["default", "watch"]);
-  grunt.registerTask("default", ["verify", "test"]);
+  grunt.registerTask("default", ["test", "verify"]);
 };
