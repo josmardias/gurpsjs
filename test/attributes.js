@@ -14,13 +14,104 @@ describe('Attributes module creation', function () {
     expect(mod).toEqual(jasmine.any(Object));
   });
 
+  it('with undefined as argument', function () {
+    var mod = new Attributes(undefined);
+    expect(mod).toEqual(jasmine.any(Object));
+  });
+
+  it('with null as argument', function () {
+    var mod = new Attributes(null);
+    expect(mod).toEqual(jasmine.any(Object));
+  });
+
+});
+
+describe('Get attribute without errors', function () {
+
+  it('when there is no attribute', function () {
+    var mod, value;
+    mod = new Attributes();
+    value = mod.get('attr');
+  });
+
+  it('when requested attribute is not present', function () {
+    var mod, value;
+    mod = new Attributes({
+      'attr2': 11
+    });
+    value = mod.get('attr');
+  });
+
+  it('when attribute is undefined', function () {
+    var mod, value;
+    mod = new Attributes({
+      'attr': undefined
+    });
+    value = mod.get('attr');
+  });
+
+  it('when attribute is null', function () {
+    var mod, value;
+    mod = new Attributes({
+      'attr': null
+    });
+    value = mod.get('attr');
+  });
+
+  it('when attribute is a number', function () {
+    var mod, value;
+    mod = new Attributes({
+      'attr': 11
+    });
+    value = mod.get('attr');
+  });
+
+  it('when attribute is a string', function () {
+    var mod, value;
+    mod = new Attributes({
+      'attr': 'test'
+    });
+    value = mod.get('attr');
+  });
+
+  it('when attribute is an object', function () {
+    var mod, value;
+    mod = new Attributes({
+      'attr': {}
+    });
+    value = mod.get('attr');
+  });
+
+  it('when attribute is an array', function () {
+    var mod, value;
+    mod = new Attributes({
+      'attr': []
+    });
+    value = mod.get('attr');
+  });
 });
 
 describe('Attributes module get', function () {
 
   it('undefined attribute should be zero', function () {
-    var mod, value;
-    mod = new Attributes({});
+    var args, mod, value, i;
+    args = [{}, {
+      attr: undefined
+    }, {
+      attr: null
+    }, {
+      attr2: 11
+    }];
+
+    for (i in args) {
+      mod = new Attributes(args[i]);
+      value = mod.get('attr');
+
+      expect(value).toEqual(jasmine.any(Number));
+      expect(value).toEqual(0);
+    }
+
+    mod = new Attributes();
     value = mod.get('attr');
 
     expect(value).toEqual(jasmine.any(Number));
