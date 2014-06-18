@@ -9,7 +9,5 @@ cache:
   directories:
     - node_modules
 
-install:
+before_install:
   - npm install -g grunt-cli
-
-script: grunt test --verbose --force
