@@ -22,7 +22,7 @@
     "url": "https://github.com/josmardias/gurpsjs.git"
   },
   "scripts": {
-    "test": "grunt test --verbose --force",
+    "test": "grunt test",
     "prepublish": "grunt build",
     "postpublish": "grunt clean"
   },
