@@ -9,4 +9,7 @@ cache:
   directories:
     - node_modules
 
-script: "node -e \"process.argv[2]='test'; require('grunt').cli({verbose: true, force: true})\""
+install:
+  - npm install -g grunt-cli
+
+script: grunt test --verbose --force
