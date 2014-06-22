@@ -22,6 +22,11 @@ GURPS.Attributes = (function () {
   _map = null;
 
   Attributes = function (hashMap) {
+    if (!hashMap) {
+      _map = {};
+      return;
+    }
+
     _map = hashMap;
   };
 
@@ -31,7 +36,7 @@ GURPS.Attributes = (function () {
   };
 
   Attributes.prototype.resolve = function (value) {
-    if (value === undefined) {
+    if (!value) {
       return 0;
     }
 
