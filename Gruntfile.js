@@ -105,15 +105,19 @@ module.exports = function (grunt) {
   /* tasks */
 
   //test
-  grunt.registerTask("test", ["jasmine"]);
+  grunt.registerTask("test", ["jasmine"]); //through phantomjs
   grunt.registerTask("browserstack", ["karma:browserstack"]);
   grunt.registerTask("browsers", ["karma:unit"]);
+
   //code quality
   grunt.registerTask("format", ["jshint", "jsbeautifier:write"]);
   grunt.registerTask("verify", ["jshint", "jsbeautifier:verify"]);
   grunt.registerTask("lint", ["jshint"]);
+
   //build
   grunt.registerTask("build", ["autowrap:nodefy"]);
+  //grunt.registerTask("clean", ["clean:build"]);
+  
   //develop
   grunt.registerTask("dev", ["default", "watch"]);
   grunt.registerTask("default", ["test", "verify"]);
