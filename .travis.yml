@@ -15,5 +15,5 @@ before_install:
 #browserstack
 matrix:
   include:
-    secure: cA0rs0iaB85TizeQU+0poGyP2RPlUxCyEEnVDo6s/SJfVDI4YIImKsCGQ7g9rLMMpPHED1S6xox/1vGJ7kSCcDbpba8fr147yN1uNVe2vhM1jiMghToWI16HF2G7/gQm/RYKqmQgSbjm/ckdLvS35Z+aGGYQjCgF76mPpQ64Fxw=
-    script: grunt browserstack
+    - script: grunt browserstack
+      secure: cA0rs0iaB85TizeQU+0poGyP2RPlUxCyEEnVDo6s/SJfVDI4YIImKsCGQ7g9rLMMpPHED1S6xox/1vGJ7kSCcDbpba8fr147yN1uNVe2vhM1jiMghToWI16HF2G7/gQm/RYKqmQgSbjm/ckdLvS35Z+aGGYQjCgF76mPpQ64Fxw=
