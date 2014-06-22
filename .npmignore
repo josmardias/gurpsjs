@@ -4,3 +4,5 @@ _SpecRunner.html
 src
 test
 **/.*
+coverage
+karma

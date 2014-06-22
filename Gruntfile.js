@@ -10,6 +10,7 @@ module.exports = function (grunt) {
     "src/**/*.js",
     "test/**/*.js",
     "test/.jshintrc",
+    "karma/*",
   ];
 
   grunt.initConfig({
@@ -61,6 +62,33 @@ module.exports = function (grunt) {
     },
     clean: {
       build: ["lib"]
+    },
+    karma: {
+      options: {
+        /*preprocessors: {
+          //all but polyfill
+          "src/!(polyfill).js": ["coverage"]
+        },
+        coverageReporter: {
+          reporters: [{
+            type: "lcovonly",
+            dir: 'coverage/'
+          }, {
+            //type: "text-summary"
+            type: "text"
+          }],
+        },*/
+        basePath: "..", //default is *.conf.js path
+        files: ["src/gurps.js", "src/*.js", "test/*.js"],
+        frameworks: ["jasmine"]
+      },
+      browserstack: {
+        configFile: "karma/browserstack.conf.js",
+        singleRun: true
+      },
+      unit: {
+        configFile: "karma/local.conf.js"
+      }
     }
   });
 
@@ -72,11 +100,14 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-jsbeautifier");
   grunt.loadNpmTasks("grunt-autowrap");
+  grunt.loadNpmTasks("grunt-karma");
 
   /* tasks */
 
   //test
   grunt.registerTask("test", ["jasmine"]);
+  grunt.registerTask("browserstack", ["karma:browserstack"]);
+  grunt.registerTask("browsers", ["karma:unit"]);
   //code quality
   grunt.registerTask("format", ["jshint", "jsbeautifier:write"]);
   grunt.registerTask("verify", ["jshint", "jsbeautifier:verify"]);

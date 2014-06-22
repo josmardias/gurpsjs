@@ -17,6 +17,8 @@
   "ignore": [
     "test",
     "node_modules",
+    "coverage",
+    "karma",
     "package.json",
     "Gruntfile.js",
     "**/.*"
