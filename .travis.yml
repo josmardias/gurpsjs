@@ -1,13 +1,19 @@
 branches:
   only:
-    - master
-    - devel
+  - master
+  - devel
 
 language: node_js
 
 cache:
   directories:
-    - node_modules
+  - node_modules
 
 before_install:
-  - npm install -g grunt-cli
+- npm install -g grunt-cli
+
+#browserstack
+matrix:
+  include:
+    secure: cA0rs0iaB85TizeQU+0poGyP2RPlUxCyEEnVDo6s/SJfVDI4YIImKsCGQ7g9rLMMpPHED1S6xox/1vGJ7kSCcDbpba8fr147yN1uNVe2vhM1jiMghToWI16HF2G7/gQm/RYKqmQgSbjm/ckdLvS35Z+aGGYQjCgF76mPpQ64Fxw=
+    script: grunt browserstack
