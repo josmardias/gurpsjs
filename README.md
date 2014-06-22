@@ -18,6 +18,9 @@ A GURPS JavaScript library
 This lib is under heavy development.  
 There is no stable version yet.  
 
+Automated cross browser testing powered by [BrowserStack] (https://www.browserstack.com/automate)  
+Continuous integration powered by [Travis CI] (https://travis-ci.org/josmardias/gurpsjs)  
+
 ## Build and Test
 
 ### Enviroment

@@ -1,13 +1,13 @@
 branches:
   only:
-  - master
-  - devel
+    - master
+    - devel
 
 language: node_js
 
 cache:
   directories:
-  - node_modules
+    - node_modules
 
 before_install:
 - npm install -g grunt-cli
