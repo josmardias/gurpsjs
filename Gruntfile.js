@@ -105,8 +105,14 @@ module.exports = function (grunt) {
   /* tasks */
 
   //test
+  var pullRequest = process.env.TRAVIS_PULL_REQUEST,
+    travisTasks = [];
+  if (pullRequest != "false") {
+    travisTasks.push("browserstack");
+  }
   grunt.registerTask("test", ["jasmine"]); //through phantomjs
   grunt.registerTask("browserstack", ["karma:browserstack"]);
+  grunt.registerTask("travis", travisTasks)
   grunt.registerTask("browsers", ["karma:unit"]);
 
   //code quality
@@ -117,8 +123,9 @@ module.exports = function (grunt) {
   //build
   grunt.registerTask("build", ["autowrap:nodefy"]);
   //grunt.registerTask("clean", ["clean:build"]);
-  
+
   //develop
   grunt.registerTask("dev", ["default", "watch"]);
   grunt.registerTask("default", ["test", "verify"]);
+
 };
