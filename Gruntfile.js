@@ -42,7 +42,7 @@ module.exports = function (grunt) {
     },
     jasmine: {
       default: {
-        src: ["src/polyfill.js", "src/gurps.js", "src/**/*.js"],
+        src: ["src/gurps.js", "src/**/*.js"],
         options: {
           keepRunner: true,
           specs: "test/**/*.js"
@@ -63,7 +63,9 @@ module.exports = function (grunt) {
       build: ["lib"]
     }
   });
-  // load up your plugins
+
+  /* loading plugins */
+
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-contrib-jshint");
   grunt.loadNpmTasks("grunt-contrib-jasmine");
@@ -71,12 +73,17 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-jsbeautifier");
   grunt.loadNpmTasks("grunt-autowrap");
 
-  // register one or more task lists (you should ALWAYS have a "default" task list)
+  /* tasks */
+
+  //test
   grunt.registerTask("test", ["jasmine"]);
-  grunt.registerTask("lint", ["jshint"]);
+  //code quality
   grunt.registerTask("format", ["jshint", "jsbeautifier:write"]);
   grunt.registerTask("verify", ["jshint", "jsbeautifier:verify"]);
+  grunt.registerTask("lint", ["jshint"]);
+  //build
   grunt.registerTask("build", ["autowrap:nodefy"]);
+  //develop
   grunt.registerTask("dev", ["default", "watch"]);
   grunt.registerTask("default", ["test", "verify"]);
 };
