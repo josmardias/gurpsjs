@@ -96,15 +96,9 @@ module.exports = function (grunt) {
   /* tasks */
 
   //test
-  var pullRequest = process.env.TRAVIS_PULL_REQUEST,
-    travisTasks = ["coverage"];
-  if (pullRequest === "false") {
-    travisTasks.push("browserstack");
-  }
   grunt.registerTask("test", ["jasmine"]); //through phantomjs
   grunt.registerTask("coverage", ["karma:coverage"]);
   grunt.registerTask("browserstack", ["karma:browserstack"]);
-  grunt.registerTask("travis", travisTasks)
   grunt.registerTask("browsers", ["karma:local"]);
 
   //code quality
