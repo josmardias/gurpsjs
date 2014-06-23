@@ -1,7 +1,7 @@
 /* jshint node: true */
 'use strict';
 module.exports = function (config) {
-  var user = process.env.USERNAME,
+  var user = process.env.USERNAME || process.env.TRAVIS == "true" && "Travis-CI",
     bs_user = process.env.BROWSERSTACK_USERNAME,
     travis_build = process.env.TRAVIS_BUILD_NUMBER;
 
