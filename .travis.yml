@@ -16,7 +16,7 @@ before_install:
 matrix:
   include:
       #browserstack
-    - script: [ "${TRAVIS_PULL_REQUEST}" = "false" ] && grunt browserstack
+    - script: \[ "${TRAVIS_PULL_REQUEST}" = "false" \] && grunt browserstack
       secure: bydmSNxE9Gx8vMukuu0JW1qf1vQ5TUvVkrBdghppvs06yd+dk5BoNtmJTgXNxHxxojCuEiatun73KQlXPRUArJvw8LEdTaTyuFo615NwQltK92L2GtFGeFCMgbQl3FK+CNPtpJ/zxh5T0fBhHWf9dG0bQMHdhA8jv7qKIslVhf4=
       secure: Vo5DJZzj4eCmk2lnPhqTTBopavI1sJOAzkO3aQVjcfSfCXkNZkwz1uAyFwxMgKdagz1P7PUT7iWXYMpgquBUDaRlVqtgrFe61eTzfUrjNfwbkmqtPgh2LIhVld7boFL8PkkWuMiYZBWhyWYeyXgmOfxuzWLqt4q5mfC0tMVUFrU=
       #codeclimate
