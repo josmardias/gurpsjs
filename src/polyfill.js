@@ -52,5 +52,5 @@ if (!Object.keys) {
       }
       return result;
     };
-  }());
+  })();
 }

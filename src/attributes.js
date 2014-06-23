@@ -111,4 +111,4 @@ GURPS.Attributes = (function () {
   };
 
   return Attributes;
-}());
+})();

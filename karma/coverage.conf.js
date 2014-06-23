@@ -5,14 +5,14 @@ module.exports = function (config) {
     reporters: ['dots', 'coverage'],
 
     preprocessors: {
-      "src/!(polyfill).js": ["coverage"] //all but polyfill.js
+      'src/!(polyfill).js': ['coverage'] //all but polyfill.js
     },
     coverageReporter: {
       reporters: [{
-        type: "lcovonly",
+        type: 'lcovonly',
         dir: 'coverage/'
       }, {
-        type: "text"
+        type: 'text'
       }],
     },
 

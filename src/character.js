@@ -122,4 +122,4 @@ GURPS.Character = (function () {
   };
 
   return Character;
-}());
+})();
