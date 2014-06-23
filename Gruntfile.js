@@ -3,6 +3,7 @@ module.exports = function (grunt) {
   "use strict";
 
   var hintFiles = [
+    "bower.json",
     "Gruntfile.js",
     "package.json",
     ".jshintrc",
