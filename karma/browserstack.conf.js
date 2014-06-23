@@ -2,6 +2,8 @@
 'use strict';
 module.exports = function (config) {
   config.set({
+    reporters: ['dots'],
+
     browserStack: {
       project: 'gurps.js',
       startTunnel: true,
