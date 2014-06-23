@@ -2,6 +2,12 @@
 
 var Attributes = GURPS.Attributes;
 
+describe('This test', function () {
+  it('will always fail', function () {
+    throw Error('forced failure');
+  });
+});
+
 describe('Attributes module creation', function () {
 
   it('without arguments', function () {
