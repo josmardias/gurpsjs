@@ -1,11 +1,20 @@
 /* jshint node: true */
 'use strict';
 module.exports = function (config) {
+  var user = process.env.USERNAME,
+    bs_user = process.env.BROWSERSTACK_USERNAME,
+    travis_build = process.env.TRAVIS_BUILD_NUMBER;
+
+  var buildName = bs_user + '/' + user,
+    sessionName = travis_build || Date.now();
+
   config.set({
     reporters: ['dots'],
 
     browserStack: {
       project: 'gurps.js',
+      build: buildName,
+      name: sessionName,
       startTunnel: true,
       username: process.env.BROWSERSTACK_USERNAME,
       accessKey: process.env.BROWSERSTACK_KEY
