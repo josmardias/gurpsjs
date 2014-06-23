@@ -17,11 +17,10 @@ env:
     #codeclimate
     - secure: AQM95T6+3Gw9r9jVZt5JAzHyd/mudzJi34I27xEI1/4b3zI2P6PflRWa1Nqt0Zioye/QGq6KwCwgI8IoiUp16eVkkmLpsj5BgQDJOCwHffSupWybCCx9e86nRaZOlmrRT68rJwwDnkZHwFuIQMC+pAzt6bX+/G2u1J+beEtaOjI=
   matrix:
-    - COMMAND=browserstack
-    - COMMAND=coverage SUCESS="codeclimate < coverage/*/lcov.info"
+    - COMMAND='if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then grunt browserstack; fi'
+    - COMMAND='grunt coverage && if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then codeclimate < coverage/*/lcov.info; fi'
 
 before_install:
 - npm install -g grunt-cli codeclimate-test-reporter
 
-script: grunt $COMMAND
-after_success: $SUCCESS
+script: eval $COMMAND
