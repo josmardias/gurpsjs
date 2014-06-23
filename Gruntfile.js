@@ -65,19 +65,6 @@ module.exports = function (grunt) {
     },
     karma: {
       options: {
-        /*preprocessors: {
-          //all but polyfill
-          "src/!(polyfill).js": ["coverage"]
-        },
-        coverageReporter: {
-          reporters: [{
-            type: "lcovonly",
-            dir: 'coverage/'
-          }, {
-            //type: "text-summary"
-            type: "text"
-          }],
-        },*/
         basePath: "..", //default is *.conf.js path
         files: ["src/gurps.js", "src/*.js", "test/*.js"],
         frameworks: ["jasmine"]
@@ -88,6 +75,10 @@ module.exports = function (grunt) {
       },
       unit: {
         configFile: "karma/local.conf.js"
+      },
+      coverage: {
+        configFile: "karma/coverage.conf.js",
+        singleRun: true
       }
     }
   });
@@ -106,11 +97,12 @@ module.exports = function (grunt) {
 
   //test
   var pullRequest = process.env.TRAVIS_PULL_REQUEST,
-    travisTasks = [];
+    travisTasks = ["coverage"];
   if (pullRequest === "false") {
     travisTasks.push("browserstack");
   }
   grunt.registerTask("test", ["jasmine"]); //through phantomjs
+  grunt.registerTask("coverage", ["karma:coverage"]);
   grunt.registerTask("browserstack", ["karma:browserstack"]);
   grunt.registerTask("travis", travisTasks)
   grunt.registerTask("browsers", ["karma:unit"]);
