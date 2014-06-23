@@ -107,11 +107,9 @@ module.exports = function (grunt) {
   //test
   var pullRequest = process.env.TRAVIS_PULL_REQUEST,
     travisTasks = [];
-  if (pullRequest !== "false") {
+  if (pullRequest === "false") {
     travisTasks.push("browserstack");
   }
-  console.log("process.env.TRAVIS_PULL_REQUEST:");
-  console.log(process.env.TRAVIS_PULL_REQUEST);
   grunt.registerTask("test", ["jasmine"]); //through phantomjs
   grunt.registerTask("browserstack", ["karma:browserstack"]);
   grunt.registerTask("travis", travisTasks)
