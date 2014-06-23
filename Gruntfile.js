@@ -73,7 +73,7 @@ module.exports = function (grunt) {
         configFile: "karma/browserstack.conf.js",
         singleRun: true
       },
-      unit: {
+      local: {
         configFile: "karma/local.conf.js"
       },
       coverage: {
@@ -105,7 +105,7 @@ module.exports = function (grunt) {
   grunt.registerTask("coverage", ["karma:coverage"]);
   grunt.registerTask("browserstack", ["karma:browserstack"]);
   grunt.registerTask("travis", travisTasks)
-  grunt.registerTask("browsers", ["karma:unit"]);
+  grunt.registerTask("browsers", ["karma:local"]);
 
   //code quality
   grunt.registerTask("format", ["jshint", "jsbeautifier:write"]);
