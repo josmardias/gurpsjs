@@ -9,17 +9,19 @@ cache:
   directories:
     - node_modules
 
+env:
+  global:
+    #browserstack
+    - secure: bydmSNxE9Gx8vMukuu0JW1qf1vQ5TUvVkrBdghppvs06yd+dk5BoNtmJTgXNxHxxojCuEiatun73KQlXPRUArJvw8LEdTaTyuFo615NwQltK92L2GtFGeFCMgbQl3FK+CNPtpJ/zxh5T0fBhHWf9dG0bQMHdhA8jv7qKIslVhf4=
+    - secure: Vo5DJZzj4eCmk2lnPhqTTBopavI1sJOAzkO3aQVjcfSfCXkNZkwz1uAyFwxMgKdagz1P7PUT7iWXYMpgquBUDaRlVqtgrFe61eTzfUrjNfwbkmqtPgh2LIhVld7boFL8PkkWuMiYZBWhyWYeyXgmOfxuzWLqt4q5mfC0tMVUFrU=
+    #codeclimate
+    - secure: AQM95T6+3Gw9r9jVZt5JAzHyd/mudzJi34I27xEI1/4b3zI2P6PflRWa1Nqt0Zioye/QGq6KwCwgI8IoiUp16eVkkmLpsj5BgQDJOCwHffSupWybCCx9e86nRaZOlmrRT68rJwwDnkZHwFuIQMC+pAzt6bX+/G2u1J+beEtaOjI=
+  matrix:
+    - COMMAND=browserstack
+    - COMMAND=coverage SUCESS="codeclimate < coverage/*/lcov.info"
+
 before_install:
 - npm install -g grunt-cli codeclimate-test-reporter
 
-#browserstack
-matrix:
-  include:
-      #browserstack
-    - script: \[ "${TRAVIS_PULL_REQUEST}" = "false" \] && grunt browserstack
-      secure: bydmSNxE9Gx8vMukuu0JW1qf1vQ5TUvVkrBdghppvs06yd+dk5BoNtmJTgXNxHxxojCuEiatun73KQlXPRUArJvw8LEdTaTyuFo615NwQltK92L2GtFGeFCMgbQl3FK+CNPtpJ/zxh5T0fBhHWf9dG0bQMHdhA8jv7qKIslVhf4=
-      secure: Vo5DJZzj4eCmk2lnPhqTTBopavI1sJOAzkO3aQVjcfSfCXkNZkwz1uAyFwxMgKdagz1P7PUT7iWXYMpgquBUDaRlVqtgrFe61eTzfUrjNfwbkmqtPgh2LIhVld7boFL8PkkWuMiYZBWhyWYeyXgmOfxuzWLqt4q5mfC0tMVUFrU=
-      #codeclimate
-    - script: grunt coverage
-      after_success: codeclimate < coverage/*/lcov.info
-      secure: AQM95T6+3Gw9r9jVZt5JAzHyd/mudzJi34I27xEI1/4b3zI2P6PflRWa1Nqt0Zioye/QGq6KwCwgI8IoiUp16eVkkmLpsj5BgQDJOCwHffSupWybCCx9e86nRaZOlmrRT68rJwwDnkZHwFuIQMC+pAzt6bX+/G2u1J+beEtaOjI=
+script: grunt $COMMAND
+after_success: $SUCCESS
