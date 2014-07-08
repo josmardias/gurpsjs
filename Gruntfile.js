@@ -11,7 +11,7 @@ module.exports = function (grunt) {
     "src/**/*.js",
     "test/**/*.js",
     "test/.jshintrc",
-    "karma/*",
+    "karma/**/*.js",
   ];
 
   grunt.initConfig({
@@ -66,7 +66,7 @@ module.exports = function (grunt) {
     },
     karma: {
       options: {
-        basePath: "..", //default is *.conf.js path
+        basePath: "..", //default is configFile path
         files: ["src/gurps.js", "src/*.js", "test/*.js"],
         frameworks: ["jasmine"]
       },
@@ -76,6 +76,11 @@ module.exports = function (grunt) {
       },
       local: {
         configFile: "karma/local.conf.js"
+      },
+      debug: {
+        configFile: "karma/debug.conf.js",
+        autoWatch: true,
+        usePolling: true /* hack to make autoWatch work */
       },
       coverage: {
         configFile: "karma/coverage.conf.js",
@@ -112,6 +117,7 @@ module.exports = function (grunt) {
   //grunt.registerTask("clean", ["clean:build"]);
 
   //develop
+  grunt.registerTask("debug", ["karma:debug"]);
   grunt.registerTask("dev", ["default", "watch"]);
   grunt.registerTask("default", ["test", "verify"]);
 
