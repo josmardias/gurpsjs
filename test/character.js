@@ -1,20 +1,40 @@
-"use strict";
+'use strict';
 
-describe("GURPS object", function () {
-  it("must have Character attribute", function () {
+var Character = GURPS.Character;
+
+describe('GURPS object', function () {
+  it('must have Character attribute', function () {
     expect(GURPS).toEqual(jasmine.any(Object));
   });
 });
 
-/*
-var Character = null;
+describe('Character module creation', function () {
 
-module("Character", {
-    setup: function () {
-        window.Character = GURPS.Character;
-    },
-    teardown: function () {}
+  it('without arguments', function () {
+    var mod = new Character();
+    expect(mod).toEqual(jasmine.any(Object));
+  });
+
+  it('with empty object', function () {
+    var mod = new Character({});
+    expect(mod).toEqual(jasmine.any(Object));
+  });
+
+  it('with undefined as argument', function () {
+    var mod = new Character(undefined);
+    expect(mod).toEqual(jasmine.any(Object));
+  });
+
+  it('with null as argument', function () {
+    var mod = new Character(null);
+    expect(mod).toEqual(jasmine.any(Object));
+  });
+
 });
+
+/*
+
+
 
 test("creating without attributes", function () {
     var c = new Character();
