@@ -80,7 +80,7 @@ GURPS.Attributes = (function () {
     var length = keys.length;
 
     if (length > 1) {
-      return this.sum(keys);
+      throw "Formulas must be single key";
     }
 
     if (length === 0) {

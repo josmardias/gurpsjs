@@ -209,6 +209,21 @@ describe("Attributes module get", function () {
     expect(value).toEqual(2.7 + (1.6 + 2.7 + 3.8) + 1 + 3 + 0 + 3.8);
   });
 
+  it("formula with multiple keys should throw error", function () {
+    var mod, value, func;
+    mod = new Attributes({
+      attr: {
+        avg: [6, 7, 8],
+        sum: [1, 2]
+      }
+    });
+    func = function () {
+      mod.get("attr");
+    }
+
+    expect(func).toThrow();
+  });
+
 });
 
 describe("Attributes module get object with single key as", function () {
