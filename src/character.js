@@ -1,6 +1,6 @@
 /* global GURPS */
 GURPS.Character = (function () {
-  'use strict';
+  "use strict";
 
   var Character = function (attributes) {
     if (attributes === null) {
@@ -17,26 +17,26 @@ GURPS.Character = (function () {
   };
 
   Character.prototype.dependencies = {
-    will: 'iq',
+    will: "iq",
     frightCheck: {
-      avg: ['st', 'iq']
+      avg: ["st", "iq"]
     },
     basicSpeed: {
-      avg: ['dx', 'ht', 0, 0]
+      avg: ["dx", "ht", 0, 0]
     },
     basicMove: {
-      floor: 'basicSpeed'
+      floor: "basicSpeed"
     },
     dodge: {
-      sum: ['basicMove', 3]
+      sum: ["basicMove", 3]
     },
-    perception: 'iq',
-    vision: 'perception',
-    hearing: 'perception',
-    tasteSmell: 'perception',
-    touch: 'perception',
-    hp: 'st',
-    fp: 'ht'
+    perception: "iq",
+    vision: "perception",
+    hearing: "perception",
+    tasteSmell: "perception",
+    touch: "perception",
+    hp: "st",
+    fp: "ht"
   };
 
   //returns final attribute value

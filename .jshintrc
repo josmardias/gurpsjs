@@ -16,5 +16,5 @@
   "undef": true,
   "unused": true,
   "newcap": true,
-  "quotmark": true
+  "quotmark": "double"
 }

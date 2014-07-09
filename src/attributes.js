@@ -1,6 +1,6 @@
 /* global GURPS */
 GURPS.Attributes = (function () {
-  'use strict';
+  "use strict";
 
   var Attributes; // returned object
   var _tree = null; // attributes tree hash map
@@ -51,11 +51,11 @@ GURPS.Attributes = (function () {
       return 0;
     }
 
-    if (typeof value === 'number') {
+    if (typeof value === "number") {
       return value;
     }
 
-    if (typeof value === 'string') {
+    if (typeof value === "string") {
       return this.get(value);
     }
 
@@ -67,7 +67,7 @@ GURPS.Attributes = (function () {
       return this.resolveObj(value);
     }
 
-    throw 'unexpected value: ' + JSON.stringify(value);
+    throw "unexpected value: " + JSON.stringify(value);
   };
 
   Attributes.prototype.resolveObj = function (obj) {
@@ -86,18 +86,18 @@ GURPS.Attributes = (function () {
     var key = keys[0];
     var val = obj[key];
     switch (key) {
-    case 'avg':
+    case "avg":
       return this.avg(val);
-    case 'sum':
+    case "sum":
       return this.sum(val);
-    case 'floor':
+    case "floor":
       return this.floor(val);
-    case 'round':
+    case "round":
       return this.round(val);
     default:
     }
 
-    throw 'unexpected key: ' + key;
+    throw "unexpected key: " + key;
   };
 
   Attributes.prototype.avg = function (arr) {
