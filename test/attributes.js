@@ -456,3 +456,36 @@ describe("Attributes module get with bonus", function () {
   });
 
 });
+
+describe("Attributes module should throw error", function () {
+
+  it("when the attribute is NaN", function () {
+    var mod, value, f;
+    mod = new Attributes({
+      "attr": NaN
+    });
+
+    f = function () {
+      value = mod.get("attr");
+    }
+
+    expect(f).toThrow();
+  });
+
+  it("when using an unknown formula", function () {
+    var mod, value, func;
+    mod = new Attributes({
+      "attr": {
+        unknownFormula: "attr2"
+      },
+      "attr2": 13
+    });
+
+    func = function () {
+      value = mod.get("attr");
+    }
+
+    expect(func).toThrow();
+  });
+
+});

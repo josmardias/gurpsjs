@@ -47,6 +47,11 @@ GURPS.Attributes = (function () {
   };
 
   Attributes.prototype.resolve = function (value) {
+    //detecting NaN
+    if (value !== value) {
+      throw "attribute does not support NaN";
+    }
+
     if (!value) {
       return 0;
     }
