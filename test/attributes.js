@@ -9,18 +9,18 @@ describe('Attributes module creation', function () {
     expect(mod).toEqual(jasmine.any(Object));
   });
 
-  it('with empty object', function () {
-    var mod = new Attributes({});
+  it('with empty objects as arguments', function () {
+    var mod = new Attributes({}, {});
     expect(mod).toEqual(jasmine.any(Object));
   });
 
-  it('with undefined as argument', function () {
-    var mod = new Attributes(undefined);
+  it('with undefined as arguments', function () {
+    var mod = new Attributes(undefined, undefined);
     expect(mod).toEqual(jasmine.any(Object));
   });
 
-  it('with null as argument', function () {
-    var mod = new Attributes(null);
+  it('with null as arguments', function () {
+    var mod = new Attributes(null, null);
     expect(mod).toEqual(jasmine.any(Object));
   });
 
@@ -89,6 +89,27 @@ describe('Get attribute without errors', function () {
     });
     value = mod.get('attr');
   });
+
+  it('when bonus is null', function () {
+    var mod, value;
+    mod = new Attributes({
+      'attr': 10
+    }, {
+      'attr': null
+    });
+    value = mod.get('attr');
+  });
+
+  it('when there is no bonus for the requested attribute', function () {
+    var mod, value;
+    mod = new Attributes({
+      'attr': 10
+    }, {
+      'attr2': 1
+    });
+    value = mod.get('attr');
+  });
+
 });
 
 describe('Attributes module get', function () {
@@ -260,6 +281,117 @@ describe('Attributes module get object with single key as', function () {
     expect(value1).toEqual(11);
     expect(value2).toEqual(12);
     expect(value3).toEqual(12);
+  });
+
+});
+
+describe('Attributes module get with bonus', function () {
+
+  it('should sum the provided bonus', function () {
+    var mod, value;
+    mod = new Attributes({
+      'attr': 12
+    }, {
+      'attr': 2
+    });
+    value = mod.get('attr');
+
+    expect(value).toEqual(jasmine.any(Number));
+    expect(value).toEqual(14);
+  });
+
+  it('should sum bonus of dependency', function () {
+    var mod, value;
+    mod = new Attributes({
+      'attr': 'attr2',
+      'attr2': 12
+    }, {
+      'attr2': 2
+    });
+    value = mod.get('attr');
+
+    expect(value).toEqual(jasmine.any(Number));
+    expect(value).toEqual(14);
+  });
+
+  it('should sum bonus of other key dependency', function () {
+    var mod, value1, value2;
+    mod = new Attributes({
+      'attr1': 'attr2',
+      'attr2': 12
+    }, {
+      'attr1': 1,
+      'attr2': 2
+    });
+    value1 = mod.get('attr1');
+    value2 = mod.get('attr2');
+
+    expect(value1).toEqual(jasmine.any(Number));
+    expect(value1).toEqual(15);
+    expect(value2).toEqual(jasmine.any(Number));
+    expect(value2).toEqual(14);
+  });
+
+  it('should sum bonus of elements of array', function () {
+    var mod, value1, value2, value3;
+    mod = new Attributes({
+      'attr1': ['attr2', 'attr3', 5],
+      'attr2': 12,
+      'attr3': 13
+    }, {
+      'attr1': 1,
+      'attr2': 2,
+      'attr3': 3,
+    });
+    value1 = mod.get('attr1');
+    value2 = mod.get('attr2');
+    value3 = mod.get('attr3');
+
+    expect(value1).toEqual(jasmine.any(Number));
+    expect(value1).toEqual(36);
+    expect(value2).toEqual(jasmine.any(Number));
+    expect(value2).toEqual(14);
+    expect(value3).toEqual(jasmine.any(Number));
+    expect(value3).toEqual(16);
+  });
+
+  it('should sum bonus of keys when using formulas', function () {
+    var mod, value, avg, sum, round, floor;
+    mod = new Attributes({
+      'attr1': ['avg', 'sum', 'round', 'floor'],
+      'attr2': 12.6,
+      'attr3': 15.3,
+      'attr4': 11.1,
+      'avg': {
+        avg: ['attr2', 'attr3', 'attr4']
+      },
+      'sum': {
+        sum: ['attr2', 'attr3', 'attr4']
+      },
+      'round': {
+        round: 'attr3'
+      },
+      'floor': {
+        floor: 'attr2'
+      }
+    }, {
+      'attr1': 1,
+      'attr2': 2,
+      'attr3': 3,
+      'attr4': 4
+    });
+    value = mod.get('attr1');
+    avg = mod.get('avg');
+    sum = mod.get('sum');
+    round = mod.get('round');
+    floor = mod.get('floor');
+
+    expect(avg).toEqual(((12.6 + 2) + (15.3 + 3) + (11.1 + 4)) / 3);
+    expect(sum).toEqual((12.6 + 2) + (15.3 + 3) + (11.1 + 4));
+    expect(round).toEqual(15 + 3);
+    expect(floor).toEqual(12 + 2);
+    expect(value).toEqual(jasmine.any(Number));
+    expect(value).toEqual(avg + sum + round + floor + 1);
   });
 
 });
