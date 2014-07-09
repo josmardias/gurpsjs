@@ -1,6 +1,8 @@
 /* jshint node: true */
 "use strict";
 module.exports = function (config) {
+  var isCI = process.env.CONTINUOUS_INTEGRATION === "true";
+
   config.set({
     reporters: ["dots", "coverage"],
 
@@ -9,7 +11,7 @@ module.exports = function (config) {
     },
     coverageReporter: {
       reporters: [{
-        type: "lcovonly",
+        type: isCI ? "lcovonly" : "lcov",
         dir: "coverage/"
       }, {
         type: "text"
