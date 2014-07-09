@@ -23,8 +23,7 @@ GURPS.Attributes = (function () {
 
   Attributes = function (hashMap) {
     if (!hashMap) {
-      _map = {};
-      return;
+      hashMap = {};
     }
 
     _map = hashMap;
