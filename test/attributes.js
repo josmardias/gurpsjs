@@ -226,17 +226,78 @@ describe("Attributes module get object with single key as", function () {
     expect(value).toEqual(11 + 22 + 33);
   });
 
-  it("avg should be the avg of the given array of numbers", function () {
-    var mod, value;
-    mod = new Attributes({
-      attr: {
-        avg: [11, 22, 33]
-      }
-    });
-    value = mod.get("attr");
+  describe("avg should", function () {
 
-    expect(value).toEqual(jasmine.any(Number));
-    expect(value).toEqual((11 + 22 + 33) / 3);
+    it("be the average of the given array of numbers", function () {
+      var mod, value;
+      mod = new Attributes({
+        attr: {
+          avg: [11, 22, 33]
+        }
+      });
+      value = mod.get("attr");
+
+      expect(value).toEqual(jasmine.any(Number));
+      expect(value).toEqual((11 + 22 + 33) / 3);
+    });
+
+    it("be the average of the given array of attributes", function () {
+      var mod, value;
+      mod = new Attributes({
+        attr: {
+          avg: ['attr2', 'attr3']
+        },
+        attr2: 11,
+        attr3: 22
+      });
+      value = mod.get("attr");
+
+      expect(value).toEqual(jasmine.any(Number));
+      expect(value).toEqual((11 + 22) / 2);
+    });
+
+    it("throw error when providing number, undefined, null, object, string or NaN", function () {
+      var mod, func1, func2, func3, func4, func5;
+      mod = new Attributes({
+        attr1: {
+          avg: 11
+        },
+        attr2: {
+          avg: undefined
+        },
+        attr3: {
+          avg: null
+        },
+        attr4: {
+          avg: {}
+        },
+        attr5: {
+          avg: NaN
+        }
+      });
+      func1 = function () {
+        mod.get("attr1");
+      };
+      func2 = function () {
+        mod.get("attr2");
+      };
+      func3 = function () {
+        mod.get("attr3");
+      };
+      func4 = function () {
+        mod.get("attr4");
+      };
+      func5 = function () {
+        mod.get("attr5");
+      };
+
+      expect(func1).toThrow();
+      expect(func2).toThrow();
+      expect(func3).toThrow();
+      expect(func4).toThrow();
+      expect(func5).toThrow();
+    });
+
   });
 
   it("floor should be the floor of the given number", function () {

@@ -102,11 +102,20 @@ GURPS.Attributes = (function () {
 
   Attributes.prototype.avg = function (arr) {
     var length = arr.length;
+
+    if (!arr || arr.constructor !== Array) {
+      throw "Formula avg only supports array"
+    }
+
     return this.sum(arr) / (length || 1);
   };
 
   Attributes.prototype.sum = function (arr) {
     var self = this;
+
+    if (!arr || arr.constructor !== Array) {
+      throw "Formula sum only supports array"
+    }
 
     return arr.reduce(function (total, value) {
       return total + self.resolve(value);
