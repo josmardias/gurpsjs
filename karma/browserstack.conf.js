@@ -18,6 +18,7 @@ module.exports = function (config) {
       username: process.env.BROWSERSTACK_USERNAME,
       accessKey: process.env.BROWSERSTACK_KEY
     },
+
     customLaunchers: {
       bs_android: {
         base: "BrowserStack",
@@ -97,6 +98,7 @@ module.exports = function (config) {
         os_version: "7"
       },
     },
+
     browsers: [
       "bs_android",
       "bs_ios",

@@ -62,24 +62,19 @@ module.exports = function (grunt) {
         frameworks: ["jasmine"]
       },
       browserstack: {
-        configFile: "karma/browserstack.conf.js",
-        singleRun: true
+        configFile: "karma/browserstack.conf.js"
       },
       browsers: {
         configFile: "karma/browsers.conf.js"
       },
       debug: {
-        configFile: "karma/debug.conf.js",
-        autoWatch: true,
-        usePolling: true /* hack to make autoWatch work */
+        configFile: "karma/debug.conf.js"
       },
       test: {
-        configFile: "karma/test.conf.js",
-        singleRun: true
+        configFile: "karma/test.conf.js"
       },
       coverage: {
-        configFile: "karma/coverage.conf.js",
-        singleRun: true
+        configFile: "karma/coverage.conf.js"
       }
     }
   });

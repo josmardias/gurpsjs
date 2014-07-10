@@ -6,9 +6,12 @@ module.exports = function (config) {
   config.set({
     reporters: ["dots", "coverage"],
 
+    singleRun: true,
+
     preprocessors: {
-      "src/!(polyfill).js": ["coverage"] //all but polyfill.js
+      "src/*.js": ["coverage"] //all but polyfill.js
     },
+
     coverageReporter: {
       reporters: [{
         type: isCI ? "lcovonly" : "lcov",
