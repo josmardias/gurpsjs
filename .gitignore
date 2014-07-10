@@ -1,6 +1,4 @@
 node_modules
-.grunt
-_SpecRunner.html
 npm-debug.log
 lib
 coverage

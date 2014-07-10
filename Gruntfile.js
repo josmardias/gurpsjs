@@ -42,15 +42,6 @@ module.exports = function (grunt) {
         }
       }
     },
-    jasmine: {
-      default: {
-        src: ["src/gurps.js", "src/**/*.js"],
-        options: {
-          keepRunner: true,
-          specs: "test/**/*.js"
-        }
-      }
-    },
     autowrap: {
       nodefy: {
         options: {
@@ -82,6 +73,10 @@ module.exports = function (grunt) {
         autoWatch: true,
         usePolling: true /* hack to make autoWatch work */
       },
+      test: {
+        configFile: "karma/test.conf.js",
+        singleRun: true
+      },
       coverage: {
         configFile: "karma/coverage.conf.js",
         singleRun: true
@@ -93,7 +88,6 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-contrib-jshint");
-  grunt.loadNpmTasks("grunt-contrib-jasmine");
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-jsbeautifier");
   grunt.loadNpmTasks("grunt-autowrap");
@@ -102,7 +96,7 @@ module.exports = function (grunt) {
   /* tasks */
 
   //test
-  grunt.registerTask("test", ["jasmine"]); //through phantomjs
+  grunt.registerTask("test", ["karma:test"]); //through phantomjs
   grunt.registerTask("coverage", ["karma:coverage"]);
   grunt.registerTask("browserstack", ["karma:browserstack"]);
   grunt.registerTask("browsers", ["karma:browsers"]);
