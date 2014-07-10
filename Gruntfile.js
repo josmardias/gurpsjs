@@ -74,8 +74,8 @@ module.exports = function (grunt) {
         configFile: "karma/browserstack.conf.js",
         singleRun: true
       },
-      local: {
-        configFile: "karma/local.conf.js"
+      browsers: {
+        configFile: "karma/browsers.conf.js"
       },
       debug: {
         configFile: "karma/debug.conf.js",
@@ -105,7 +105,7 @@ module.exports = function (grunt) {
   grunt.registerTask("test", ["jasmine"]); //through phantomjs
   grunt.registerTask("coverage", ["karma:coverage"]);
   grunt.registerTask("browserstack", ["karma:browserstack"]);
-  grunt.registerTask("browsers", ["karma:local"]);
+  grunt.registerTask("browsers", ["karma:browsers"]);
 
   //code quality
   grunt.registerTask("format", ["jshint", "jsbeautifier:write"]);
