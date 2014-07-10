@@ -210,7 +210,7 @@ describe("Attributes module get", function () {
   });
 
   it("formula with multiple keys should throw error", function () {
-    var mod, value, func;
+    var mod, func;
     mod = new Attributes({
       attr: {
         avg: [6, 7, 8],
@@ -219,7 +219,7 @@ describe("Attributes module get", function () {
     });
     func = function () {
       mod.get("attr");
-    }
+    };
 
     expect(func).toThrow();
   });
@@ -260,7 +260,7 @@ describe("Attributes module get object with single key as", function () {
       var mod, value;
       mod = new Attributes({
         attr: {
-          avg: ['attr2', 'attr3']
+          avg: ["attr2", "attr3"]
         },
         attr2: 11,
         attr3: 22
@@ -482,7 +482,7 @@ describe("Attributes module should throw error", function () {
 
     f = function () {
       value = mod.get("attr");
-    }
+    };
 
     expect(f).toThrow();
   });
@@ -498,7 +498,7 @@ describe("Attributes module should throw error", function () {
 
     func = function () {
       value = mod.get("attr");
-    }
+    };
 
     expect(func).toThrow();
   });
