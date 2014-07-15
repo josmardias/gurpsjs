@@ -105,7 +105,6 @@ module.exports = function (config) {
       "bs_safari_mac",
       "bs_chrome_mac",
       "bs_firefox_mac",
-      "bs_ie8_win7",
       "bs_ie9_win7",
       "bs_ie10_win7",
       "bs_ie11_win7"
