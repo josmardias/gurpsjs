@@ -6,6 +6,11 @@ module.exports = function (config) {
   config.set({
     reporters: ["dots"],
 
+    browserDisconnectTimeout : 10000, // default 2000
+    browserDisconnectTolerance : 1, // default 0
+    browserNoActivityTimeout : 4*60*1000, //default 10000
+    captureTimeout : 4*60*1000, //default 60000
+
     browserStack: {
       project: "gurps.js",
       build: buildName,
