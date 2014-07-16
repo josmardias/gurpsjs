@@ -504,3 +504,37 @@ describe("Attributes module should throw error", function () {
   });
 
 });
+
+describe("Instances of Attributes module should be isolated", function () {
+
+  it("by dependency tree", function () {
+    var mod1, mod2, value;
+    mod1 = new Attributes({
+      attr: 2
+    });
+    mod2 = new Attributes({
+      attr: 1
+    });
+    value = mod1.get("attr");
+
+    expect(value).toEqual(2);
+  });
+
+  it("by bonuses", function () {
+    var mod1, mod2, value;
+    mod1 = new Attributes({
+      attr: 2
+    }, {
+      attr: 2
+    });
+    mod2 = new Attributes({
+      attr: 2
+    }, {
+      attr: 1
+    });
+    value = mod1.get("attr");
+
+    expect(value).toEqual(4);
+  });
+
+});

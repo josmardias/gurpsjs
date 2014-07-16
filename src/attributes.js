@@ -2,9 +2,7 @@
 GURPS.Attributes = (function () {
   "use strict";
 
-  var Attributes; // returned object
-  var _tree = null; // attributes tree hash map
-  var _bonuses = null; // attributes bonuses hash map
+  var Attributes; // returned class
 
   /* key => value
    * value can be:
@@ -25,25 +23,22 @@ GURPS.Attributes = (function () {
    * bonuses: a hash map of integers describing attributes bonuses
    */
   Attributes = function (dependencyTree, bonuses) {
-    dependencyTree = dependencyTree || {};
-    bonuses = bonuses || {};
-
-    _tree = dependencyTree;
-    _bonuses = bonuses;
+    this.tree = dependencyTree || {}; // attributes tree hash map
+    this.bonuses = bonuses || {};     // attributes bonuses hash map
   };
 
   Attributes.prototype.set = function (key, value) {
     var actual = this.get(key);
-    _bonuses[key] += value - actual;
+    this.bonuses[key] = value - actual;
   };
 
   Attributes.prototype.get = function (key) {
-    var value = _tree[key];
+    var value = this.tree[key];
     return this.resolve(value) + this.getBonus(key);
   };
 
   Attributes.prototype.getBonus = function (key) {
-    return (_bonuses[key] || 0);
+    return (this.bonuses[key] || 0);
   };
 
   Attributes.prototype.resolve = function (value) {
