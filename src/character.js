@@ -2,48 +2,45 @@
 GURPS.Character = (function () {
   "use strict";
 
+  var _dependencies = {
+    "ST": 10,
+    "DX": 10,
+    "IQ": 10,
+    "HT": 10,
+    "hp": "ST",
+    "fp": "HT",
+    "will": "IQ",
+    "basicSpeed": {
+      "avg": ["DX", "HT", 0, 0]
+    },
+    "basicMove": {
+      "floor": "basicSpeed"
+    },
+    "dodge": {
+      "sum": ["basicMove", 3]
+    },
+    "perception": "IQ",
+    "vision": "perception",
+    "hearing": "perception",
+    "tasteSmell": "perception",
+    "touch": "perception"
+  };
+
+  /**
+   * attributes: initial attributes
+   */
   var Character = function (attributes) {
-    if (attributes === null) {
-      return;
-    }
-
-    this.reset();
+    this.attributes = new GURPS.Attributes(_dependencies);
     this.setAttribute(attributes);
-    //this.calculatePoints();
   };
 
-  Character.prototype.reset = function () {
-    this.st = this.dx = this.iq = this.ht = 10;
-  };
-
-  Character.prototype.dependencies = {
-    will: "iq",
-    frightCheck: {
-      avg: ["st", "iq"]
-    },
-    basicSpeed: {
-      avg: ["dx", "ht", 0, 0]
-    },
-    basicMove: {
-      floor: "basicSpeed"
-    },
-    dodge: {
-      sum: ["basicMove", 3]
-    },
-    perception: "iq",
-    vision: "perception",
-    hearing: "perception",
-    tasteSmell: "perception",
-    touch: "perception",
-    hp: "st",
-    fp: "ht"
-  };
-
-  //returns final attribute value
   Character.prototype.getAttribute = function (attrName) {
-    return (this[attrName] || 0) + this._resolveDependency(attrName);
+    return this.attributes.get(attrName);
   };
 
+  /**
+   * attributes: an object with attribute name => value
+   */
   Character.prototype.setAttribute = function (attributes) {
     var attrName;
 
@@ -52,7 +49,7 @@ GURPS.Character = (function () {
         continue;
       }
 
-      this.attribute[attrName] = attributes[attrName];
+      this.attributes.set(attrName, attributes[attrName]);
     }
   };
 

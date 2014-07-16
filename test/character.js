@@ -8,7 +8,7 @@ describe("GURPS object", function () {
   });
 });
 
-describe("Character module creation", function () {
+describe("Create character module successfully", function () {
 
   it("without arguments", function () {
     var mod = new Character();
@@ -28,6 +28,69 @@ describe("Character module creation", function () {
   it("with null as argument", function () {
     var mod = new Character(null);
     expect(mod).toEqual(jasmine.any(Object));
+  });
+
+  it("should have defaults", function () {
+    var mod, defaults, attr;
+    defaults = {
+      "ST": 10,
+      "DX": 10,
+      "IQ": 10,
+      "HT": 10,
+      "hp": 10,
+      "fp": 10,
+      "will": 10,
+      "basicSpeed": 5,
+      "basicMove": 5,
+      "dodge": 8,
+      "perception": 10,
+      "vision": 10,
+      "hearing": 10,
+      "tasteSmell": 10,
+      "touch": 10
+    };
+    mod = new Character();
+
+    for (attr in defaults) {
+      expect(mod.getAttribute(attr)).toEqual(defaults[attr]);
+    }
+  });
+
+});
+
+describe("Character module getAttribute", function () {
+
+  it("when creating with attributes", function () {
+    var mod, results, attr;
+    debugger;
+    mod = new Character({
+      ST: 9,
+      DX: 11,
+      IQ: 13,
+      HT: 15,
+      perception: 20
+    });
+    results = {
+      "ST": 9,
+      "DX": 11,
+      "IQ": 13,
+      "HT": 15,
+      "hp": 9,
+      "fp": 15,
+      "will": 13,
+      "basicSpeed": 6.5,
+      "basicMove": 6,
+      "dodge": 9,
+      "perception": 20,
+      "vision": 20,
+      "hearing": 20,
+      "tasteSmell": 20,
+      "touch": 20
+    };
+
+    for (attr in results) {
+      expect(mod.getAttribute(attr)).toEqual(results[attr]);
+    }
   });
 
 });
