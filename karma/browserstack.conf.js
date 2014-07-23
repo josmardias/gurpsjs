@@ -6,6 +6,8 @@ module.exports = function (config) {
   config.set({
     reporters: ["dots"],
 
+    singleRun: true,
+
     browserDisconnectTimeout : 10000, // default 2000
     browserDisconnectTolerance : 1, // default 0
     browserNoActivityTimeout : 4*60*1000, //default 10000
