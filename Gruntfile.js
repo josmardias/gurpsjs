@@ -90,16 +90,16 @@ module.exports = function (grunt) {
 
   /* tasks */
 
+  //code quality
+  grunt.registerTask("lint", ["jshint"]);
+  grunt.registerTask("format", ["jshint", "jsbeautifier:write"]);
+  grunt.registerTask("verify", ["jshint", "jsbeautifier:verify"]);
+
   //test
   grunt.registerTask("test", ["karma:test"]); //through phantomjs
   grunt.registerTask("coverage", ["karma:coverage"]);
   grunt.registerTask("browserstack", ["karma:browserstack"]);
   grunt.registerTask("browsers", ["karma:browsers"]);
-
-  //code quality
-  grunt.registerTask("format", ["jshint", "jsbeautifier:write"]);
-  grunt.registerTask("verify", ["jshint", "jsbeautifier:verify"]);
-  grunt.registerTask("lint", ["jshint"]);
 
   //build
   grunt.registerTask("build", ["autowrap:nodefy"]);
@@ -108,6 +108,6 @@ module.exports = function (grunt) {
   //develop
   grunt.registerTask("debug", ["karma:debug"]);
   grunt.registerTask("dev", ["default", "watch"]);
-  grunt.registerTask("default", ["test", "verify"]);
+  grunt.registerTask("default", ["test", "lint"]);
 
 };

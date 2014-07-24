@@ -62,7 +62,7 @@ describe("Character module getAttribute", function () {
 
   it("when creating with attributes", function () {
     var mod, results, attr;
-    debugger;
+
     mod = new Character({
       ST: 9,
       DX: 11,
