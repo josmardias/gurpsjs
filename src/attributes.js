@@ -107,7 +107,11 @@ GURPS.Attributes = (function () {
       throw "Formula avg only supports array";
     }
 
-    return this.sum(arr) / (length || 1);
+    if (length === 0) {
+      return 0;
+    }
+
+    return this.sum(arr) / length;
   };
 
   Attributes.prototype.sum = function (arr) {

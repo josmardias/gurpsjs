@@ -313,6 +313,19 @@ describe("Attributes module get object with single key as", function () {
       expect(func5).toThrow();
     });
 
+    it("be zero for empty arrays", function() {
+      var mod, value;
+      mod = new Attributes({
+        attr: {
+          avg: []
+        }
+      });
+      value = mod.get("attr");
+
+      expect(value).toEqual(jasmine.any(Number));
+      expect(value).toEqual(0);
+    });
+
   });
 
   it("floor should be the floor of the given number", function () {
