@@ -313,7 +313,7 @@ describe("Attributes module get object with single key as", function () {
       expect(func5).toThrow();
     });
 
-    it("be zero for empty arrays", function() {
+    it("be zero for empty arrays", function () {
       var mod, value;
       mod = new Attributes({
         attr: {
