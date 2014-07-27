@@ -4,7 +4,7 @@ var Character = GURPS.Character;
 
 describe("GURPS object", function () {
   it("must have Character attribute", function () {
-    expect(GURPS).toEqual(jasmine.any(Object));
+    expect(GURPS.Character).toBeDefined();
   });
 });
 
@@ -60,7 +60,7 @@ describe("Create character module successfully", function () {
 
 describe("Character module getAttribute", function () {
 
-  it("when creating with attributes", function () {
+  it("when passing attributes must match expected values", function () {
     var mod, results, attr;
 
     mod = new Character({
@@ -91,6 +91,22 @@ describe("Character module getAttribute", function () {
     for (attr in results) {
       expect(mod.getAttribute(attr)).toEqual(results[attr]);
     }
+  });
+
+});
+
+describe("Character module setAttribute", function () {
+
+  it("should ignore prototype properties", function () {
+    var mod, value, CustomObject;
+
+    CustomObject = function () {};
+    CustomObject.prototype.ST = 12;
+
+    mod = new Character(new CustomObject());
+    value = mod.getAttribute("ST");
+
+    expect(value).toEqual(10);
   });
 
 });
