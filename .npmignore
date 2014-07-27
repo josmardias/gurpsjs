@@ -1,9 +1,8 @@
 bower.json
 Gruntfile.js
-_SpecRunner.html
 src
 test
-**/.*
 coverage
 karma
 travis.sh
+**/.*
