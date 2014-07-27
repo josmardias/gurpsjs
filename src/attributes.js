@@ -24,7 +24,7 @@ GURPS.Attributes = (function () {
    */
   Attributes = function (dependencyTree, bonuses) {
     this.tree = dependencyTree || {}; // attributes tree hash map
-    this.bonuses = bonuses || {};     // attributes bonuses hash map
+    this.bonuses = bonuses || {}; // attributes bonuses hash map
   };
 
   Attributes.prototype.set = function (key, value) {

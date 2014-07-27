@@ -8,10 +8,10 @@ module.exports = function (config) {
 
     singleRun: true,
 
-    browserDisconnectTimeout : 10000, // default 2000
-    browserDisconnectTolerance : 1, // default 0
-    browserNoActivityTimeout : 4*60*1000, //default 10000
-    captureTimeout : 4*60*1000, //default 60000
+    browserDisconnectTimeout: 10000, // default 2000
+    browserDisconnectTolerance: 1, // default 0
+    browserNoActivityTimeout: 4 * 60 * 1000, //default 10000
+    captureTimeout: 4 * 60 * 1000, //default 60000
 
     browserStack: {
       project: "gurps.js",
