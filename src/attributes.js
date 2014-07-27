@@ -67,7 +67,7 @@ GURPS.Attributes = (function () {
       return this.resolveObj(value);
     }
 
-    throw "unexpected value: " + JSON.stringify(value);
+    throw "unexpected value: " + JSON.stringify(value) + " with constructor: " + value.constructor;
   };
 
   Attributes.prototype.resolveObj = function (obj) {

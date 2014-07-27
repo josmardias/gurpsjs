@@ -503,6 +503,49 @@ describe("Attributes module should throw error", function () {
     expect(func).toThrow();
   });
 
+  it("when using custom Object formula", function () {
+    var mod, value, func, CustomObject;
+
+    CustomObject = function () {
+      this.sum = [1, 2];
+    };
+
+    mod = new Attributes({
+      "attr": new CustomObject()
+    });
+
+    func = function () {
+      value = mod.get("attr");
+    };
+
+    expect(func).toThrow();
+  });
+
+  it("when passing a non array to sum formula", function () {
+    var mod, value1, func1, value2, func2;
+    mod = new Attributes({
+      "attr": 13,
+      "attr1": {
+        sum: "attr" // string
+      },
+      "attr2": {
+        sum: { // object
+          sum: [1, 2]
+        }
+      }
+    });
+
+    func1 = function () {
+      value1 = mod.get("attr1");
+    };
+    func2 = function () {
+      value2 = mod.get("attr2");
+    };
+
+    expect(func1).toThrow();
+    expect(func2).toThrow();
+  });
+
 });
 
 describe("Instances of Attributes module should be isolated", function () {
