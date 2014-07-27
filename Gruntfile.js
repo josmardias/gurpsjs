@@ -96,9 +96,9 @@ module.exports = function (grunt) {
   grunt.registerTask("verify", ["jshint", "jsbeautifier:verify"]);
 
   //test
-  grunt.registerTask("test", ["karma:test"]); //through phantomjs
-  grunt.registerTask("coverage", ["karma:coverage"]);
-  grunt.registerTask("browserstack", ["karma:browserstack"]);
+  grunt.registerTask("test", ["karma:test"]);
+  grunt.registerTask("coverage", ["karma:coverage"]); // travis.sh
+  grunt.registerTask("browserstack", ["karma:browserstack"]); // travis.sh
   grunt.registerTask("browsers", ["karma:browsers"]);
 
   //build
@@ -107,7 +107,7 @@ module.exports = function (grunt) {
 
   //develop
   grunt.registerTask("debug", ["karma:debug"]);
-  grunt.registerTask("dev", ["default", "watch"]);
-  grunt.registerTask("default", ["test", "lint"]);
+  grunt.registerTask("dev", ["test", "lint"]);
+  grunt.registerTask("default", ["dev", "watch"]);
 
 };
