@@ -7,8 +7,8 @@ GURPS.Character = (function () {
     "DX": 10,
     "IQ": 10,
     "HT": 10,
-    "hp": "ST",
-    "fp": "HT",
+    "HP": "ST",
+    "FP": "HT",
     "will": "IQ",
     "basicSpeed": {
       "avg": ["DX", "HT", 0, 0]
