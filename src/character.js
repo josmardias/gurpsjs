@@ -51,6 +51,8 @@ GURPS.Character = (function () {
 
       this.attributes.set(attrName, attributes[attrName]);
     }
+
+    return this;
   };
 
   return Character;

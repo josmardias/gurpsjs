@@ -30,6 +30,7 @@ GURPS.Attributes = (function () {
   Attributes.prototype.set = function (key, value) {
     var actual = this.get(key);
     this.bonuses[key] = value - actual;
+    return this;
   };
 
   Attributes.prototype.get = function (key) {
