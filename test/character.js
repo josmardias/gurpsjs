@@ -135,7 +135,7 @@ describe("Character module setAttribute", function () {
     });
     value1 = mod.getAttribute("HP");
     mod.setAttribute({
-      ST: 23
+      HP: 23
     });
     value2 = mod.getAttribute("HP");
 

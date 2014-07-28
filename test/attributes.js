@@ -610,4 +610,56 @@ describe("Attributes module set", function () {
     expect(value2).toEqual(jasmine.any(Number));
     expect(value2).toEqual(17);
   });
+
+  it("should work when there is a previous bonus", function () {
+    var mod, value1, value2;
+    mod = new Attributes({
+      attr: 13
+    }, {
+      attr: 2
+    });
+    value1 = mod.get("attr");
+    mod.set("attr", 17);
+    value2 = mod.get("attr");
+
+    expect(value1).toEqual(jasmine.any(Number));
+    expect(value1).toEqual(15);
+    expect(value2).toEqual(jasmine.any(Number));
+    expect(value2).toEqual(17);
+  });
+
+  it("should change a secondary attribute value to the given value", function () {
+    var mod, value1, value2;
+    mod = new Attributes({
+      attr: 13,
+      attr1: "attr"
+    });
+    value1 = mod.get("attr1");
+    mod.set("attr", 17);
+    value2 = mod.get("attr1");
+
+    expect(value1).toEqual(jasmine.any(Number));
+    expect(value1).toEqual(13);
+    expect(value2).toEqual(jasmine.any(Number));
+    expect(value2).toEqual(17);
+  });
+
+  it("should work on secondary attributes when there is a previous bonus", function () {
+    var mod, value1, value2;
+    mod = new Attributes({
+      attr: 13,
+      attr1: "attr"
+    }, {
+      attr: 2,
+      attr1: 1
+    });
+    value1 = mod.get("attr1");
+    mod.set("attr1", 17);
+    value2 = mod.get("attr1");
+
+    expect(value1).toEqual(jasmine.any(Number));
+    expect(value1).toEqual(16);
+    expect(value2).toEqual(jasmine.any(Number));
+    expect(value2).toEqual(17);
+  });
 });
