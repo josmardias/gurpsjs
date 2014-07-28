@@ -594,3 +594,20 @@ describe("Instances of Attributes module should be isolated", function () {
   });
 
 });
+
+describe("Attributes module set", function () {
+  it("should change the attribute value to the given value", function () {
+    var mod, value1, value2;
+    mod = new Attributes({
+      attr: 13
+    });
+    value1 = mod.get("attr");
+    mod.set("attr", 17);
+    value2 = mod.get("attr");
+
+    expect(value1).toEqual(jasmine.any(Number));
+    expect(value1).toEqual(13);
+    expect(value2).toEqual(jasmine.any(Number));
+    expect(value2).toEqual(17);
+  });
+});
