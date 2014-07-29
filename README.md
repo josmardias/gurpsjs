@@ -13,8 +13,9 @@ gurps.js
 
 ## Details
 
-This lib is under heavy development.  
-There is no stable version yet.  
+This lib is under heavy development. There is no stable version yet.  
+Check it out the [Live] example.  
+[Live]: https://josmardias.github.io/gurps-sheet/
 
 Automated cross browser testing powered by [BrowserStack] (https://www.browserstack.com/automate)  
 Continuous integration powered by [Travis CI] (https://travis-ci.org/josmardias/gurpsjs)  
