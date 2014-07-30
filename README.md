@@ -1,4 +1,4 @@
-gurps.js
+Gurps.js
 =====
 [![Build Status](https://travis-ci.org/josmardias/gurpsjs.svg?branch=master)](https://travis-ci.org/josmardias/gurpsjs)
 [![Test Coverage](https://codeclimate.com/github/josmardias/gurpsjs/coverage.png)](https://codeclimate.com/github/josmardias/gurpsjs)
@@ -8,7 +8,7 @@ gurps.js
 [![Gittip](https://img.shields.io/gittip/josmardias.png)](https://www.gittip.com/josmardias/)
 
 
-> A GURPS JavaScript library
+> Gurps.js is a javascript library for GURPS 
 
 
 ## Details
