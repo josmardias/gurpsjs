@@ -8,13 +8,15 @@ Gurps.js
 [![Gittip](https://img.shields.io/gittip/josmardias.png)](https://www.gittip.com/josmardias/)
 
 
-> Gurps.js is a javascript library for GURPS 
+> Gurps.js is a javascript library for GURPS  
+> This lib is under heavy development. There is no stable version yet.  
 
 
 ## Details
 
-This lib is under heavy development. There is no stable version yet.  
-Check it out the <a href="https://josmardias.github.io/gurps-sheet/" target="_blank">Live</a> example.  
+See the [Wiki](https://github.com/josmardias/gurpsjs/wiki) for details.  
+Check it out the <a href="https://josmardias.github.io/gurps-sheet/" target="_blank">Live</a> demo example.  
+Follow and vote on the <a href="https://trello.com/b/I16BFBkg/gurpsjs" target="_blank">Roadmap</a>  
 
 Automated cross browser testing powered by [BrowserStack] (https://www.browserstack.com/automate)  
 Continuous integration powered by [Travis CI] (https://travis-ci.org/josmardias/gurpsjs)  
