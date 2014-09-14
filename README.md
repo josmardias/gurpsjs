@@ -5,7 +5,7 @@ Gurps.js
 [![Code Climate](https://codeclimate.com/github/josmardias/gurpsjs/badges/gpa.svg)](https://codeclimate.com/github/josmardias/gurpsjs)
 [![NPM version](https://badge.fury.io/js/gurpsjs.svg)](https://www.npmjs.org/package/gurpsjs)
 [![Bower version](https://badge.fury.io/bo/gurpsjs.svg)](https://github.com/josmardias/gurpsjs)
-[![Gittip](https://img.shields.io/gittip/josmardias.png)](https://www.gittip.com/josmardias/)
+[![Gittip](http://img.shields.io/gratipay/josmardias.svg)](https://gratipay.com/josmardias/)
 
 
 > Gurps.js is a javascript library for GURPS  
