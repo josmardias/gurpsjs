@@ -8,7 +8,7 @@ Gurps.js
 [![Gittip](http://img.shields.io/gratipay/josmardias.svg)](https://gratipay.com/josmardias/)
 
 
-> Gurps.js is a javascript library for GURPS  
+> Gurps.js is a JavaScript library for GURPS  
 > This lib is under heavy development. There is no stable version yet.  
 
 
@@ -23,18 +23,5 @@ Continuous integration powered by [Travis CI] (https://travis-ci.org/josmardias/
 
 ## Build and Test
 
-### Enviroment
-
-Install Node.js and npm  
-https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
-
-Install grunt-cli  
-$ grunt install -g grunt-cli
-
-Inside the project directory, install dependencies  
-$ npm install
-
-### Testing
-
-Inside the projet directory  
-$ grunt
+Gurps.js uses Grunt for build and tests.  
+Look at the [[wiki page|Testing]].
