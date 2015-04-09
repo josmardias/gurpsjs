@@ -29,7 +29,8 @@ GURPS.Attributes = (function () {
   Attributes.prototype.set = function (key, value) {
     var actual = this.get(key);
     var bonus = this.getBonus(key);
-    this.bonuses[key] = value - (actual - bonus);
+    var actualWithoutBonus = actual - bonus;
+    this.bonuses[key] = value - actualWithoutBonus;
     return this;
   };
 
@@ -39,7 +40,7 @@ GURPS.Attributes = (function () {
   };
 
   Attributes.prototype.getBonus = function (key) {
-    return (this.bonuses[key] || 0);
+    return this.bonuses[key] || 0;
   };
 
   Attributes.prototype.resolve = function (value) {

@@ -125,6 +125,9 @@ describe("Attributes module get", function () {
     }];
 
     for (i in args) {
+      if (!args.hasOwnProperty(i)) {
+        continue;
+      }
       mod = new Attributes(args[i]);
       value = mod.get("attr");
 
@@ -446,6 +449,8 @@ describe("Attributes module get with bonus", function () {
 
   it("should sum bonus of keys when using formulas", function () {
     var mod, value, avg, sum, round, floor;
+    var attrValue2, attrValue3, attrValue4;
+
     mod = new Attributes({
       "attr1": ["avg", "sum", "round", "floor"],
       "attr2": 12.6,
@@ -475,8 +480,12 @@ describe("Attributes module get with bonus", function () {
     round = mod.get("round");
     floor = mod.get("floor");
 
-    expect(avg).toEqual(((12.6 + 2) + (15.3 + 3) + (11.1 + 4)) / 3);
-    expect(sum).toEqual((12.6 + 2) + (15.3 + 3) + (11.1 + 4));
+    attrValue2 = 12.6 + 2;
+    attrValue3 = 15.3 + 3;
+    attrValue4 = 11.1 + 4;
+
+    expect(avg).toEqual((attrValue2 + attrValue3 + attrValue4) / 3);
+    expect(sum).toEqual(attrValue2 + attrValue3 + attrValue4);
     expect(round).toEqual(15 + 3);
     expect(floor).toEqual(12 + 2);
     expect(value).toEqual(jasmine.any(Number));
