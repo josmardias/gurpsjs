@@ -28,11 +28,19 @@ module.exports = function (config) {
         os_version: "4.2",
         device: "LG Nexus 4"
       },
-      bs_ios: {
+      bs_ios7: {
         base: "BrowserStack",
+        browser: "iphone",
         os: "ios",
         os_version: "7.0",
         device: "iPhone 5S"
+      },
+      bs_ios8: {
+        base: "BrowserStack",
+        browser: "iphone",
+        os: "ios",
+        os_version: "8.0",
+        device: "iPhone 6"
       },
       bs_opera_mobile: {
         base: "BrowserStack",
@@ -82,7 +90,8 @@ module.exports = function (config) {
 
     browsers: [
       "bs_android",
-      "bs_ios",
+      "bs_ios7",
+      "bs_ios8",
       "bs_opera_mobile",
       "bs_opera_mac",
       "bs_safari_mac",
