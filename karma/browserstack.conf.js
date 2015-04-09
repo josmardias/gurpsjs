@@ -64,27 +64,6 @@ module.exports = function (config) {
         os: "OS X",
         os_version: "Mavericks"
       },
-      bs_ie7_winXP: {
-        base: "BrowserStack",
-        browser: "ie",
-        browser_version: "7.0",
-        os: "Windows",
-        os_version: "XP"
-      },
-      bs_ie8_win7: {
-        base: "BrowserStack",
-        browser: "ie",
-        browser_version: "8.0",
-        os: "Windows",
-        os_version: "7"
-      },
-      bs_ie9_win7: {
-        base: "BrowserStack",
-        browser: "ie",
-        browser_version: "9.0",
-        os: "Windows",
-        os_version: "7"
-      },
       bs_ie10_win7: {
         base: "BrowserStack",
         browser: "ie",
@@ -109,7 +88,6 @@ module.exports = function (config) {
       "bs_safari_mac",
       "bs_chrome_mac",
       "bs_firefox_mac",
-      "bs_ie9_win7",
       "bs_ie10_win7",
       "bs_ie11_win7"
     ]
