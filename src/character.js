@@ -1,4 +1,3 @@
-/* global GURPS */
 GURPS.Character = (function () {
   "use strict";
 

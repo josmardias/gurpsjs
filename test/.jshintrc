@@ -1,13 +1,45 @@
 {
-  "extends": "../.jshintrc",
-  "globals": {
-    "jasmine": false,
-    "describe": false,
-    "xdescribe": false,
-    "it": false,
-    "xit": false,
-    "expect": false,
+  // http://jshint.com/docs/options/
+
+  /* code style (deprecated) */
+  "camelcase": "camelCase",
+  "immed": true,
+  "indent": 2,
+  "maxlen": 100,
+  "newcap": true,
+  "quotmark": "double",
+  "multistr": true,
+
+  /* enforcing warnings */
+  "bitwise": true,
+  "curly": true,
+  "eqeqeq": true,
+  "forin": true,
+  "freeze": true,
+  "futurehostile": true,
+  "globalstrict": true,
+  "globals" : {
     "GURPS": false
   },
-  "globalstrict": true
+  "latedef": true,
+  "maxcomplexity": 5,
+  "maxdepth": 4,
+  "maxparams": 4,
+  "noarg": true,
+  "nocomma": true,
+  "nonbsp": true,
+  "nonew": true,
+  "shadow": "inner",
+  "singleGroups": true,
+  "undef": true,
+  "unused": "vars",
+
+  /* relaxing */
+  "debug": true,
+  "strict": true,
+
+  /* environments */
+  //"browser": true,
+  "jasmine": true,
+  "devel": false
 }

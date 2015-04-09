@@ -1,4 +1,3 @@
-/* jshint node: true */
 "use strict";
 module.exports = function (config) {
   var buildName = process.env.TRAVIS_BUILD_NUMBER || process.env.USERNAME + "-" + Date.now();

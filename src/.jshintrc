@@ -18,6 +18,7 @@
   "freeze": true,
   "futurehostile": true,
   "globals" : {
+    "GURPS": true
   },
   "latedef": true,
   "maxcomplexity": 5,
@@ -33,10 +34,8 @@
   "unused": "vars",
 
   /* relaxing */
-  "debug": true,
   "strict": true,
 
   /* environments */
-  "node": true,
   "devel": false
 }
