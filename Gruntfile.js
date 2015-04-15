@@ -43,6 +43,13 @@ module.exports = function (grunt) {
         }
       }
     },
+    browserify: {
+      dist: {
+        files: {
+          "build/bundle.js": "src/gurps.js"
+        }
+      }
+    },
     jasmine_node: {
       test: {
         options: {
@@ -103,6 +110,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-contrib-jshint");
   grunt.loadNpmTasks("grunt-contrib-clean");
+  grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks("grunt-jsbeautifier");
   grunt.loadNpmTasks("grunt-jasmine-node-coverage");
   grunt.loadNpmTasks("grunt-karma");
