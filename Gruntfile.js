@@ -1,3 +1,4 @@
+/* jshint camelcase: false */
 module.exports = function (grunt) {
   "use strict";
 
@@ -42,14 +43,32 @@ module.exports = function (grunt) {
         }
       }
     },
-    autowrap: {
-      nodefy: {
+    jasmine_node: {
+      test: {
         options: {
-          wrapType: "exports"
+          captureExceptions: true,
+          coverage: false,
+          forceExit: true,
+          isVerbose: false,
+          specFolders: ["tests"],
+          showColors: true
         },
-        files: {
-          "lib/main.js": ["src/gurps.js", "src/*.js"],
+        src: ["src/**/*.js"]
+      },
+      coverage: {
+        options: {
+          captureExceptions: true,
+          coverage: {
+            print: "none", // none, summary, detail, both
+            reportDir: "coverage",
+            report: ["lcov"]
+          },
+          forceExit: true,
+          isVerbose: false,
+          specFolders: ["tests"],
+          showColors: true
         },
+        src: ["src/**/*.js"]
       }
     },
     clean: {
@@ -85,7 +104,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-contrib-jshint");
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-jsbeautifier");
-  grunt.loadNpmTasks("grunt-autowrap");
+  grunt.loadNpmTasks("grunt-jasmine-node-coverage");
   grunt.loadNpmTasks("grunt-karma");
 
   /* tasks */
@@ -96,13 +115,13 @@ module.exports = function (grunt) {
   grunt.registerTask("verify", ["jshint", "jsbeautifier:verify"]);
 
   //test
-  grunt.registerTask("test", ["karma:test"]);
-  grunt.registerTask("coverage", ["karma:coverage"]); // travis.sh
+  grunt.registerTask("test", ["jasmine_node:test"]);
+  grunt.registerTask("coverage", ["jasmine_node:coverage"]); //travis.sh
   grunt.registerTask("browserstack", ["karma:browserstack"]); // travis.sh
   grunt.registerTask("browsers", ["karma:browsers"]);
 
   //build
-  grunt.registerTask("build", ["autowrap:nodefy"]);
+  //grunt.registerTask("build", ["browserify!!!!"]);
   //grunt.registerTask("clean", ["clean:build"]);
 
   //develop

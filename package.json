@@ -22,9 +22,7 @@
     "url": "https://github.com/josmardias/gurpsjs.git"
   },
   "scripts": {
-    "test": "grunt test",
-    "prepublish": "grunt build",
-    "postpublish": "grunt clean"
+    "test": "grunt test"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -32,6 +30,7 @@
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-jshint": "^0.11.1",
     "grunt-contrib-watch": "^0.6.1",
+    "grunt-jasmine-node-coverage": "^0.4.1",
     "grunt-jsbeautifier": "^0.2.10",
     "grunt-karma": "^0.10.1",
     "jasmine-core": "^2.2.0",
