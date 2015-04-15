@@ -1,2 +1,7 @@
-var GURPS;
-GURPS = GURPS || {};
+"use strict";
+
+var Character = require("./character");
+
+module.exports = {
+  "Character": Character
+};

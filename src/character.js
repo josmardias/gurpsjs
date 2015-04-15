@@ -1,58 +1,58 @@
-GURPS.Character = (function () {
-  "use strict";
+"use strict";
 
-  var _dependencies = {
-    "ST": 10,
-    "DX": 10,
-    "IQ": 10,
-    "HT": 10,
-    "HP": "ST",
-    "FP": "HT",
-    "will": "IQ",
-    "basicSpeed": {
-      "avg": ["DX", "HT", 0, 0]
-    },
-    "basicMove": {
-      "floor": "basicSpeed"
-    },
-    "dodge": {
-      "sum": ["basicMove", 3]
-    },
-    "perception": "IQ",
-    "vision": "perception",
-    "hearing": "perception",
-    "tasteSmell": "perception",
-    "touch": "perception"
-  };
+var Attributes = require("./attributes");
 
-  /**
-   * attributes: initial attributes
-   */
-  var Character = function (attributes) {
-    this.attributes = new GURPS.Attributes(_dependencies);
-    this.setAttribute(attributes);
-  };
+var _dependencies = {
+  "ST": 10,
+  "DX": 10,
+  "IQ": 10,
+  "HT": 10,
+  "HP": "ST",
+  "FP": "HT",
+  "will": "IQ",
+  "basicSpeed": {
+    "avg": ["DX", "HT", 0, 0]
+  },
+  "basicMove": {
+    "floor": "basicSpeed"
+  },
+  "dodge": {
+    "sum": ["basicMove", 3]
+  },
+  "perception": "IQ",
+  "vision": "perception",
+  "hearing": "perception",
+  "tasteSmell": "perception",
+  "touch": "perception"
+};
 
-  Character.prototype.getAttribute = function (attrName) {
-    return this.attributes.get(attrName);
-  };
+/**
+ * attributes: initial attributes
+ */
+var Character = function (attributes) {
+  this.attributes = new Attributes(_dependencies);
+  this.setAttribute(attributes);
+};
 
-  /**
-   * attributes: an object with attribute name => value
-   */
-  Character.prototype.setAttribute = function (attributes) {
-    var attrName;
+Character.prototype.getAttribute = function (attrName) {
+  return this.attributes.get(attrName);
+};
 
-    for (attrName in attributes) {
-      if (!attributes.hasOwnProperty(attrName)) {
-        continue;
-      }
+/**
+ * attributes: an object with attribute name => value
+ */
+Character.prototype.setAttribute = function (attributes) {
+  var attrName;
 
-      this.attributes.set(attrName, attributes[attrName]);
+  for (attrName in attributes) {
+    if (!attributes.hasOwnProperty(attrName)) {
+      continue;
     }
 
-    return this;
-  };
+    this.attributes.set(attrName, attributes[attrName]);
+  }
 
-  return Character;
-})();
+  return this;
+};
+
+module.exports = Character;
