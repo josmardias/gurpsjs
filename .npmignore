@@ -1,7 +1,6 @@
 bower.json
 Gruntfile.js
-src
-test
+tests
 coverage
 karma
 travis.sh
