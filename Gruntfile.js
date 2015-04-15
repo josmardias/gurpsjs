@@ -44,10 +44,19 @@ module.exports = function (grunt) {
       }
     },
     browserify: {
-      dist: {
-        files: {
-          "build/bundle.js": "src/gurps.js"
-        }
+      options: {
+        debug: true,
+      },
+      src: {
+        src: "./src/gurps.js",
+        dest: "./build/src-bundle.js"
+      },
+      test: {
+        options: {
+          external: ["./src/**/*.js"],
+        },
+        src: "./tests/**/*.js",
+        dest: "./build/test-bundle.js"
       }
     },
     jasmine_node: {
@@ -84,7 +93,7 @@ module.exports = function (grunt) {
     karma: {
       options: {
         basePath: "..", //default is configFile path
-        files: ["src/gurps.js", "src/*.js", "test/*.js"],
+        files: ["build/src-bundle.js", "build/test-bundle.js"],
         frameworks: ["jasmine"]
       },
       browserstack: {
@@ -125,15 +134,16 @@ module.exports = function (grunt) {
   //test
   grunt.registerTask("test", ["jasmine_node:test"]);
   grunt.registerTask("coverage", ["jasmine_node:coverage"]); //travis.sh
-  grunt.registerTask("browserstack", ["karma:browserstack"]); // travis.sh
-  grunt.registerTask("browsers", ["karma:browsers"]);
+  grunt.registerTask("browserstack", ["browser-test-bundle", "karma:browserstack"]); // travis.sh
+  grunt.registerTask("browsers", ["browser-test-bundle", "karma:browsers"]);
 
   //build
-  //grunt.registerTask("build", ["browserify!!!!"]);
+  grunt.registerTask("browser-bundle", ["browserify:src"]);
+  grunt.registerTask("browser-test-bundle", ["browserify:src", "browserify:test"]);
   //grunt.registerTask("clean", ["clean:build"]);
 
   //develop
-  grunt.registerTask("debug", ["karma:debug"]);
+  grunt.registerTask("debug", ["browser-test-bundle", "karma:debug"]);
   grunt.registerTask("dev", ["test", "lint"]);
   grunt.registerTask("default", ["dev", "watch"]);
 
