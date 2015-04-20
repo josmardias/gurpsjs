@@ -143,8 +143,8 @@ module.exports = function (grunt) {
   //grunt.registerTask("clean", ["clean:build"]);
 
   //develop
+  grunt.registerTask("default", ["test", "lint"]);
+  grunt.registerTask("dev", ["default", "watch"]);
   grunt.registerTask("debug", ["browser-test-bundle", "karma:debug"]);
-  grunt.registerTask("dev", ["test", "lint"]);
-  grunt.registerTask("default", ["dev", "watch"]);
 
 };
