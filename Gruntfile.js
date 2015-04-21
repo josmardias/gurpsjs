@@ -1,32 +1,38 @@
 module.exports = function (grunt) {
   "use strict";
 
-  var jsFiles,
-    jsonFiles,
-    jsRcFiles,
-    config,
-    taskList;
+  var taskList = [
+    "grunt-contrib-watch",
+    "grunt-contrib-jshint",
+    "grunt-jsonlint",
+    "grunt-jscs",
+    "grunt-contrib-clean",
+    "grunt-browserify",
+    "grunt-jsbeautifier",
+    "grunt-jasmine-node-coverage",
+    "grunt-karma",
+  ];
 
-  jsFiles = [
+  var jsFiles = [
     "Gruntfile.js",
     "src/**/*.js",
     "tests/**/*.js",
     "karma/**/*.js",
   ];
 
-  jsonFiles = [
+  var jsonFiles = [
     "bower.json",
     "package.json",
   ];
 
-  jsRcFiles = [
+  var jsRcFiles = [
     ".jshintrc",
     ".jsbeautifyrc",
     "src/.jshintrc",
     "tests/.jshintrc",
   ];
 
-  config = {};
+  var config = {};
 
   try {
     config.pkg = grunt.file.readJSON("package.json");
@@ -201,18 +207,6 @@ module.exports = function (grunt) {
    ----------------------------------------------------------------------- */
 
   grunt.initConfig(config);
-
-  taskList = [
-    "grunt-contrib-watch",
-    "grunt-contrib-jshint",
-    "grunt-jsonlint",
-    "grunt-jscs",
-    "grunt-contrib-clean",
-    "grunt-browserify",
-    "grunt-jsbeautifier",
-    "grunt-jasmine-node-coverage",
-    "grunt-karma",
-  ];
 
   taskList.forEach(grunt.loadNpmTasks);
 
