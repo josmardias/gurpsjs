@@ -1,4 +1,3 @@
-/* jshint node: true */
 "use strict";
 module.exports = function (config) {
   var buildName = process.env.TRAVIS_BUILD_NUMBER || process.env.USERNAME + "-" + Date.now();
@@ -8,10 +7,10 @@ module.exports = function (config) {
 
     singleRun: true,
 
-    browserDisconnectTimeout: 10000, // default 2000
+    browserDisconnectTimeout: 10 * 1000, // default 2 * 1000
     browserDisconnectTolerance: 1, // default 0
-    browserNoActivityTimeout: 4 * 60 * 1000, //default 10000
-    captureTimeout: 4 * 60 * 1000, //default 60000
+    browserNoActivityTimeout: 4 * 60 * 1000, //default 10 * 1000
+    captureTimeout: 4 * 60 * 1000, //default 60 * 000
 
     browserStack: {
       project: "gurps.js",
@@ -28,11 +27,19 @@ module.exports = function (config) {
         os_version: "4.2",
         device: "LG Nexus 4"
       },
-      bs_ios: {
+      bs_ios7: {
         base: "BrowserStack",
+        browser: "iphone",
         os: "ios",
         os_version: "7.0",
         device: "iPhone 5S"
+      },
+      bs_ios8: {
+        base: "BrowserStack",
+        browser: "iphone",
+        os: "ios",
+        os_version: "8.0",
+        device: "iPhone 6"
       },
       bs_opera_mobile: {
         base: "BrowserStack",
@@ -64,27 +71,6 @@ module.exports = function (config) {
         os: "OS X",
         os_version: "Mavericks"
       },
-      bs_ie7_winXP: {
-        base: "BrowserStack",
-        browser: "ie",
-        browser_version: "7.0",
-        os: "Windows",
-        os_version: "XP"
-      },
-      bs_ie8_win7: {
-        base: "BrowserStack",
-        browser: "ie",
-        browser_version: "8.0",
-        os: "Windows",
-        os_version: "7"
-      },
-      bs_ie9_win7: {
-        base: "BrowserStack",
-        browser: "ie",
-        browser_version: "9.0",
-        os: "Windows",
-        os_version: "7"
-      },
       bs_ie10_win7: {
         base: "BrowserStack",
         browser: "ie",
@@ -103,13 +89,13 @@ module.exports = function (config) {
 
     browsers: [
       "bs_android",
-      "bs_ios",
+      "bs_ios7",
+      "bs_ios8",
       "bs_opera_mobile",
       "bs_opera_mac",
       "bs_safari_mac",
       "bs_chrome_mac",
       "bs_firefox_mac",
-      "bs_ie9_win7",
       "bs_ie10_win7",
       "bs_ie11_win7"
     ]

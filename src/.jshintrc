@@ -23,7 +23,6 @@
   "unused": "vars",
 
   /* relaxing */
-  "debug": true,
   "strict": true,
 
   /* environments */

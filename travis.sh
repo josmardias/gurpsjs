@@ -16,7 +16,7 @@ if [ "$1" == "coverage" ]; then
 
     if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
         if [ "$TRAVIS_BRANCH" == "master" ]; then
-            codeclimate < coverage/*/lcov.info;
+            codeclimate < coverage/lcov.info;
         else
             echo "Not sending coverage report (it's not master branch).";
         fi

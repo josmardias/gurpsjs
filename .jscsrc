@@ -1,0 +1,23 @@
+{
+  // http://jscs.info/rules.html
+	"preset": "crockford",
+  "disallowDanglingUnderscores": null,
+  "disallowKeywords": ["with"],
+  "disallowMultipleVarDecl": "exceptUndefined",
+  "disallowSpacesInNamedFunctionExpression": null,
+  "disallowSpacesInFunctionDeclaration": null,
+  "disallowTrailingComma": null,
+  "maximumLineLength": 100,
+  "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
+  "requireMultipleVarDecl": null,
+  "requireSpacesInFunctionDeclaration": {
+    "beforeOpeningRoundBrace": true,
+    "beforeOpeningCurlyBrace": true
+  },
+  "requireSpacesInFunctionExpression": {
+    "beforeOpeningRoundBrace": true,
+    "beforeOpeningCurlyBrace": true
+  },
+	"validateIndentation": 2,
+  "validateQuoteMarks": "\""
+}

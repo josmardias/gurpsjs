@@ -16,30 +16,31 @@
     "email": "josmarnet@gmail.com",
     "url": "https://github.com/josmardias"
   },
-  "main": "lib/main.js",
+  "main": "src/gurps.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/josmardias/gurpsjs.git"
   },
   "scripts": {
-    "test": "grunt test",
-    "prepublish": "grunt build",
-    "postpublish": "grunt clean"
+    "test": "grunt test"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
-    "karma": "^0.12.31",
-    "jasmine-core": "^2.2.0",
-    "grunt-karma": "^0.10.1",
-    "karma-jasmine": "^0.3.5",
-    "karma-browserstack-launcher": "^0.1.2",
-    "karma-coverage": "^0.2.7",
-    "karma-phantomjs-launcher": "^0.1.4",
-    "grunt-autowrap": "^0.3.0",
+    "grunt-browserify": "^3.7.0",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-jshint": "^0.11.1",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-jsbeautifier": "^0.2.10"
+    "grunt-jasmine-node-coverage": "^0.4.1",
+    "grunt-jsbeautifier": "^0.2.10",
+    "grunt-jscs": "^1.6.0",
+    "grunt-jsonlint": "^1.0.4",
+    "grunt-karma": "^0.10.1",
+    "jasmine-core": "^2.2.0",
+    "karma": "^0.12.31",
+    "karma-browserstack-launcher": "^0.1.2",
+    "karma-coverage": "^0.2.7",
+    "karma-jasmine": "^0.3.5",
+    "karma-phantomjs-launcher": "^0.1.4"
   },
   "engines": {
     "node": ">=0.8"
