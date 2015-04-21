@@ -38,8 +38,34 @@ module.exports = function (grunt) {
   config.jshint.files = hintFiles;
 
   config.jshint.options = {
+    force: true,
     extensions: ".js, .jshintrc, .jsbeautifyrc",
     jshintrc: true
+  };
+
+  config.jsonlint = {};
+  config.jsonlint.src = [
+    "package.json",
+    "bower.json"
+  ];
+
+  /* JSCS
+   * https://github.com/jscs-dev/grunt-jscs
+   ----------------------------------------------------------------------- */
+
+  verifyStyleFiles = [
+    "Gruntfile.js",
+    "src/**/*.js",
+    "tests/**/*.js",
+    "karma/**/*.js"
+  ];
+
+  config.jscs = {};
+
+  config.jscs.src = verifyStyleFiles;
+
+  config.jscs.options = {
+    force: true
   };
 
   /* JS Beautifier
@@ -169,6 +195,8 @@ module.exports = function (grunt) {
   var taskList = [
     "grunt-contrib-watch",
     "grunt-contrib-jshint",
+    "grunt-jsonlint",
+    "grunt-jscs",
     "grunt-contrib-clean",
     "grunt-browserify",
     "grunt-jsbeautifier",
@@ -187,9 +215,9 @@ module.exports = function (grunt) {
   }
 
   //code quality
-  task("lint", ["jshint"]);
-  task("format", ["jshint", "jsbeautifier:write"]);
-  task("verify", ["jshint", "jsbeautifier:verify"]);
+  task("lint", ["jsonlint", "jshint", "jscs"]);
+  task("format", ["jsbeautifier:write"]);
+  task("verify", ["lint", "jsbeautifier:verify"]);
 
   //test
   task("test", ["jasmine_node:test"]);

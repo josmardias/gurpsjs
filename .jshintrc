@@ -1,15 +1,6 @@
 {
   // http://jshint.com/docs/options/
 
-  /* code style (deprecated) */
-  "camelcase": "camelCase",
-  "immed": true,
-  "indent": 2,
-  "maxlen": 100,
-  "newcap": true,
-  "quotmark": "double",
-  "multistr": true,
-
   /* enforcing warnings */
   "bitwise": true,
   "curly": true,
