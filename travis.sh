@@ -9,6 +9,7 @@ function grunt() {
 
 function codeclimate() {
     ./node_modules/.bin/codeclimate
+    return $?
 }
 
 if [ "$1" == "browserstack" ]; then
