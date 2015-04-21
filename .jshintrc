@@ -27,6 +27,6 @@
   "strict": true,
 
   /* environments */
-  "node": true,
-  "devel": false
+  "devel": false,
+  "node": true
 }

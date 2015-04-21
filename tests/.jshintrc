@@ -8,8 +8,7 @@
   "forin": true,
   "freeze": true,
   "futurehostile": true,
-  "globalstrict": true,
-  "globals" : {},
+  "globals": {},
   "latedef": true,
   "maxcomplexity": 5,
   "maxdepth": 4,
@@ -28,7 +27,7 @@
   "strict": true,
 
   /* environments */
+  "devel": false,
   "node": true,
-  "jasmine": true,
-  "devel": false
+  "jasmine": true
 }
