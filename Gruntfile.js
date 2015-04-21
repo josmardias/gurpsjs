@@ -21,7 +21,11 @@ module.exports = function (grunt) {
 
   config = {};
 
-  config.pkg = grunt.file.readJSON("package.json");
+  try {
+    config.pkg = grunt.file.readJSON("package.json");
+  } catch (ignore) {
+    grunt.log.error("Failed to load package.json properties");
+  }
 
   /* Watch
    * https://github.com/gruntjs/grunt-contrib-watch
