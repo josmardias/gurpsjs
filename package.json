@@ -26,7 +26,6 @@
   },
   "devDependencies": {
     "grunt": "^0.4.5",
-    "grunt-autowrap": "^0.3.0",
     "grunt-browserify": "^3.7.0",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-jshint": "^0.11.1",
