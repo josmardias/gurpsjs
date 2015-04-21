@@ -111,6 +111,12 @@ module.exports = function (grunt) {
 
   config.browserify = {};
 
+  config.browserify.options = {
+    browserifyOptions: {
+      debug: true
+    }
+  };
+
   config.browserify.src = {
     src: "./src/gurps.js",
     dest: "./build/src-bundle.js"
