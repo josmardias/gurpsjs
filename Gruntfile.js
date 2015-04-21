@@ -171,7 +171,7 @@ module.exports = function (grunt) {
 
   config.karma.options = {
     basePath: "..", //default is configFile path
-    files: ["build/src-bundle.js", "build/test-bundle.js"],
+    files: ["build/test-bundle.js"],
     frameworks: ["jasmine"]
   };
 
