@@ -10,8 +10,8 @@ module.exports = function (grunt) {
     ".jsbeautifyrc",
     "src/**/*.js",
     "src/.jshintrc",
-    "test/**/*.js",
-    "test/.jshintrc",
+    "tests/**/*.js",
+    "tests/.jshintrc",
     "karma/**/*.js",
   ];
 

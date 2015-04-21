@@ -39,7 +39,7 @@
   "strict": true,
 
   /* environments */
-  //"browser": true,
+  "node": true,
   "jasmine": true,
   "devel": false
 }
