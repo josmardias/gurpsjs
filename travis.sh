@@ -2,6 +2,15 @@
 
 # Skip everything relying on travis secure variables when on a pull requests
 
+function grunt() {
+    node -e "require('grunt').tasks(['$1'])"
+    return $?
+}
+
+function codeclimate() {
+    ./node_modules/.bin/codeclimate
+}
+
 if [ "$1" == "browserstack" ]; then
     if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
         grunt browserstack;
@@ -16,7 +25,7 @@ if [ "$1" == "coverage" ]; then
 
     if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
         if [ "$TRAVIS_BRANCH" == "master" ]; then
-            codeclimate < coverage/*/lcov.info;
+            codeclimate < coverage/lcov.info;
         else
             echo "Not sending coverage report (it's not master branch).";
         fi

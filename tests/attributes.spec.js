@@ -1,6 +1,6 @@
 "use strict";
 
-var Attributes = GURPS.Attributes;
+var Attributes = require("../src/attributes");
 
 describe("Attributes module creation", function () {
 

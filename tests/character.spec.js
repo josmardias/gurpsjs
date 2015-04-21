@@ -1,12 +1,6 @@
 "use strict";
 
-var Character = GURPS.Character;
-
-describe("GURPS object", function () {
-  it("must have Character attribute", function () {
-    expect(GURPS.Character).toBeDefined();
-  });
-});
+var Character = require("../src/character");
 
 describe("Create character module successfully", function () {
 
