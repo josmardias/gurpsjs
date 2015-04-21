@@ -11,6 +11,7 @@
     "brace_style": "collapse",
     "keep_array_indentation": false,
     "keep_function_indentation": false,
+    "space_after_anon_function": true,
     "space_before_conditional": true,
     "break_chained_methods": false,
     "eval_code": false,
