@@ -8,9 +8,7 @@
   "forin": true,
   "freeze": true,
   "futurehostile": true,
-  "globals" : {
-    "GURPS": true
-  },
+  "globals": {},
   "latedef": true,
   "maxcomplexity": 5,
   "maxdepth": 4,

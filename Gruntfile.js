@@ -1,8 +1,12 @@
-/* jshint camelcase: false */
 module.exports = function (grunt) {
   "use strict";
 
-  var hintFiles = [
+  var hintFiles,
+    config,
+    verifyStyleFiles,
+    taskList;
+
+  hintFiles = [
     "bower.json",
     "Gruntfile.js",
     "package.json",
@@ -15,7 +19,7 @@ module.exports = function (grunt) {
     "karma/**/*.js",
   ];
 
-  var config = {};
+  config = {};
 
   config.pkg = grunt.file.readJSON("package.json");
 
@@ -192,7 +196,7 @@ module.exports = function (grunt) {
 
   grunt.initConfig(config);
 
-  var taskList = [
+  taskList = [
     "grunt-contrib-watch",
     "grunt-contrib-jshint",
     "grunt-jsonlint",

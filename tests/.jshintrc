@@ -9,9 +9,7 @@
   "freeze": true,
   "futurehostile": true,
   "globalstrict": true,
-  "globals" : {
-    "GURPS": false
-  },
+  "globals" : {},
   "latedef": true,
   "maxcomplexity": 5,
   "maxdepth": 4,
