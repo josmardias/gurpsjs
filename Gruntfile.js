@@ -111,19 +111,12 @@ module.exports = function (grunt) {
 
   config.browserify = {};
 
-  config.browserify.options = {
-    debug: true
-  };
-
   config.browserify.src = {
     src: "./src/gurps.js",
     dest: "./build/src-bundle.js"
   };
 
   config.browserify.test = {
-    options: {
-      external: ["./src/**/*.js"],
-    },
     src: "./tests/**/*.js",
     dest: "./build/test-bundle.js"
   };
@@ -231,7 +224,7 @@ module.exports = function (grunt) {
 
   //build
   task("browser-bundle", ["browserify:src"]);
-  task("browser-test-bundle", ["browserify:src", "browserify:test"]);
+  task("browser-test-bundle", ["browserify:test"]);
   //task("clean", ["clean:build"]);
 
   //develop
