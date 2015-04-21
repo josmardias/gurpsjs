@@ -27,6 +27,6 @@ env:
     - COMMAND=coverage
 
 before_install:
-- npm install -g grunt-cli codeclimate-test-reporter
+- npm install codeclimate-test-reporter
 
 script: bash travis.sh $COMMAND
