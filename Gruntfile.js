@@ -1,22 +1,29 @@
 module.exports = function (grunt) {
   "use strict";
 
-  var hintFiles,
+  var jsFiles,
+    jsonFiles,
+    jsRcFiles,
     config,
-    verifyStyleFiles,
     taskList;
 
-  hintFiles = [
-    "bower.json",
+  jsFiles = [
     "Gruntfile.js",
+    "src/**/*.js",
+    "tests/**/*.js",
+    "karma/**/*.js",
+  ];
+
+  jsonFiles = [
+    "bower.json",
     "package.json",
+  ];
+
+  jsRcFiles = [
     ".jshintrc",
     ".jsbeautifyrc",
-    "src/**/*.js",
     "src/.jshintrc",
-    "tests/**/*.js",
     "tests/.jshintrc",
-    "karma/**/*.js",
   ];
 
   config = {};
@@ -33,7 +40,7 @@ module.exports = function (grunt) {
 
   config.watch = {};
 
-  config.watch.files = hintFiles;
+  config.watch.files = jsFiles.concat(jsonFiles).concat(jsRcFiles);
 
   config.watch.tasks = ["test"];
 
@@ -43,7 +50,7 @@ module.exports = function (grunt) {
 
   config.jshint = {};
 
-  config.jshint.files = hintFiles;
+  config.jshint.files = jsFiles.concat(jsonFiles).concat(jsRcFiles);
 
   config.jshint.options = {
     force: true,
@@ -51,26 +58,21 @@ module.exports = function (grunt) {
     jshintrc: true
   };
 
+  /* Json Lint
+   * https://github.com/brandonramirez/grunt-jsonlint
+   ----------------------------------------------------------------------- */
+
   config.jsonlint = {};
-  config.jsonlint.src = [
-    "package.json",
-    "bower.json"
-  ];
+
+  config.jsonlint.src = jsonFiles;
 
   /* JSCS
    * https://github.com/jscs-dev/grunt-jscs
    ----------------------------------------------------------------------- */
 
-  verifyStyleFiles = [
-    "Gruntfile.js",
-    "src/**/*.js",
-    "tests/**/*.js",
-    "karma/**/*.js"
-  ];
-
   config.jscs = {};
 
-  config.jscs.src = verifyStyleFiles;
+  config.jscs.src = jsFiles;
 
   config.jscs.options = {
     force: true
@@ -83,14 +85,14 @@ module.exports = function (grunt) {
   config.jsbeautifier = {};
 
   config.jsbeautifier.write = {
-    src: hintFiles,
+    src: jsFiles,
     options: {
       config: ".jsbeautifyrc"
     }
   };
 
   config.jsbeautifier.verify = {
-    src: hintFiles,
+    src: jsFiles,
     options: {
       config: ".jsbeautifyrc",
       mode: "VERIFY_ONLY"
