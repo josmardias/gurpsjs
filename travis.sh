@@ -1,16 +1,5 @@
 #!/usr/bin/env bash
 
-# Skip npm install for browserstack on PR's
-if [ "$1" == "install" ]; then
-    if [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ "$BUILD_SUBTASK" == "browserstack" ]; then
-        echo "Skipping npm install. (browserstack does not run on pull request)"
-        exit 0
-    fi
-
-    npm install
-    exit $?
-fi
-
 function grunt() {
     node -e "require('grunt').tasks(['$BUILD_SUBTASK'])"
     return $?
