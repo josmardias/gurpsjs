@@ -13,9 +13,7 @@ cache:
 
 env:
   matrix:
-    - COMMAND=browserstack
-    - COMMAND=coverage
+    - BUILD_SUBTASK=coverage
+    - secure: bnLVOGfAIs3ljtPySWrWc89tGy10DWkS48BSI8uRt5fO/RVct6If9j8Y6Ec7Rd7ijFmEbzyOxZw2USeIVceFY1NuAISNfvCxwpryf+xIHcFddaYzMWFG07O1loXJLxDdELRZJ+5Z+bpLPL5eea3+QcoqxksSGF5Stkr+lMUuwF0=
 
-install: bash travis.sh install $COMMAND
-
-script: bash travis.sh $COMMAND
+script: bash travis.sh script
