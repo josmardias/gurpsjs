@@ -16,4 +16,6 @@ env:
     - COMMAND=browserstack
     - COMMAND=coverage
 
+install: bash travis.sh install $COMMAND
+
 script: bash travis.sh $COMMAND

@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 
-# Skip everything relying on travis secure variables when on a pull requests
+# Skip npm install for browserstack on PR's
+if [ "$1" == "install" ]; then
+    if [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ "$2" == "browserstack" ]; then
+        echo "Skipping npm install. (browserstack does not run on pull request)"
+        exit 0
+    fi
+
+    npm install
+    exit $?
+fi
 
 function grunt() {
     node -e "require('grunt').tasks(['$1'])"
@@ -11,6 +20,8 @@ function codeclimate() {
     ./node_modules/.bin/codeclimate
     return $?
 }
+
+# Skip everything relying on travis secure variables when on a pull requests
 
 if [ "$1" == "browserstack" ]; then
     if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
