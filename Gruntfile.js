@@ -28,6 +28,7 @@ module.exports = function (grunt) {
   var jsRcFiles = [
     ".jshintrc",
     ".jsbeautifyrc",
+    ".jscsrc",
     "src/.jshintrc",
     "tests/.jshintrc",
   ];
@@ -60,7 +61,7 @@ module.exports = function (grunt) {
 
   config.jshint.options = {
     force: true,
-    extensions: ".js, .jshintrc, .jsbeautifyrc",
+    extensions: ".js, .jshintrc, .jsbeautifyrc, .jscsrc",
     jshintrc: true
   };
 

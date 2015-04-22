@@ -1,6 +1,6 @@
 {
   // http://jscs.info/rules.html
-	"preset": "crockford",
+  "preset": "crockford",
   "disallowDanglingUnderscores": null,
   "disallowKeywords": ["with"],
   "disallowMultipleVarDecl": "exceptUndefined",
@@ -18,6 +18,6 @@
     "beforeOpeningRoundBrace": true,
     "beforeOpeningCurlyBrace": true
   },
-	"validateIndentation": 2,
+  "validateIndentation": 2,
   "validateQuoteMarks": "\""
 }
