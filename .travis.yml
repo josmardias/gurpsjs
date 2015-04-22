@@ -16,7 +16,4 @@ env:
     - COMMAND=browserstack
     - COMMAND=coverage
 
-before_install:
-- npm install codeclimate-test-reporter
-
 script: bash travis.sh $COMMAND
