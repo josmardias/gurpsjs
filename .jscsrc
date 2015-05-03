@@ -4,6 +4,7 @@
   "disallowDanglingUnderscores": null,
   "disallowKeywords": ["with"],
   "disallowMultipleVarDecl": "exceptUndefined",
+  "disallowSpaceAfterObjectKeys": true,
   "disallowSpacesInNamedFunctionExpression": null,
   "disallowSpacesInFunctionDeclaration": null,
   "disallowTrailingComma": null,
