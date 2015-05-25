@@ -3,6 +3,7 @@
   "preset": "crockford",
   "disallowDanglingUnderscores": null,
   "disallowKeywords": ["with"],
+  "disallowMultipleSpaces": true,
   "disallowMultipleVarDecl": "exceptUndefined",
   "disallowSpaceAfterObjectKeys": true,
   "disallowSpacesInNamedFunctionExpression": null,
