@@ -6,6 +6,7 @@
   "disallowMultipleSpaces": true,
   "disallowMultipleVarDecl": "exceptUndefined",
   "disallowSpaceAfterObjectKeys": true,
+  "disallowSpacesInCallExpression": true,
   "disallowSpacesInNamedFunctionExpression": null,
   "disallowSpacesInFunctionDeclaration": null,
   "disallowTrailingComma": null,
