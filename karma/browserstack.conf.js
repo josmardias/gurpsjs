@@ -88,10 +88,10 @@ module.exports = function (config) {
     },
 
     browsers: [
-      "bs_android",
-      "bs_ios7",
-      "bs_ios8",
-      "bs_opera_mobile",
+      //"bs_android",
+      //"bs_ios7",
+      //"bs_ios8",
+      //"bs_opera_mobile",
       "bs_opera_mac",
       "bs_safari_mac",
       "bs_chrome_mac",
