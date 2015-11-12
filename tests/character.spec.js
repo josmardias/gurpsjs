@@ -1,12 +1,6 @@
 "use strict";
 
-var Character = GURPS.Character;
-
-describe("GURPS object", function () {
-  it("must have Character attribute", function () {
-    expect(GURPS.Character).toBeDefined();
-  });
-});
+var Character = require("../src/character");
 
 describe("Create character module successfully", function () {
 
@@ -52,6 +46,9 @@ describe("Create character module successfully", function () {
     mod = new Character();
 
     for (attr in defaults) {
+      if (!defaults.hasOwnProperty(attr)) {
+        continue;
+      }
       expect(mod.getAttribute(attr)).toEqual(defaults[attr]);
     }
   });
@@ -89,6 +86,9 @@ describe("Character module getAttribute", function () {
     };
 
     for (attr in results) {
+      if (!results.hasOwnProperty(attr)) {
+        continue;
+      }
       expect(mod.getAttribute(attr)).toEqual(results[attr]);
     }
   });

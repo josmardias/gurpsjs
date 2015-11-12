@@ -28,5 +28,6 @@
 
   /* environments */
   "devel": false,
-  "node": true
+  "node": true,
+  "jasmine": true
 }
