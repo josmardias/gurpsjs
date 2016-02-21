@@ -23,7 +23,9 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "mocha ./test/*.spec.js ./test/**/*.spec.js"
+    "test": "mocha",
+    "test-ci": "istanbul cover _mocha --report lcovonly",
+    "test-cov": "istanbul cover _mocha -- --reporter dot"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -37,6 +39,7 @@
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-karma": "^0.10.1",
+    "istanbul": "^0.4.2",
     "karma": "^0.12.31",
     "karma-browserstack-launcher": "^0.1.2",
     "karma-coverage": "^0.3.1",

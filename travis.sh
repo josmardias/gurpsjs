@@ -33,7 +33,7 @@ if [ "$BUILD_SUBTASK" == "browserstack" ]; then
 fi
 
 if [ "$BUILD_SUBTASK" == "coverage" ]; then
-    grunt coverage || exit $?;
+    npm run test-ci || exit $?;
 
     if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
         if [ "$TRAVIS_BRANCH" == "master" ]; then

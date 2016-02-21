@@ -117,8 +117,6 @@ module.exports = function (grunt) {
   }
 
   //test
-  task("test", ["jasmine_node:test"]);
-  task("coverage", ["jasmine_node:coverage"]); //travis.sh
   task("browserstack", ["browser-test-bundle", "karma:browserstack"]); // travis.sh
   task("browsers", ["browser-test-bundle", "karma:browsers"]);
 
