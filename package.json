@@ -33,6 +33,7 @@
     "chai-string": "^1.1.6",
     "codeclimate-test-reporter": "0.0.4",
     "eslint": "^2.1.0",
+    "eslint-config-airbnb": "^6.0.0",
     "eslint-plugin-mocha": "^2.0.0",
     "istanbul": "^0.4.2",
     "mocha": "^2.4.5",
