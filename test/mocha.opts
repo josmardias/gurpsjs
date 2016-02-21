@@ -1,0 +1,6 @@
+--require test/bootstrap.js
+--require mocha-clean
+--reporter spec
+--recursive
+--check-leaks
+--timeout 20000

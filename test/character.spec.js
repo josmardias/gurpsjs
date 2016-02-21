@@ -6,22 +6,22 @@ describe("Create character module successfully", function () {
 
   it("without arguments", function () {
     var mod = new Character();
-    expect(mod).toEqual(jasmine.any(Object));
+    expect(mod).to.be.an("object");
   });
 
   it("with empty object", function () {
     var mod = new Character({});
-    expect(mod).toEqual(jasmine.any(Object));
+    expect(mod).to.be.an("object");
   });
 
   it("with undefined as argument", function () {
     var mod = new Character(undefined);
-    expect(mod).toEqual(jasmine.any(Object));
+    expect(mod).to.be.an("object");
   });
 
   it("with null as argument", function () {
     var mod = new Character(null);
-    expect(mod).toEqual(jasmine.any(Object));
+    expect(mod).to.be.an("object");
   });
 
   it("should have defaults", function () {
@@ -49,7 +49,7 @@ describe("Create character module successfully", function () {
       if (!defaults.hasOwnProperty(attr)) {
         continue;
       }
-      expect(mod.getAttribute(attr)).toEqual(defaults[attr]);
+      expect(mod.getAttribute(attr)).to.equal(defaults[attr]);
     }
   });
 
@@ -89,7 +89,7 @@ describe("Character module getAttribute", function () {
       if (!results.hasOwnProperty(attr)) {
         continue;
       }
-      expect(mod.getAttribute(attr)).toEqual(results[attr]);
+      expect(mod.getAttribute(attr)).to.equal(results[attr]);
     }
   });
 
@@ -106,7 +106,7 @@ describe("Character module setAttribute", function () {
     mod = new Character(new CustomObject());
     value = mod.getAttribute("ST");
 
-    expect(value).toEqual(10);
+    expect(value).to.equal(10);
   });
 
   it("should change attribute value for primary attribute", function () {
@@ -121,10 +121,10 @@ describe("Character module setAttribute", function () {
     });
     value2 = mod.getAttribute("ST");
 
-    expect(value1).toEqual(jasmine.any(Number));
-    expect(value1).toEqual(13);
-    expect(value2).toEqual(jasmine.any(Number));
-    expect(value2).toEqual(17);
+    expect(value1).to.be.a("number");
+    expect(value1).to.equal(13);
+    expect(value2).to.be.a("number");
+    expect(value2).to.equal(17);
   });
 
   it("should change attribute value for secondary attribute", function () {
@@ -139,10 +139,10 @@ describe("Character module setAttribute", function () {
     });
     value2 = mod.getAttribute("HP");
 
-    expect(value1).toEqual(jasmine.any(Number));
-    expect(value1).toEqual(17);
-    expect(value2).toEqual(jasmine.any(Number));
-    expect(value2).toEqual(23);
+    expect(value1).to.be.a("number");
+    expect(value1).to.equal(17);
+    expect(value2).to.be.a("number");
+    expect(value2).to.equal(23);
   });
 
 });

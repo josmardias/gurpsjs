@@ -5,7 +5,6 @@ module.exports = function (grunt) {
     "grunt-contrib-watch",
     "grunt-contrib-clean",
     "grunt-browserify",
-    "grunt-jasmine-node-coverage",
     "grunt-karma"
   ];
 
@@ -61,40 +60,6 @@ module.exports = function (grunt) {
     dest: "./build/test-bundle.js"
   };
 
-  /* Jasmine Node
-   * https://github.com/jribble/grunt-jasmine-node-coverage
-   ----------------------------------------------------------------------- */
-
-  config.jasmine_node = {};
-
-  config.jasmine_node.test = {
-    options: {
-      captureExceptions: true,
-      coverage: false,
-      forceExit: true,
-      isVerbose: false,
-      specFolders: ["tests"],
-      showColors: true
-    },
-    src: ["src/**/*.js"]
-  };
-
-  config.jasmine_node.coverage = {
-    options: {
-      captureExceptions: true,
-      coverage: {
-        print: "none", // none, summary, detail, both
-        reportDir: "coverage",
-        report: ["lcov"]
-      },
-      forceExit: true,
-      isVerbose: false,
-      specFolders: ["tests"],
-      showColors: true
-    },
-    src: ["src/**/*.js"]
-  };
-
   /* Clean
    * https://github.com/gruntjs/grunt-contrib-clean
    ----------------------------------------------------------------------- */
@@ -112,7 +77,7 @@ module.exports = function (grunt) {
   config.karma.options = {
     basePath: "..", //default is configFile path
     files: ["build/test-bundle.js"],
-    frameworks: ["jasmine"]
+    frameworks: ["mocha"]
   };
 
   config.karma.browserstack = {
@@ -163,8 +128,7 @@ module.exports = function (grunt) {
   //task("clean", ["clean:build"]);
 
   //develop
-  task("default", ["test"]);
-  task("dev", ["default", "watch"]);
+  task("dev", ["watch"]);
   task("debug", ["browser-test-bundle", "karma:debug"]);
 
 };

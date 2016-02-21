@@ -6,22 +6,22 @@ describe("Attributes module creation", function () {
 
   it("without arguments", function () {
     var mod = new Attributes();
-    expect(mod).toEqual(jasmine.any(Object));
+    expect(mod).to.be.an("object");
   });
 
   it("with empty objects as arguments", function () {
     var mod = new Attributes({}, {});
-    expect(mod).toEqual(jasmine.any(Object));
+    expect(mod).to.be.an("object");
   });
 
   it("with undefined as arguments", function () {
     var mod = new Attributes(undefined, undefined);
-    expect(mod).toEqual(jasmine.any(Object));
+    expect(mod).to.be.an("object");
   });
 
   it("with null as arguments", function () {
     var mod = new Attributes(null, null);
-    expect(mod).toEqual(jasmine.any(Object));
+    expect(mod).to.be.an("object");
   });
 
 });
@@ -131,15 +131,15 @@ describe("Attributes module get", function () {
       mod = new Attributes(args[i]);
       value = mod.get("attr");
 
-      expect(value).toEqual(jasmine.any(Number));
-      expect(value).toEqual(0);
+      expect(value).to.be.a("number");
+      expect(value).to.equal(0);
     }
 
     mod = new Attributes();
     value = mod.get("attr");
 
-    expect(value).toEqual(jasmine.any(Number));
-    expect(value).toEqual(0);
+    expect(value).to.be.a("number");
+    expect(value).to.equal(0);
   });
 
   it("simple attribute should be it\"s value", function () {
@@ -149,8 +149,8 @@ describe("Attributes module get", function () {
     });
     value = mod.get("attr");
 
-    expect(value).toEqual(jasmine.any(Number));
-    expect(value).toEqual(11);
+    expect(value).to.be.a("number");
+    expect(value).to.equal(11);
   });
 
   it("string attribute should be the zero if referenced attribute\"s is undefined", function () {
@@ -160,8 +160,8 @@ describe("Attributes module get", function () {
     });
     value = mod.get("attr");
 
-    expect(value).toEqual(jasmine.any(Number));
-    expect(value).toEqual(0);
+    expect(value).to.be.a("number");
+    expect(value).to.equal(0);
   });
 
   it("string attribute should be the referenced attribute\"s value", function () {
@@ -172,8 +172,8 @@ describe("Attributes module get", function () {
     });
     value = mod.get("attr");
 
-    expect(value).toEqual(jasmine.any(Number));
-    expect(value).toEqual(11);
+    expect(value).to.be.a("number");
+    expect(value).to.equal(11);
   });
 
   it("array of keys should be the sum of it\"s values", function () {
@@ -186,8 +186,8 @@ describe("Attributes module get", function () {
     });
     value = mod.get("attr");
 
-    expect(value).toEqual(jasmine.any(Number));
-    expect(value).toEqual(11 + 22 + 33);
+    expect(value).to.be.a("number");
+    expect(value).to.equal(11 + 22 + 33);
   });
 
   it("array of formulas should be the sum of it\"s values", function () {
@@ -208,8 +208,8 @@ describe("Attributes module get", function () {
     });
     value = mod.get("attr");
 
-    expect(value).toEqual(jasmine.any(Number));
-    expect(value).toEqual(2.7 + (1.6 + 2.7 + 3.8) + 1 + 3 + 0 + 3.8);
+    expect(value).to.be.a("number");
+    expect(value).to.equal(2.7 + (1.6 + 2.7 + 3.8) + 1 + 3 + 0 + 3.8);
   });
 
   it("formula with multiple keys should throw error", function () {
@@ -224,7 +224,7 @@ describe("Attributes module get", function () {
       mod.get("attr");
     };
 
-    expect(func).toThrow();
+    expect(func).to.throw();
   });
 
 });
@@ -240,8 +240,8 @@ describe("Attributes module get object with single key as", function () {
     });
     value = mod.get("attr");
 
-    expect(value).toEqual(jasmine.any(Number));
-    expect(value).toEqual(11 + 22 + 33);
+    expect(value).to.be.a("number");
+    expect(value).to.equal(11 + 22 + 33);
   });
 
   describe("avg should", function () {
@@ -255,8 +255,8 @@ describe("Attributes module get object with single key as", function () {
       });
       value = mod.get("attr");
 
-      expect(value).toEqual(jasmine.any(Number));
-      expect(value).toEqual((11 + 22 + 33) / 3);
+      expect(value).to.be.a("number");
+      expect(value).to.equal((11 + 22 + 33) / 3);
     });
 
     it("be the average of the given array of attributes", function () {
@@ -270,8 +270,8 @@ describe("Attributes module get object with single key as", function () {
       });
       value = mod.get("attr");
 
-      expect(value).toEqual(jasmine.any(Number));
-      expect(value).toEqual((11 + 22) / 2);
+      expect(value).to.be.a("number");
+      expect(value).to.equal((11 + 22) / 2);
     });
 
     it("throw error when providing number, undefined, null, object, string or NaN", function () {
@@ -309,11 +309,11 @@ describe("Attributes module get object with single key as", function () {
         mod.get("attr5");
       };
 
-      expect(func1).toThrow();
-      expect(func2).toThrow();
-      expect(func3).toThrow();
-      expect(func4).toThrow();
-      expect(func5).toThrow();
+      expect(func1).to.throw();
+      expect(func2).to.throw();
+      expect(func3).to.throw();
+      expect(func4).to.throw();
+      expect(func5).to.throw();
     });
 
     it("be zero for empty arrays", function () {
@@ -325,8 +325,8 @@ describe("Attributes module get object with single key as", function () {
       });
       value = mod.get("attr");
 
-      expect(value).toEqual(jasmine.any(Number));
-      expect(value).toEqual(0);
+      expect(value).to.be.a("number");
+      expect(value).to.equal(0);
     });
 
   });
@@ -344,10 +344,10 @@ describe("Attributes module get object with single key as", function () {
     value1 = mod.get("attr1");
     value2 = mod.get("attr2");
 
-    expect(value1).toEqual(jasmine.any(Number));
-    expect(value2).toEqual(jasmine.any(Number));
-    expect(value1).toEqual(11);
-    expect(value2).toEqual(11);
+    expect(value1).to.be.a("number");
+    expect(value2).to.be.a("number");
+    expect(value1).to.equal(11);
+    expect(value2).to.equal(11);
   });
 
   it("round should be the round of the given number", function () {
@@ -367,12 +367,12 @@ describe("Attributes module get object with single key as", function () {
     value2 = mod.get("attr2");
     value3 = mod.get("attr3");
 
-    expect(value1).toEqual(jasmine.any(Number));
-    expect(value2).toEqual(jasmine.any(Number));
-    expect(value3).toEqual(jasmine.any(Number));
-    expect(value1).toEqual(11);
-    expect(value2).toEqual(12);
-    expect(value3).toEqual(12);
+    expect(value1).to.be.a("number");
+    expect(value2).to.be.a("number");
+    expect(value3).to.be.a("number");
+    expect(value1).to.equal(11);
+    expect(value2).to.equal(12);
+    expect(value3).to.equal(12);
   });
 
 });
@@ -388,8 +388,8 @@ describe("Attributes module get with bonus", function () {
     });
     value = mod.get("attr");
 
-    expect(value).toEqual(jasmine.any(Number));
-    expect(value).toEqual(14);
+    expect(value).to.be.a("number");
+    expect(value).to.equal(14);
   });
 
   it("should sum bonus of dependency", function () {
@@ -402,8 +402,8 @@ describe("Attributes module get with bonus", function () {
     });
     value = mod.get("attr");
 
-    expect(value).toEqual(jasmine.any(Number));
-    expect(value).toEqual(14);
+    expect(value).to.be.a("number");
+    expect(value).to.equal(14);
   });
 
   it("should sum bonus of other key dependency", function () {
@@ -418,10 +418,10 @@ describe("Attributes module get with bonus", function () {
     value1 = mod.get("attr1");
     value2 = mod.get("attr2");
 
-    expect(value1).toEqual(jasmine.any(Number));
-    expect(value1).toEqual(15);
-    expect(value2).toEqual(jasmine.any(Number));
-    expect(value2).toEqual(14);
+    expect(value1).to.be.a("number");
+    expect(value1).to.equal(15);
+    expect(value2).to.be.a("number");
+    expect(value2).to.equal(14);
   });
 
   it("should sum bonus of elements of array", function () {
@@ -439,12 +439,12 @@ describe("Attributes module get with bonus", function () {
     value2 = mod.get("attr2");
     value3 = mod.get("attr3");
 
-    expect(value1).toEqual(jasmine.any(Number));
-    expect(value1).toEqual(36);
-    expect(value2).toEqual(jasmine.any(Number));
-    expect(value2).toEqual(14);
-    expect(value3).toEqual(jasmine.any(Number));
-    expect(value3).toEqual(16);
+    expect(value1).to.be.a("number");
+    expect(value1).to.equal(36);
+    expect(value2).to.be.a("number");
+    expect(value2).to.equal(14);
+    expect(value3).to.be.a("number");
+    expect(value3).to.equal(16);
   });
 
   it("should sum bonus of keys when using formulas", function () {
@@ -484,12 +484,12 @@ describe("Attributes module get with bonus", function () {
     attrValue3 = 15.3 + 3;
     attrValue4 = 11.1 + 4;
 
-    expect(avg).toEqual((attrValue2 + attrValue3 + attrValue4) / 3);
-    expect(sum).toEqual(attrValue2 + attrValue3 + attrValue4);
-    expect(round).toEqual(15 + 3);
-    expect(floor).toEqual(12 + 2);
-    expect(value).toEqual(jasmine.any(Number));
-    expect(value).toEqual(avg + sum + round + floor + 1);
+    expect(avg).to.equal((attrValue2 + attrValue3 + attrValue4) / 3);
+    expect(sum).to.equal(attrValue2 + attrValue3 + attrValue4);
+    expect(round).to.equal(15 + 3);
+    expect(floor).to.equal(12 + 2);
+    expect(value).to.be.a("number");
+    expect(value).to.equal(avg + sum + round + floor + 1);
   });
 
 });
@@ -506,7 +506,7 @@ describe("Attributes module should throw error", function () {
       mod.get("attr");
     };
 
-    expect(f).toThrow();
+    expect(f).to.throw();
   });
 
   it("when using an unknown formula", function () {
@@ -522,7 +522,7 @@ describe("Attributes module should throw error", function () {
       mod.get("attr");
     };
 
-    expect(func).toThrow();
+    expect(func).to.throw();
   });
 
   it("when using custom Object formula", function () {
@@ -540,7 +540,7 @@ describe("Attributes module should throw error", function () {
       mod.get("attr");
     };
 
-    expect(func).toThrow();
+    expect(func).to.throw();
   });
 
   it("when passing a non array to sum formula", function () {
@@ -564,8 +564,8 @@ describe("Attributes module should throw error", function () {
       mod.get("attr2");
     };
 
-    expect(func1).toThrow();
-    expect(func2).toThrow();
+    expect(func1).to.throw();
+    expect(func2).to.throw();
   });
 
 });
@@ -582,7 +582,7 @@ describe("Instances of Attributes module should be isolated", function () {
     });
     value = mod1.get("attr");
 
-    expect(value).toEqual(2);
+    expect(value).to.equal(2);
   });
 
   it("by bonuses", function () {
@@ -599,7 +599,7 @@ describe("Instances of Attributes module should be isolated", function () {
     });
     value = mod1.get("attr");
 
-    expect(value).toEqual(4);
+    expect(value).to.equal(4);
   });
 
 });
@@ -614,10 +614,10 @@ describe("Attributes module set", function () {
     mod.set("attr", 17);
     value2 = mod.get("attr");
 
-    expect(value1).toEqual(jasmine.any(Number));
-    expect(value1).toEqual(13);
-    expect(value2).toEqual(jasmine.any(Number));
-    expect(value2).toEqual(17);
+    expect(value1).to.be.a("number");
+    expect(value1).to.equal(13);
+    expect(value2).to.be.a("number");
+    expect(value2).to.equal(17);
   });
 
   it("should work when there is a previous bonus", function () {
@@ -631,10 +631,10 @@ describe("Attributes module set", function () {
     mod.set("attr", 17);
     value2 = mod.get("attr");
 
-    expect(value1).toEqual(jasmine.any(Number));
-    expect(value1).toEqual(15);
-    expect(value2).toEqual(jasmine.any(Number));
-    expect(value2).toEqual(17);
+    expect(value1).to.be.a("number");
+    expect(value1).to.equal(15);
+    expect(value2).to.be.a("number");
+    expect(value2).to.equal(17);
   });
 
   it("should change a secondary attribute value to the given value", function () {
@@ -647,10 +647,10 @@ describe("Attributes module set", function () {
     mod.set("attr", 17);
     value2 = mod.get("attr1");
 
-    expect(value1).toEqual(jasmine.any(Number));
-    expect(value1).toEqual(13);
-    expect(value2).toEqual(jasmine.any(Number));
-    expect(value2).toEqual(17);
+    expect(value1).to.be.a("number");
+    expect(value1).to.equal(13);
+    expect(value2).to.be.a("number");
+    expect(value2).to.equal(17);
   });
 
   it("should work on secondary attributes when there is a previous bonus", function () {
@@ -666,9 +666,9 @@ describe("Attributes module set", function () {
     mod.set("attr1", 17);
     value2 = mod.get("attr1");
 
-    expect(value1).toEqual(jasmine.any(Number));
-    expect(value1).toEqual(16);
-    expect(value2).toEqual(jasmine.any(Number));
-    expect(value2).toEqual(17);
+    expect(value1).to.be.a("number");
+    expect(value1).to.equal(16);
+    expect(value2).to.be.a("number");
+    expect(value2).to.equal(17);
   });
 });
