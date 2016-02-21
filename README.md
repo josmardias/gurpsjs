@@ -24,5 +24,4 @@ Continuous integration powered by [Travis CI] (https://travis-ci.org/josmardias/
 
 ## Build and Test
 
-Gurps.js uses Grunt for build and tests.  
 Look at the [wiki page](https://github.com/josmardias/gurpsjs/wiki/Testing).
