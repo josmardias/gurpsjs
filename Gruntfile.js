@@ -3,20 +3,7 @@ module.exports = function (grunt) {
 
   var taskList = [
     "grunt-contrib-clean",
-    "grunt-browserify",
-    "grunt-karma"
-  ];
-
-  var jsFiles = [
-    "Gruntfile.js",
-    "src/**/*.js",
-    "tests/**/*.js",
-    "karma/**/*.js"
-  ];
-
-  var jsonFiles = [
-    "bower.json",
-    "package.json"
+    "grunt-browserify"
   ];
 
   var config = {};
@@ -57,38 +44,6 @@ module.exports = function (grunt) {
 
   config.clean.build = ["lib"];
 
-  /* Karma
-   * https://github.com/karma-runner/grunt-karma
-   ----------------------------------------------------------------------- */
-
-  config.karma = {};
-
-  config.karma.options = {
-    basePath: "..", //default is configFile path
-    files: ["build/test-bundle.js"],
-    frameworks: ["mocha"]
-  };
-
-  config.karma.browserstack = {
-    configFile: "karma/browserstack.conf.js"
-  };
-
-  config.karma.browsers = {
-    configFile: "karma/browsers.conf.js"
-  };
-
-  config.karma.debug = {
-    configFile: "karma/debug.conf.js"
-  };
-
-  config.karma.test = {
-    configFile: "karma/test.conf.js"
-  };
-
-  config.karma.coverage = {
-    configFile: "karma/coverage.conf.js"
-  };
-
   /*
    * Configuration
    ----------------------------------------------------------------------- */
@@ -105,10 +60,6 @@ module.exports = function (grunt) {
     grunt.registerTask(name, tasks);
   }
 
-  //test
-  task("browserstack", ["browser-test-bundle", "karma:browserstack"]); // travis.sh
-  task("browsers", ["browser-test-bundle", "karma:browsers"]);
-
   //build
   task("browser-bundle", ["browserify:src"]);
   task("browser-test-bundle", ["browserify:test"]);
@@ -116,6 +67,5 @@ module.exports = function (grunt) {
 
   //develop
   task("dev", ["watch"]);
-  task("debug", ["browser-test-bundle", "karma:debug"]);
 
 };

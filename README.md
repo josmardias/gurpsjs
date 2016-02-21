@@ -21,7 +21,6 @@ See the [Wiki](https://github.com/josmardias/gurpsjs/wiki) for details.
 Check it out the <a href="https://josmardias.github.io/gurps-sheet/" target="_blank">Live</a> demo example.  
 Follow and vote on the <a href="https://trello.com/b/I16BFBkg/gurpsjs" target="_blank">Roadmap</a>  
 
-Automated cross browser testing powered by [BrowserStack] (https://www.browserstack.com/automate)  
 Continuous integration powered by [Travis CI] (https://travis-ci.org/josmardias/gurpsjs)  
 
 ## Build and Test
