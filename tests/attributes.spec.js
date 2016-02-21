@@ -29,85 +29,85 @@ describe("Attributes module creation", function () {
 describe("Get attribute without errors", function () {
 
   it("when there is no attribute", function () {
-    var mod, value;
+    var mod;
     mod = new Attributes();
-    value = mod.get("attr");
+    mod.get("attr");
   });
 
   it("when requested attribute is not present", function () {
-    var mod, value;
+    var mod;
     mod = new Attributes({
       "attr2": 11
     });
-    value = mod.get("attr");
+    mod.get("attr");
   });
 
   it("when attribute is undefined", function () {
-    var mod, value;
+    var mod;
     mod = new Attributes({
       "attr": undefined
     });
-    value = mod.get("attr");
+    mod.get("attr");
   });
 
   it("when attribute is null", function () {
-    var mod, value;
+    var mod;
     mod = new Attributes({
       "attr": null
     });
-    value = mod.get("attr");
+    mod.get("attr");
   });
 
   it("when attribute is a number", function () {
-    var mod, value;
+    var mod;
     mod = new Attributes({
       "attr": 11
     });
-    value = mod.get("attr");
+    mod.get("attr");
   });
 
   it("when attribute is a string", function () {
-    var mod, value;
+    var mod;
     mod = new Attributes({
       "attr": "test"
     });
-    value = mod.get("attr");
+    mod.get("attr");
   });
 
   it("when attribute is an object", function () {
-    var mod, value;
+    var mod;
     mod = new Attributes({
       "attr": {}
     });
-    value = mod.get("attr");
+    mod.get("attr");
   });
 
   it("when attribute is an array", function () {
-    var mod, value;
+    var mod;
     mod = new Attributes({
       "attr": []
     });
-    value = mod.get("attr");
+    mod.get("attr");
   });
 
   it("when bonus is null", function () {
-    var mod, value;
+    var mod;
     mod = new Attributes({
       "attr": 10
     }, {
       "attr": null
     });
-    value = mod.get("attr");
+    mod.get("attr");
   });
 
   it("when there is no bonus for the requested attribute", function () {
-    var mod, value;
+    var mod;
     mod = new Attributes({
       "attr": 10
     }, {
       "attr2": 1
     });
-    value = mod.get("attr");
+    mod.get("attr");
   });
 
 });
@@ -433,7 +433,7 @@ describe("Attributes module get with bonus", function () {
     }, {
       "attr1": 1,
       "attr2": 2,
-      "attr3": 3,
+      "attr3": 3
     });
     value1 = mod.get("attr1");
     value2 = mod.get("attr2");
@@ -497,20 +497,20 @@ describe("Attributes module get with bonus", function () {
 describe("Attributes module should throw error", function () {
 
   it("when the attribute is NaN", function () {
-    var mod, value, f;
+    var mod, f;
     mod = new Attributes({
       "attr": NaN
     });
 
     f = function () {
-      value = mod.get("attr");
+      mod.get("attr");
     };
 
     expect(f).toThrow();
   });
 
   it("when using an unknown formula", function () {
-    var mod, value, func;
+    var mod, func;
     mod = new Attributes({
       "attr": {
         unknownFormula: "attr2"
@@ -519,14 +519,14 @@ describe("Attributes module should throw error", function () {
     });
 
     func = function () {
-      value = mod.get("attr");
+      mod.get("attr");
     };
 
     expect(func).toThrow();
   });
 
   it("when using custom Object formula", function () {
-    var mod, value, func, CustomObject;
+    var mod, func, CustomObject;
 
     CustomObject = function () {
       this.sum = [1, 2];
@@ -537,14 +537,14 @@ describe("Attributes module should throw error", function () {
     });
 
     func = function () {
-      value = mod.get("attr");
+      mod.get("attr");
     };
 
     expect(func).toThrow();
   });
 
   it("when passing a non array to sum formula", function () {
-    var mod, value1, func1, value2, func2;
+    var mod, func1, func2;
     mod = new Attributes({
       "attr": 13,
       "attr1": {
@@ -558,10 +558,10 @@ describe("Attributes module should throw error", function () {
     });
 
     func1 = function () {
-      value1 = mod.get("attr1");
+      mod.get("attr1");
     };
     func2 = function () {
-      value2 = mod.get("attr2");
+      mod.get("attr2");
     };
 
     expect(func1).toThrow();
@@ -573,11 +573,11 @@ describe("Attributes module should throw error", function () {
 describe("Instances of Attributes module should be isolated", function () {
 
   it("by dependency tree", function () {
-    var mod1, mod2, value;
+    var mod1, value;
     mod1 = new Attributes({
       attr: 2
     });
-    mod2 = new Attributes({
+    new Attributes({
       attr: 1
     });
     value = mod1.get("attr");
@@ -586,13 +586,13 @@ describe("Instances of Attributes module should be isolated", function () {
   });
 
   it("by bonuses", function () {
-    var mod1, mod2, value;
+    var mod1, value;
     mod1 = new Attributes({
       attr: 2
     }, {
       attr: 2
     });
-    mod2 = new Attributes({
+    new Attributes({
       attr: 2
     }, {
       attr: 1

@@ -6,19 +6,19 @@ module.exports = function (grunt) {
     "grunt-contrib-clean",
     "grunt-browserify",
     "grunt-jasmine-node-coverage",
-    "grunt-karma",
+    "grunt-karma"
   ];
 
   var jsFiles = [
     "Gruntfile.js",
     "src/**/*.js",
     "tests/**/*.js",
-    "karma/**/*.js",
+    "karma/**/*.js"
   ];
 
   var jsonFiles = [
     "bower.json",
-    "package.json",
+    "package.json"
   ];
 
   var config = {};

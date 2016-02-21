@@ -17,7 +17,7 @@ module.exports = function (config) {
         dir: "coverage/"
       }, {
         type: "text"
-      }],
+      }]
     },
 
     browsers: ["PhantomJS"]

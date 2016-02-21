@@ -84,7 +84,7 @@ module.exports = function (config) {
         browser_version: "11.0",
         os: "Windows",
         os_version: "7"
-      },
+      }
     },
 
     browsers: [
