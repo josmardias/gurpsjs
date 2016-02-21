@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /* key => value
  * value can be:
@@ -26,15 +26,15 @@ class Attributes {
   }
 
   set(key, value) {
-    var actual = this.get(key);
-    var bonus = this.getBonus(key);
-    var actualWithoutBonus = actual - bonus;
+    const actual = this.get(key);
+    const bonus = this.getBonus(key);
+    const actualWithoutBonus = actual - bonus;
     this.bonuses[key] = value - actualWithoutBonus;
     return this;
   }
 
   get(key) {
-    var value = this.tree[key];
+    const value = this.tree[key];
     return this.resolve(value) + this.getBonus(key);
   }
 
@@ -43,20 +43,19 @@ class Attributes {
   }
 
   resolve(value) {
-    //detecting NaN
-    if (value !== value) {
-      throw "attribute does not support NaN";
+    if (Number.isNaN(value)) {
+      throw new Error('attribute does not support NaN');
     }
 
     if (!value) {
       return 0;
     }
 
-    if (typeof value === "number") {
+    if (typeof value === 'number') {
       return value;
     }
 
-    if (typeof value === "string") {
+    if (typeof value === 'string') {
       return this.get(value);
     }
 
@@ -68,44 +67,45 @@ class Attributes {
       return this.resolveObj(value);
     }
 
-    throw "unexpected value: " + JSON.stringify(value) + " with constructor: " + value.constructor;
+    const rawValue = JSON.stringify(value);
+    throw new Error(`unexpected value: ${rawValue} with constructor: ${value.constructor}`);
   }
 
   resolveObj(obj) {
-    var keys = Object.keys(obj);
-    var length = keys.length;
+    const keys = Object.keys(obj);
+    const length = keys.length;
 
     if (length > 1) {
-      throw "Formulas must be single key";
+      throw new Error('Formulas must be single key');
     }
 
     if (length === 0) {
       return 0;
     }
 
-    //length === 1
-    var key = keys[0];
-    var val = obj[key];
+    // length === 1
+    const key = keys[0];
+    const val = obj[key];
     switch (key) {
-    case "avg":
+    case 'avg':
       return this.avg(val);
-    case "sum":
+    case 'sum':
       return this.sum(val);
-    case "floor":
+    case 'floor':
       return this.floor(val);
-    case "round":
+    case 'round':
       return this.round(val);
     default:
     }
 
-    throw "unexpected key: " + key;
+    throw new Error(`unexpected key: ${key}`);
   }
 
   avg(arr) {
-    var length = arr.length;
+    const length = arr.length;
 
     if (!arr || arr.constructor !== Array) {
-      throw "Formula avg only supports array";
+      throw new Error('Formula avg only supports array');
     }
 
     if (length === 0) {
@@ -116,15 +116,13 @@ class Attributes {
   }
 
   sum(arr) {
-    var self = this;
+    const self = this;
 
     if (!arr || arr.constructor !== Array) {
-      throw "Formula sum only supports array";
+      throw new Error('Formula sum only supports array');
     }
 
-    return arr.reduce(function (total, value) {
-      return total + self.resolve(value);
-    }, 0);
+    return arr.reduce((total, value) => total + self.resolve(value), 0);
   }
 
   floor(value) {

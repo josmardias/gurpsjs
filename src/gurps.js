@@ -1,7 +1,5 @@
-"use strict";
+'use strict';
 
-var Character = require("./character");
+const Character = require('./character');
 
-module.exports = {
-  "Character": Character
-};
+module.exports = { Character };

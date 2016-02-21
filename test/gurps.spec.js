@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
-var GURPS = require("../src/gurps");
+const GURPS = require('../src/gurps');
 
-describe("GURPS object", function () {
-  it("must have Character attribute", function () {
+describe('GURPS object', () => {
+  it('must have Character attribute', () => {
     expect(GURPS.Character).to.be.ok;
   });
 });
