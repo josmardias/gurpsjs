@@ -2,7 +2,6 @@ module.exports = function (grunt) {
   "use strict";
 
   var taskList = [
-    "grunt-contrib-watch",
     "grunt-contrib-clean",
     "grunt-browserify",
     "grunt-karma"
@@ -27,16 +26,6 @@ module.exports = function (grunt) {
   } catch (ignore) {
     grunt.log.error("Failed to load package.json properties");
   }
-
-  /* Watch
-   * https://github.com/gruntjs/grunt-contrib-watch
-   ----------------------------------------------------------------------- */
-
-  config.watch = {};
-
-  config.watch.files = jsFiles.concat(jsonFiles);
-
-  config.watch.tasks = ["test"];
 
   /* Browserify
    * https://github.com/jmreidy/grunt-browserify
