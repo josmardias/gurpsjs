@@ -29,30 +29,33 @@ var _dependencies = {
 /**
  * attributes: initial attributes
  */
-var Character = function (attributes) {
-  this.attributes = new Attributes(_dependencies);
-  this.setAttribute(attributes);
-};
+class Character {
+  constructor(attributes) {
+    this.attributes = new Attributes(_dependencies);
+    this.setAttribute(attributes);
+  }
 
-Character.prototype.getAttribute = function (attrName) {
-  return this.attributes.get(attrName);
-};
+  getAttribute(attrName) {
+    return this.attributes.get(attrName);
+  }
 
 /**
  * attributes: an object with attribute name => value
  */
-Character.prototype.setAttribute = function (attributes) {
-  var attrName;
+  setAttribute(attributes) {
+    var attrName;
 
-  for (attrName in attributes) {
-    if (!attributes.hasOwnProperty(attrName)) {
-      continue;
+    for (attrName in attributes) {
+      if (!attributes.hasOwnProperty(attrName)) {
+        continue;
+      }
+
+      this.attributes.set(attrName, attributes[attrName]);
     }
 
-    this.attributes.set(attrName, attributes[attrName]);
+    return this;
   }
 
-  return this;
-};
+}
 
 module.exports = Character;
