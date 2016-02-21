@@ -3,12 +3,8 @@ module.exports = function (grunt) {
 
   var taskList = [
     "grunt-contrib-watch",
-    "grunt-contrib-jshint",
-    "grunt-jsonlint",
-    "grunt-jscs",
     "grunt-contrib-clean",
     "grunt-browserify",
-    "grunt-jsbeautifier",
     "grunt-jasmine-node-coverage",
     "grunt-karma",
   ];
@@ -25,14 +21,6 @@ module.exports = function (grunt) {
     "package.json",
   ];
 
-  var jsRcFiles = [
-    ".jshintrc",
-    ".jsbeautifyrc",
-    ".jscsrc",
-    "src/.jshintrc",
-    "tests/.jshintrc",
-  ];
-
   var config = {};
 
   try {
@@ -47,64 +35,9 @@ module.exports = function (grunt) {
 
   config.watch = {};
 
-  config.watch.files = jsFiles.concat(jsonFiles).concat(jsRcFiles);
+  config.watch.files = jsFiles.concat(jsonFiles);
 
   config.watch.tasks = ["test"];
-
-  /* JSHint
-   * https://github.com/gruntjs/grunt-contrib-jshint
-   ----------------------------------------------------------------------- */
-
-  config.jshint = {};
-
-  config.jshint.files = jsFiles.concat(jsonFiles).concat(jsRcFiles);
-
-  config.jshint.options = {
-    force: true,
-    extensions: ".js, .jshintrc, .jsbeautifyrc, .jscsrc",
-    jshintrc: true
-  };
-
-  /* Json Lint
-   * https://github.com/brandonramirez/grunt-jsonlint
-   ----------------------------------------------------------------------- */
-
-  config.jsonlint = {};
-
-  config.jsonlint.src = jsonFiles;
-
-  /* JSCS
-   * https://github.com/jscs-dev/grunt-jscs
-   ----------------------------------------------------------------------- */
-
-  config.jscs = {};
-
-  config.jscs.src = jsFiles;
-
-  config.jscs.options = {
-    force: true
-  };
-
-  /* JS Beautifier
-   * https://github.com/vkadam/grunt-jsbeautifier
-   ----------------------------------------------------------------------- */
-
-  config.jsbeautifier = {};
-
-  config.jsbeautifier.write = {
-    src: jsFiles,
-    options: {
-      config: ".jsbeautifyrc"
-    }
-  };
-
-  config.jsbeautifier.verify = {
-    src: jsFiles,
-    options: {
-      config: ".jsbeautifyrc",
-      mode: "VERIFY_ONLY"
-    }
-  };
 
   /* Browserify
    * https://github.com/jmreidy/grunt-browserify
@@ -218,11 +151,6 @@ module.exports = function (grunt) {
     grunt.registerTask(name, tasks);
   }
 
-  //code quality
-  task("lint", ["jsonlint", "jshint", "jscs"]);
-  task("format", ["jsbeautifier:write"]);
-  task("verify", ["lint", "jsbeautifier:verify"]);
-
   //test
   task("test", ["jasmine_node:test"]);
   task("coverage", ["jasmine_node:coverage"]); //travis.sh
@@ -235,7 +163,7 @@ module.exports = function (grunt) {
   //task("clean", ["clean:build"]);
 
   //develop
-  task("default", ["test", "lint"]);
+  task("default", ["test"]);
   task("dev", ["default", "watch"]);
   task("debug", ["browser-test-bundle", "karma:debug"]);
 
