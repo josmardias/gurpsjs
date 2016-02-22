@@ -9,6 +9,7 @@
     "sourceType": "module"
   },
   "rules": {
+    "complexity": [1, 6],
     "indent": [1, 2],
     "linebreak-style": [2, "unix"],
     "no-unused-expressions": [2, { "allowShortCircuit": true }]
