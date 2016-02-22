@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /* key => value
  * value can be:
@@ -18,119 +18,121 @@
  * dependencyTree: an object describing the dependency tree and default values
  * bonuses: a hash map of integers describing attributes bonuses
  */
-var Attributes = function (dependencyTree, bonuses) {
-  this.tree = dependencyTree || {}; // attributes tree hash map
-  this.bonuses = bonuses || {}; // attributes bonuses hash map
-};
 
-Attributes.prototype.set = function (key, value) {
-  var actual = this.get(key);
-  var bonus = this.getBonus(key);
-  var actualWithoutBonus = actual - bonus;
-  this.bonuses[key] = value - actualWithoutBonus;
-  return this;
-};
-
-Attributes.prototype.get = function (key) {
-  var value = this.tree[key];
-  return this.resolve(value) + this.getBonus(key);
-};
-
-Attributes.prototype.getBonus = function (key) {
-  return this.bonuses[key] || 0;
-};
-
-Attributes.prototype.resolve = function (value) {
-  //detecting NaN
-  if (value !== value) {
-    throw "attribute does not support NaN";
+class Attributes {
+  constructor(dependencyTree, bonuses) {
+    this.tree = dependencyTree || {}; // attributes tree hash map
+    this.bonuses = bonuses || {}; // attributes bonuses hash map
   }
 
-  if (!value) {
-    return 0;
+  set(key, value) {
+    const actual = this.get(key);
+    const bonus = this.getBonus(key);
+    const actualWithoutBonus = actual - bonus;
+    this.bonuses[key] = value - actualWithoutBonus;
+    return this;
   }
 
-  if (typeof value === "number") {
-    return value;
+  get(key) {
+    const value = this.tree[key];
+    return this.resolve(value) + this.getBonus(key);
   }
 
-  if (typeof value === "string") {
-    return this.get(value);
+  getBonus(key) {
+    return this.bonuses[key] || 0;
   }
 
-  if (value.constructor === Array) {
-    return this.sum(value);
+  resolve(value) {
+    if (Number.isNaN(value)) {
+      throw new Error('attribute does not support NaN');
+    }
+
+    if (!value) {
+      return 0;
+    }
+
+    if (typeof value === 'number') {
+      return value;
+    }
+
+    if (typeof value === 'string') {
+      return this.get(value);
+    }
+
+    if (value.constructor === Array) {
+      return this.sum(value);
+    }
+
+    if (value.constructor === Object) {
+      return this.resolveObj(value);
+    }
+
+    const rawValue = JSON.stringify(value);
+    throw new Error(`unexpected value: ${rawValue} with constructor: ${value.constructor}`);
   }
 
-  if (value.constructor === Object) {
-    return this.resolveObj(value);
+  resolveObj(obj) {
+    const keys = Object.keys(obj);
+    const length = keys.length;
+
+    if (length > 1) {
+      throw new Error('Formulas must be single key');
+    }
+
+    if (length === 0) {
+      return 0;
+    }
+
+    // length === 1
+    const key = keys[0];
+    const val = obj[key];
+    switch (key) {
+    case 'avg':
+      return this.avg(val);
+    case 'sum':
+      return this.sum(val);
+    case 'floor':
+      return this.floor(val);
+    case 'round':
+      return this.round(val);
+    default:
+    }
+
+    throw new Error(`unexpected key: ${key}`);
   }
 
-  throw "unexpected value: " + JSON.stringify(value) + " with constructor: " + value.constructor;
-};
+  avg(arr) {
+    const length = arr.length;
 
-Attributes.prototype.resolveObj = function (obj) {
-  var keys = Object.keys(obj);
-  var length = keys.length;
+    if (!arr || arr.constructor !== Array) {
+      throw new Error('Formula avg only supports array');
+    }
 
-  if (length > 1) {
-    throw "Formulas must be single key";
+    if (length === 0) {
+      return 0;
+    }
+
+    return this.sum(arr) / length;
   }
 
-  if (length === 0) {
-    return 0;
+  sum(arr) {
+    const self = this;
+
+    if (!arr || arr.constructor !== Array) {
+      throw new Error('Formula sum only supports array');
+    }
+
+    return arr.reduce((total, value) => total + self.resolve(value), 0);
   }
 
-  //length === 1
-  var key = keys[0];
-  var val = obj[key];
-  switch (key) {
-  case "avg":
-    return this.avg(val);
-  case "sum":
-    return this.sum(val);
-  case "floor":
-    return this.floor(val);
-  case "round":
-    return this.round(val);
-  default:
+  floor(value) {
+    return Math.floor(this.resolve(value));
   }
 
-  throw "unexpected key: " + key;
-};
-
-Attributes.prototype.avg = function (arr) {
-  var length = arr.length;
-
-  if (!arr || arr.constructor !== Array) {
-    throw "Formula avg only supports array";
+  round(value) {
+    return Math.round(this.resolve(value));
   }
 
-  if (length === 0) {
-    return 0;
-  }
-
-  return this.sum(arr) / length;
-};
-
-Attributes.prototype.sum = function (arr) {
-  var self = this;
-
-  if (!arr || arr.constructor !== Array) {
-    throw "Formula sum only supports array";
-  }
-
-  return arr.reduce(function (total, value) {
-    return total + self.resolve(value);
-  }, 0);
-};
-
-Attributes.prototype.floor = function (value) {
-  return Math.floor(this.resolve(value));
-};
-
-Attributes.prototype.round = function (value) {
-  return Math.round(this.resolve(value));
-};
+}
 
 module.exports = Attributes;

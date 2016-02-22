@@ -11,11 +11,6 @@ cache:
   directories:
     - node_modules
 
-env:
-  matrix:
-    - BUILD_SUBTASK=browserstack
-    - BUILD_SUBTASK=coverage
-
-install: bash travis.sh install
+install: npm install
 
 script: bash travis.sh script

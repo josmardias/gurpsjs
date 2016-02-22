@@ -1,0 +1,21 @@
+{
+  "env": {
+    "mocha": true
+  },
+  "globals": {
+    "expect": true
+  },
+  "plugins": [
+    "mocha"
+  ],
+  "rules": {
+    "newline-per-chained-call": [0],
+    "no-unused-expressions": 0,
+    "one-var": [2, {
+      "uninitialized": "always",
+      "initialized": "never"
+    }],
+    "mocha/no-exclusive-tests": 2,
+    "mocha/no-global-tests": 2
+  }
+}
