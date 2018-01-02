@@ -1,0 +1,19 @@
+{
+  "sortToTop": [
+    "name",
+    "private",
+    "version",
+    "description",
+    "license",
+    "author",
+    "homepage",
+    "proxy",
+    "bugs",
+    "repository",
+    "keywords",
+    "config",
+    "main",
+    "scripts",
+    "eslintConfig"
+  ]
+}

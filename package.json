@@ -20,7 +20,9 @@
     "url": "https://github.com/josmardias/gurpsjs.git"
   },
   "scripts": {
+    "lint:pack": "fixpack"
   },
   "devDependencies": {
+    "fixpack": "^2.3.1"
   }
 }
