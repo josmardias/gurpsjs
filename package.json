@@ -2,23 +2,23 @@
   "name": "gurpsjs",
   "version": "0.0.8",
   "description": "A GURPS JavaScript library",
-  "keywords": [
-    "rpg",
-    "gurps",
-    "javascript",
-    "library"
-  ],
-  "homepage": "https://github.com/josmardias/gurpsjs",
-  "bugs": "https://github.com/josmardias/gurpsjs/issues",
   "license": "MIT",
   "author": {
     "name": "Josmar Dias",
     "url": "https://github.com/josmardias"
   },
+  "homepage": "https://github.com/josmardias/gurpsjs",
+  "bugs": "https://github.com/josmardias/gurpsjs/issues",
   "repository": {
     "type": "git",
     "url": "https://github.com/josmardias/gurpsjs.git"
   },
+  "keywords": [
+    "gurps",
+    "javascript",
+    "library",
+    "rpg"
+  ],
   "scripts": {
     "lint:pack": "fixpack"
   },
