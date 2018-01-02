@@ -6,6 +6,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
+    'prettier',
   ],
   parserOptions: {
     sourceType: 'module',
