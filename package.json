@@ -20,7 +20,7 @@
     "rpg"
   ],
   "scripts": {
-    "lint:error": "eslint . --max-warnings 0",
+    "lint": "eslint . --fix --max-warnings 0 --ignore-pattern !.eslintrc*",
     "lint:pack": "fixpack",
     "test": "jest --watch"
   },

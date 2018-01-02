@@ -1,3 +1,5 @@
+/* global module */
+
 module.exports = {
   env: {
     es6: true,
@@ -7,15 +9,10 @@ module.exports = {
     'eslint:recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
+    './config/eslint/detect-errors.js',
+    './config/eslint/code-style.js',
   ],
   parserOptions: {
     sourceType: 'module',
-  },
-  /*
-    User experience rules (bug prevention) should be added as "error".
-    Developer experience (code quality) rules should be added as "warn".
-  */
-  rules: {
-    'no-unused-vars': ['warn'],
   },
 }
