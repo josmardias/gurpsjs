@@ -1,7 +1,13 @@
-test.skip('smoke: battle between two characters', () => {
+import {
+  createBattle,
+} from './gurps/battle'
+
+tests.skip('smoke: battle between two characters', () => {
   const battle = createBattle({
-    john: createCharacter(),
-    peter: createCharacter(),
+    entities: {
+      john: createCharacter(),
+      peter: createCharacter(),
+    },
   })
 
   expect(battle).toBeDefined()
